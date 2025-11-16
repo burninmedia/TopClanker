@@ -1,0 +1,105 @@
+{
+  "lastUpdated": "2024-11-16",
+  "agents": [
+    {
+      "rank": 1,
+      "name": "Claude Sonnet 4",
+      "category": "reasoning",
+      "type": "closed",
+      "privacy": "high",
+      "score": 98,
+      "link": "https://claude.ai",
+      "description": "Advanced reasoning and analysis"
+    },
+    {
+      "rank": 2,
+      "name": "GPT-4 Turbo",
+      "category": "reasoning",
+      "type": "closed",
+      "privacy": "medium",
+      "score": 96,
+      "link": "https://openai.com",
+      "description": "Strong general-purpose reasoning"
+    },
+    {
+      "rank": 3,
+      "name": "Gemini Pro",
+      "category": "research",
+      "type": "closed",
+      "privacy": "medium",
+      "score": 94,
+      "link": "https://deepmind.google",
+      "description": "Multimodal research capabilities"
+    },
+    {
+      "rank": 4,
+      "name": "Llama 3.1 405B",
+      "category": "reasoning",
+      "type": "open-source",
+      "privacy": "high",
+      "score": 92,
+      "link": "https://llama.meta.com",
+      "description": "Open-source powerhouse"
+    },
+    {
+      "rank": 5,
+      "name": "Mistral Large",
+      "category": "math",
+      "type": "open-source",
+      "privacy": "high",
+      "score": 90,
+      "link": "https://mistral.ai",
+      "description": "Strong mathematical reasoning"
+    },
+    {
+      "rank": 6,
+      "name": "Claude Opus 4",
+      "category": "research",
+      "type": "closed",
+      "privacy": "high",
+      "score": 97,
+      "link": "https://claude.ai",
+      "description": "Deep research and analysis"
+    },
+    {
+      "rank": 7,
+      "name": "GPT-4o",
+      "category": "learning",
+      "type": "closed",
+      "privacy": "medium",
+      "score": 89,
+      "link": "https://openai.com",
+      "description": "Multimodal learning capabilities"
+    },
+    {
+      "rank": 8,
+      "name": "DeepSeek V2",
+      "category": "math",
+      "type": "open-source",
+      "privacy": "high",
+      "score": 88,
+      "link": "https://github.com/deepseek-ai",
+      "description": "Specialized mathematical reasoning"
+    },
+    {
+      "rank": 9,
+      "name": "Qwen 2.5",
+      "category": "reasoning",
+      "type": "open-source",
+      "privacy": "high",
+      "score": 87,
+      "link": "https://github.com/QwenLM",
+      "description": "Efficient reasoning model"
+    },
+    {
+      "rank": 10,
+      "name": "Yi-Large",
+      "category": "learning",
+      "type": "open-source",
+      "privacy": "high",
+      "score": 86,
+      "link": "https://github.com/01-ai",
+      "description": "Adaptive learning capabilities"
+    }
+  ]
+}

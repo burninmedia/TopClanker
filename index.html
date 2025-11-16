@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TopClanker - AI Agent Rankings</title>
+    <meta name="description" content="No-bullshit rankings of AI agents. Find the best reasoning, math, research, and learning models.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50 text-gray-900">
+    
+    <!-- Header -->
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <h1 class="text-2xl font-bold text-blue-600">TopClanker</h1>
+                    <span class="text-sm text-gray-500 hidden sm:inline">AI Agent Rankings</span>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#rankings" class="text-gray-700 hover:text-blue-600 font-medium">Rankings</a>
+                    <a href="#categories" class="text-gray-700 hover:text-blue-600 font-medium">Categories</a>
+                    <a href="#learn" class="text-gray-700 hover:text-blue-600 font-medium">Learn</a>
+                    <a href="#blog" class="text-gray-700 hover:text-blue-600 font-medium hidden sm:inline">Blog</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4">AI Agent Rankings</h2>
+            <p class="text-xl md:text-2xl mb-2 text-blue-100">No bullshit. Just data.</p>
+            <p class="text-lg text-blue-100 max-w-2xl mx-auto">
+                We rank AI agents by actual performance. Reasoning, math, research, learning - all benchmarked and tracked.
+            </p>
+        </div>
+    </section>
+
+    <!-- Ad Spot - Top Banner -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-8">
+        <div class="bg-gray-200 border-2 border-dashed border-gray-400 rounded-lg p-8 text-center">
+            <p class="text-gray-500">Ad Space - 728x90</p>
+            <!-- Google AdSense code goes here -->
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- Rankings Section -->
+        <section id="rankings" class="mb-12">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-3xl font-bold">Top AI Agents</h3>
+                <div class="text-sm text-gray-500">
+                    Last updated: <span id="lastUpdated">Loading...</span>
+                </div>
+            </div>
+
+            <!-- Category Filter -->
+            <div class="flex flex-wrap gap-2 mb-6" id="categoryFilter">
+                <button class="filter-btn active" data-category="all">All</button>
+                <button class="filter-btn" data-category="reasoning">Reasoning</button>
+                <button class="filter-btn" data-category="math">Math</button>
+                <button class="filter-btn" data-category="research">Research</button>
+                <button class="filter-btn" data-category="learning">Learning</button>
+            </div>
+
+            <!-- Rankings Table -->
+            <div class="bg-white rounded-lg shadow overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rank</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Agent</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Privacy</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Score</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Link</th>
+                            </tr>
+                        </thead>
+                        <tbody id="rankingsTableBody" class="bg-white divide-y divide-gray-200">
+                            <!-- Populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ad Spot - Sidebar would go here in future -->
+        
+        <!-- Categories Section -->
+        <section id="categories" class="mb-12">
+            <h3 class="text-3xl font-bold mb-6">Categories Explained</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center mb-3">
+                        <span class="category-badge reasoning mr-2">Reasoning</span>
+                    </div>
+                    <p class="text-gray-600">Logic, problem-solving, and complex decision-making capabilities.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center mb-3">
+                        <span class="category-badge math mr-2">Math</span>
+                    </div>
+                    <p class="text-gray-600">Mathematical computation, symbolic manipulation, and quantitative analysis.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center mb-3">
+                        <span class="category-badge research mr-2">Research</span>
+                    </div>
+                    <p class="text-gray-600">Information synthesis, citation accuracy, and comprehensive analysis.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center mb-3">
+                        <span class="category-badge learning mr-2">Learning</span>
+                    </div>
+                    <p class="text-gray-600">Adaptive behavior, continuous improvement, and knowledge retention.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Learn Section -->
+        <section id="learn" class="mb-12">
+            <h3 class="text-3xl font-bold mb-6">Building Top-Tier AI Agents</h3>
+            <div class="bg-white rounded-lg shadow p-8">
+                <p class="text-lg text-gray-700 mb-4">
+                    What makes an AI agent rank well? It's not magic - it's engineering.
+                </p>
+                <div class="space-y-4 text-gray-600">
+                    <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">1. Clear Objectives</h4>
+                        <p>Top agents have well-defined goals and success metrics. Vague objectives produce vague results.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">2. Robust Context Handling</h4>
+                        <p>The best agents maintain state, understand context windows, and know when they need more information.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">3. Error Recovery</h4>
+                        <p>Shit breaks. Top agents gracefully handle failures and provide useful feedback when things go wrong.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">4. Privacy & Data Handling</h4>
+                        <p>Responsible data practices aren't optional. Clear policies on what's stored, how, and for how long.</p>
+                    </div>
+                </div>
+                <div class="mt-6">
+                    <a href="#blog" class="text-blue-600 hover:text-blue-800 font-medium">Read more in our blog →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Placeholder -->
+        <section id="blog" class="mb-12">
+            <h3 class="text-3xl font-bold mb-6">Latest Articles</h3>
+            <div class="bg-white rounded-lg shadow p-8 text-center text-gray-500">
+                <p>Blog coming soon. Check back for deep dives on AI agent architecture and performance optimization.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h4 class="text-white font-bold mb-4">TopClanker</h4>
+                    <p class="text-sm">Objective AI agent rankings. No hype, just performance.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#rankings" class="hover:text-white">Rankings</a></li>
+                        <li><a href="#categories" class="hover:text-white">Categories</a></li>
+                        <li><a href="#learn" class="hover:text-white">Learn</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Contact</h4>
+                    <p class="text-sm">Want to submit your agent for ranking?<br>Email: rankings@topclanker.com</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-sm text-center">
+                <p>&copy; 2024 TopClanker. Built with zero bullshit.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
