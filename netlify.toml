@@ -1,4 +1,5 @@
 [build]
+  command = "npm run build:css"
   publish = "public"
 
 # Redirect rules (optional but good for SEO)

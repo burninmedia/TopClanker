@@ -1,0 +1,13 @@
+{
+  "name": "topclanker",
+  "version": "1.0.0",
+  "description": "AI Agent Rankings - No bullshit, just data",
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/input.css -o ./public/output.css --minify",
+    "watch:css": "tailwindcss -i ./src/input.css -o ./public/output.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0"
+  }
+}
+
