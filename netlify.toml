@@ -1,17 +1,5 @@
 [build]
-  # No build command needed - this is pure HTML/CSS/JS
-  command = ""
-  
-  # Publish directory is the root
   publish = "."
-
-[build.environment]
-  # Use Ubuntu 22.04 LTS (Jammy Jellyfish) build image
-  NODE_VERSION = "18"
-
-# Specify build image
-[build.processing]
-  skip_processing = false
 
 # Redirect rules (optional but good for SEO)
 [[redirects]]
