@@ -1,5 +1,5 @@
 [build]
-  publish = "."
+  publish = "public"
 
 # Redirect rules (optional but good for SEO)
 [[redirects]]
