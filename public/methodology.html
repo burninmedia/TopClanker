@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Methodology - TopClanker</title>
+    <meta name="description" content="How we rank AI agents using published benchmarks and community voting.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50 text-gray-900">
+    
+    <!-- Header -->
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <a href="index.html" class="text-2xl font-bold text-blue-600">TopClanker</a>
+                    <span class="text-sm text-gray-500 hidden sm:inline">AI Agent Rankings</span>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="index.html#rankings" class="text-gray-700 hover:text-blue-600 font-medium">Rankings</a>
+                    <a href="index.html#categories" class="text-gray-700 hover:text-blue-600 font-medium">Categories</a>
+                    <a href="methodology.html" class="text-blue-600 font-medium">Methodology</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-12">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-4xl font-bold mb-4">How We Rank AI Agents</h1>
+            <p class="text-xl text-blue-100">Real benchmarks. Real data. No bullshit.</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <!-- Overview -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold mb-6">Our Approach</h2>
+            <div class="bg-white rounded-lg shadow p-8">
+                <p class="text-lg text-gray-700 mb-4">
+                    TopClanker aggregates scores from established, peer-reviewed benchmarks published by the AI research community. 
+                    We don't make up numbers. Every score links back to published results.
+                </p>
+                <p class="text-lg text-gray-700 mb-4">
+                    Think of it like Rotten Tomatoes for AI:
+                </p>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-start">
+                        <span class="font-semibold text-blue-600 mr-2">🎯 Benchmark Score</span>
+                        <span>Our "Tomatometer" - Weighted aggregate of published academic benchmarks</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="font-semibold text-green-600 mr-2">🍿 Community Score</span>
+                        <span>Our "Popcorn Meter" - User voting (coming soon)</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Benchmarks Used -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold mb-6">Benchmarks We Use</h2>
+            
+            <!-- Reasoning -->
+            <div class="bg-white rounded-lg shadow p-6 mb-6">
+                <h3 class="text-2xl font-bold mb-4 flex items-center">
+                    <span class="category-badge reasoning mr-3">Reasoning</span>
+                    Reasoning Models
+                </h3>
+                <div class="space-y-4">
+                    <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">MMLU (Massive Multitask Language Understanding)</h4>
+                        <p class="text-gray-600 mb-2">57 subjects covering STEM, humanities, social sciences. Multiple-choice questions from elementary to professional level.</p>
+                        <p class="text-sm text-gray-500">Source: <a href="https://arxiv.org/abs/2009.03300" class="text-blue-600 hover:underline" target="_blank">Hendrycks et al., 2021</a></p>
+                        <p class="text-sm text-gray-500">Weight in category: <strong>40%</strong></p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">GPQA (Graduate-Level Questions)</h4>
+                        <p class="text-gray-600 mb-2">Diamond-level graduate questions in physics, biology, and chemistry. Tests expert-level reasoning.</p>
+                        <p class="text-sm text-gray-500">Source: Published research benchmarks</p>
+                        <p class="text-sm text-gray-500">Weight in category: <strong>30%</strong></p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">LMSYS Chatbot Arena</h4>
+                        <p class="text-gray-600 mb-2">Real-world human preference ranking via blind pairwise comparisons. Over 1M+ votes.</p>
+                        <p class="text-sm text-gray-500">Source: <a href="https://lmsys.org/" class="text-blue-600 hover:underline" target="_blank">LMSYS Org</a></p>
+                        <p class="text-sm text-gray-500">Weight in category: <strong>30%</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Math -->
+            <div class="bg-white rounded-lg shadow p-6 mb-6">
+                <h3 class="text-2xl font-bold mb-4 flex items-center">
+                    <span class="category-badge math mr-3">Math</span>
+                    Math Models
+                </h3>
+                <div class="space-y-4">
+                    <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">GSM8K (Grade School Math 8K)</h4>
+                        <p class="text-gray-600 mb-2">8,500 grade-school level math word problems. Tests multi-step reasoning and arithmetic.</p>
+                        <p class="text-sm text-gray-500">Source: <a href="https://arxiv.org/abs/2110.14168" class="text-blue-600 hover:underline" target="_blank">Cobbe et al., 2021</a></p>
+                        <p class="text-sm text-gray-500">Weight in category: <strong>40%</strong></p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">MATH</h4>
+                        <p class="text-gray-600 mb-2">12,500 competition mathematics problems with step-by-step solutions. Tests advanced mathematical reasoning.</p>
+                        <p class="text-sm text-gray-500">Source: Published math benchmarks</p>
+                        <p class="text-sm text-gray-500">Weight in category: <strong>40%</strong></p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">AIME (Math Competition)</h4>
+                        <p class="text-gray-600 mb-2">American Invitational Mathematics Examination problems. High-school competition level.</p>
+                        <p class="text-sm text-gray-500">Source: Competition benchmarks</p>
+                        <p class="text-sm text-gray-500">Weight in category: <strong>20%</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Research -->
+            <div class="bg-white rounded-lg shadow p-6 mb-6">
+                <h3 class="text-2xl font-bold mb-4 flex items-center">
+                    <span class="category-badge research mr-3">Research</span>
+                    Research Models
+                </h3>
+                <div class="space-y-4">
+                    <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">MMLU (General Knowledge)</h4>
+                        <p class="text-gray-600 mb-2">Same as reasoning, but weighted for breadth of knowledge.</p>
+                        <p class="text-sm text-gray-500">Weight in category: <strong>35%</strong></p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">MMMU (Multimodal Understanding)</h4>
+                        <p class="text-gray-600 mb-2">Multimodal questions requiring visual reasoning and document understanding.</p>
+                        <p class="text-sm text-gray-500">Source: Published research</p>
+                        <p class="text-sm text-gray-500">Weight in category: <strong>30%</strong></p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Citation Accuracy</h4>
+                        <p class="text-gray-600 mb-2">Manual testing of fact-checking and source attribution.</p>
+                        <p class="text-sm text-gray-500">Source: Internal testing</p>
+                        <p class="text-sm text-gray-500">Weight in category: <strong>35%</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Learning/Coding -->
+            <div class="bg-white rounded-lg shadow p-6 mb-6">
+                <h3 class="text-2xl font-bold mb-4 flex items-center">
+                    <span class="category-badge learning mr-3">Learning</span>
+                    Learning/Coding Models
+                </h3>
+                <div class="space-y-4">
+                    <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">HumanEval</h4>
+                        <p class="text-gray-600 mb-2">164 hand-written programming problems. Tests code generation and correctness.</p>
+                        <p class="text-sm text-gray-500">Source: <a href="https://arxiv.org/abs/2107.03374" class="text-blue-600 hover:underline" target="_blank">Chen et al., 2021</a></p>
+                        <p class="text-sm text-gray-500">Weight in category: <strong>40%</strong></p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">SWE-bench Verified</h4>
+                        <p class="text-gray-600 mb-2">Real-world software engineering tasks. Tests ability to fix bugs and write production code.</p>
+                        <p class="text-sm text-gray-500">Source: Published coding benchmarks</p>
+                        <p class="text-sm text-gray-500">Weight in category: <strong>40%</strong></p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Adaptive Performance</h4>
+                        <p class="text-gray-600 mb-2">Testing context retention and learning from feedback.</p>
+                        <p class="text-sm text-gray-500">Source: Internal testing</p>
+                        <p class="text-sm text-gray-500">Weight in category: <strong>20%</strong></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scoring Formula -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold mb-6">Scoring Formula</h2>
+            <div class="bg-white rounded-lg shadow p-8">
+                <h3 class="text-xl font-semibold mb-4">Category Score Calculation</h3>
+                <div class="bg-gray-50 p-6 rounded-lg mb-6 font-mono text-sm">
+                    <p class="mb-2">Category Score = Σ (Benchmark Score × Weight)</p>
+                    <p class="text-gray-600">Example for Reasoning:</p>
+                    <p class="text-gray-600">= (MMLU × 0.40) + (GPQA × 0.30) + (Arena Elo × 0.30)</p>
+                </div>
+
+                <h3 class="text-xl font-semibold mb-4">Overall Score (Coming Soon)</h3>
+                <p class="text-gray-700 mb-4">
+                    The overall TopClanker score will average across all categories where a model has been evaluated, 
+                    with additional weighting for:
+                </p>
+                <ul class="space-y-2 text-gray-700 ml-6">
+                    <li>• <strong>Privacy rating</strong> (+5% for high privacy)</li>
+                    <li>• <strong>Open source</strong> (+3% bonus for open models)</li>
+                    <li>• <strong>Recency</strong> (newer benchmarks weighted slightly higher)</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Privacy Rating -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold mb-6">Privacy Rating</h2>
+            <div class="bg-white rounded-lg shadow p-8">
+                <p class="text-gray-700 mb-4">
+                    Privacy ratings are based on publicly available information about data handling:
+                </p>
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <span class="privacy-dot privacy-high mr-3 mt-1"></span>
+                        <div>
+                            <p class="font-semibold text-gray-900">High Privacy</p>
+                            <p class="text-gray-600">No training on user data, clear data retention policies, GDPR compliant, allows data deletion.</p>
+                            <p class="text-sm text-gray-500">Examples: Claude (no training), most open-source models (self-hosted)</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="privacy-dot privacy-medium mr-3 mt-1"></span>
+                        <div>
+                            <p class="font-semibold text-gray-900">Medium Privacy</p>
+                            <p class="text-gray-600">May train on user data with opt-out, 30-day retention, some data sharing with partners.</p>
+                            <p class="text-sm text-gray-500">Examples: GPT-4 (opt-out available), Gemini (Google integration)</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="privacy-dot privacy-low mr-3 mt-1"></span>
+                        <div>
+                            <p class="font-semibold text-gray-900">Low Privacy</p>
+                            <p class="text-gray-600">Trains on user data by default, unclear retention, extensive data collection.</p>
+                            <p class="text-sm text-gray-500">Note: Very few major models fall into this category as of 2024</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Update Schedule -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold mb-6">Update Schedule</h2>
+            <div class="bg-white rounded-lg shadow p-8">
+                <ul class="space-y-3 text-gray-700">
+                    <li><strong>Monthly:</strong> Update with new published benchmark results</li>
+                    <li><strong>Immediately:</strong> Add new models when major releases occur</li>
+                    <li><strong>Quarterly:</strong> Review and adjust category weights based on community feedback</li>
+                    <li><strong>As needed:</strong> Methodology updates (with transparency reports)</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Data Sources -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold mb-6">Data Sources</h2>
+            <div class="bg-white rounded-lg shadow p-8">
+                <p class="text-gray-700 mb-4">All benchmark data comes from:</p>
+                <ul class="space-y-2 text-gray-700">
+                    <li>• Official model release papers and technical reports</li>
+                    <li>• LMSYS Chatbot Arena leaderboard (updated continuously)</li>
+                    <li>• Papers with Code leaderboards</li>
+                    <li>• Hugging Face Open LLM Leaderboard</li>
+                    <li>• Independent third-party evaluations (when available)</li>
+                </ul>
+                <p class="text-gray-700 mt-4">
+                    Every score on TopClanker includes a source link to the original benchmark data.
+                </p>
+            </div>
+        </section>
+
+        <!-- Transparency -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold mb-6">Our Commitments</h2>
+            <div class="bg-white rounded-lg shadow p-8">
+                <div class="space-y-4 text-gray-700">
+                    <p>✓ <strong>No paid placements:</strong> Rankings are based solely on benchmark performance.</p>
+                    <p>✓ <strong>Open methodology:</strong> This page explains exactly how we calculate scores.</p>
+                    <p>✓ <strong>Source everything:</strong> Every claim links to published research.</p>
+                    <p>✓ <strong>Update transparently:</strong> Methodology changes are documented and dated.</p>
+                    <p>✓ <strong>Community input:</strong> User voting will complement (not replace) benchmark scores.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Limitations -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold mb-6">Limitations & Caveats</h2>
+            <div class="bg-white rounded-lg shadow p-8">
+                <p class="text-gray-700 mb-4">We're transparent about what our rankings can and can't tell you:</p>
+                <ul class="space-y-3 text-gray-700">
+                    <li>• <strong>Benchmarks aren't perfect:</strong> They test specific capabilities, not all real-world performance.</li>
+                    <li>• <strong>Scores change:</strong> Models get updated, new benchmarks emerge. Our rankings reflect current data.</li>
+                    <li>• <strong>Context matters:</strong> The "best" model depends on your use case. A high overall score doesn't mean it's best for YOUR task.</li>
+                    <li>• <strong>Gaming is possible:</strong> Labs can optimize for benchmarks. We try to use diverse tests to minimize this.</li>
+                    <li>• <strong>Not all models are tested equally:</strong> Some models have more published benchmarks than others.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold mb-6">Questions or Feedback?</h2>
+            <div class="bg-white rounded-lg shadow p-8">
+                <p class="text-gray-700 mb-4">
+                    Think we're missing an important benchmark? Disagree with our weighting? Found an error?
+                </p>
+                <p class="text-gray-700">
+                    Email us: <a href="/cdn-cgi/l/email-protection#e78a82938f8883888b88809ea7938897848b86898c8295c984888a" class="text-blue-600 hover:underline font-medium"><span class="__cf_email__" data-cfemail="7e131b0a16111a11121119073e0a110e1d121f10151b0c501d1113">[email&#160;protected]</span></a>
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h4 class="text-white font-bold mb-4">TopClanker</h4>
+                    <p class="text-sm">Objective AI agent rankings. No hype, just performance.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="index.html#rankings" class="hover:text-white">Rankings</a></li>
+                        <li><a href="methodology.html" class="hover:text-white">Methodology</a></li>
+                        <li><a href="index.html#learn" class="hover:text-white">Learn</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Contact</h4>
+                    <p class="text-sm">Want to submit your agent for ranking?<br>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="463427282d2f28213506322936252a27282d23346825292b">[email&#160;prote

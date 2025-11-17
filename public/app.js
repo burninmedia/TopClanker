@@ -84,6 +84,11 @@ class RankingsApp {
     }
 
     createTableRow(agent) {
+        const benchmarkScoreDisplay = agent.benchmarkScore 
+            ? `<div class="text-lg font-semibold text-gray-900">${agent.benchmarkScore}</div>
+               <div class="text-xs text-gray-500">Benchmark</div>`
+            : `<div class="text-lg font-semibold text-gray-900">${agent.score || 'N/A'}</div>`;
+
         return `
             <tr>
                 <td class="px-6 py-4 whitespace-nowrap">
@@ -92,6 +97,7 @@ class RankingsApp {
                 <td class="px-6 py-4">
                     <div class="font-medium text-gray-900">${agent.name}</div>
                     ${agent.description ? `<div class="text-sm text-gray-500">${agent.description}</div>` : ''}
+                    ${agent.benchmarks ? this.createBenchmarkTooltip(agent.benchmarks) : ''}
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
                     ${this.createCategoryBadge(agent.category)}
@@ -103,7 +109,7 @@ class RankingsApp {
                     ${this.createPrivacyRating(agent.privacy)}
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-lg font-semibold text-gray-900">${agent.score}</div>
+                    ${benchmarkScoreDisplay}
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
                     <a href="${agent.link}" target="_blank" rel="noopener noreferrer" class="external-link">
@@ -121,6 +127,14 @@ class RankingsApp {
         else if (rank === 3) rankClass = 'rank-3';
         
         return `<span class="rank-badge ${rankClass}">${rank}</span>`;
+    }
+
+    createBenchmarkTooltip(benchmarks) {
+        const benchmarkList = Object.entries(benchmarks)
+            .map(([key, value]) => `${key.toUpperCase()}: ${value}${typeof value === 'number' && value < 100 ? '%' : ''}`)
+            .join(' | ');
+        
+        return `<div class="text-xs text-gray-400 mt-1">${benchmarkList}</div>`;
     }
 
     createCategoryBadge(category) {

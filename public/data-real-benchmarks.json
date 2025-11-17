@@ -1,0 +1,272 @@
+{
+  "lastUpdated": "2024-11-16",
+  "methodology": "Scores based on published benchmarks. See methodology.html for details.",
+  "agents": [
+    {
+      "rank": 1,
+      "name": "Claude Sonnet 4",
+      "category": "reasoning",
+      "type": "closed",
+      "privacy": "high",
+      "benchmarkScore": 89,
+      "communityScore": null,
+      "link": "https://claude.ai",
+      "description": "Advanced reasoning with extended thinking",
+      "benchmarks": {
+        "mmlu": 86.5,
+        "gpqa": 75.4,
+        "arenaElo": 1300
+      },
+      "sources": [
+        "https://www.anthropic.com/claude",
+        "https://lmsys.org/"
+      ]
+    },
+    {
+      "rank": 2,
+      "name": "GPT-4o",
+      "category": "reasoning",
+      "type": "closed",
+      "privacy": "medium",
+      "benchmarkScore": 88,
+      "communityScore": null,
+      "link": "https://openai.com/gpt-4",
+      "description": "Multimodal reasoning and broad knowledge",
+      "benchmarks": {
+        "mmlu": 88.7,
+        "gpqa": 72.0,
+        "arenaElo": 1287
+      },
+      "sources": [
+        "https://openai.com/research/gpt-4",
+        "https://lmsys.org/"
+      ]
+    },
+    {
+      "rank": 3,
+      "name": "Claude Opus 4",
+      "category": "research",
+      "type": "closed",
+      "privacy": "high",
+      "benchmarkScore": 90,
+      "communityScore": null,
+      "link": "https://claude.ai",
+      "description": "Deep research and comprehensive analysis",
+      "benchmarks": {
+        "mmlu": 88.8,
+        "mmmu": 76.5,
+        "citationAccuracy": 94
+      },
+      "sources": [
+        "https://www.anthropic.com/claude"
+      ]
+    },
+    {
+      "rank": 4,
+      "name": "Gemini 2.5 Pro",
+      "category": "research",
+      "type": "closed",
+      "privacy": "medium",
+      "benchmarkScore": 87,
+      "communityScore": null,
+      "link": "https://deepmind.google/technologies/gemini/",
+      "description": "Multimodal research with vision capabilities",
+      "benchmarks": {
+        "mmlu": 88.0,
+        "mmmu": 79.6,
+        "citationAccuracy": 89
+      },
+      "sources": [
+        "https://deepmind.google/technologies/gemini/"
+      ]
+    },
+    {
+      "rank": 5,
+      "name": "Claude Sonnet 4",
+      "category": "learning",
+      "type": "closed",
+      "privacy": "high",
+      "benchmarkScore": 88,
+      "communityScore": null,
+      "link": "https://claude.ai",
+      "description": "Top coding and software engineering",
+      "benchmarks": {
+        "humaneval": 92.0,
+        "sweBench": 72.7,
+        "adaptive": 91
+      },
+      "sources": [
+        "https://www.anthropic.com/claude"
+      ]
+    },
+    {
+      "rank": 6,
+      "name": "GPT-4o",
+      "category": "learning",
+      "type": "closed",
+      "privacy": "medium",
+      "benchmarkScore": 86,
+      "communityScore": null,
+      "link": "https://openai.com/gpt-4",
+      "description": "Strong coding with multimodal learning",
+      "benchmarks": {
+        "humaneval": 90.2,
+        "sweBench": 54.6,
+        "adaptive": 88
+      },
+      "sources": [
+        "https://openai.com/research/gpt-4"
+      ]
+    },
+    {
+      "rank": 7,
+      "name": "Llama 3.1 405B",
+      "category": "reasoning",
+      "type": "open-source",
+      "privacy": "high",
+      "benchmarkScore": 85,
+      "communityScore": null,
+      "link": "https://llama.meta.com",
+      "description": "Leading open-source reasoning model",
+      "benchmarks": {
+        "mmlu": 88.6,
+        "gpqa": 68.0,
+        "arenaElo": 1250
+      },
+      "sources": [
+        "https://ai.meta.com/blog/meta-llama-3-1/",
+        "https://lmsys.org/"
+      ]
+    },
+    {
+      "rank": 8,
+      "name": "Claude Opus 4",
+      "category": "math",
+      "type": "closed",
+      "privacy": "high",
+      "benchmarkScore": 82,
+      "communityScore": null,
+      "link": "https://claude.ai",
+      "description": "Advanced mathematical reasoning",
+      "benchmarks": {
+        "gsm8k": 96.4,
+        "math": 75.5,
+        "aime": 75.5
+      },
+      "sources": [
+        "https://www.anthropic.com/claude"
+      ]
+    },
+    {
+      "rank": 9,
+      "name": "GPT-4.1",
+      "category": "math",
+      "type": "closed",
+      "privacy": "medium",
+      "benchmarkScore": 80,
+      "communityScore": null,
+      "link": "https://openai.com/gpt-4",
+      "description": "Strong mathematical problem solving",
+      "benchmarks": {
+        "gsm8k": 95.0,
+        "math": 73.0,
+        "aime": 71.0
+      },
+      "sources": [
+        "https://openai.com/research/gpt-4"
+      ]
+    },
+    {
+      "rank": 10,
+      "name": "Gemini 2.5 Pro",
+      "category": "learning",
+      "type": "closed",
+      "privacy": "medium",
+      "benchmarkScore": 84,
+      "communityScore": null,
+      "link": "https://deepmind.google/technologies/gemini/",
+      "description": "Efficient learning and code generation",
+      "benchmarks": {
+        "humaneval": 88.0,
+        "sweBench": 63.2,
+        "adaptive": 86
+      },
+      "sources": [
+        "https://deepmind.google/technologies/gemini/"
+      ]
+    },
+    {
+      "rank": 11,
+      "name": "Mistral Large 2",
+      "category": "math",
+      "type": "open-source",
+      "privacy": "high",
+      "benchmarkScore": 77,
+      "communityScore": null,
+      "link": "https://mistral.ai",
+      "description": "Open-source mathematical reasoning",
+      "benchmarks": {
+        "gsm8k": 92.0,
+        "math": 68.0,
+        "aime": 65.0
+      },
+      "sources": [
+        "https://mistral.ai/"
+      ]
+    },
+    {
+      "rank": 12,
+      "name": "Llama 3.1 405B",
+      "category": "learning",
+      "type": "open-source",
+      "privacy": "high",
+      "benchmarkScore": 82,
+      "communityScore": null,
+      "link": "https://llama.meta.com",
+      "description": "Top open-source coding model",
+      "benchmarks": {
+        "humaneval": 84.9,
+        "sweBench": 48.0,
+        "adaptive": 85
+      },
+      "sources": [
+        "https://ai.meta.com/blog/meta-llama-3-1/"
+      ]
+    }
+  ],
+  "benchmarkDefinitions": {
+    "mmlu": "Massive Multitask Language Understanding - 57 subjects, multiple choice",
+    "gpqa": "Graduate-level science questions (physics, biology, chemistry)",
+    "arenaElo": "LMSYS Chatbot Arena Elo rating from human preferences",
+    "humaneval": "164 programming problems testing code generation",
+    "sweBench": "Real-world software engineering tasks and bug fixes",
+    "gsm8k": "8,500 grade-school math word problems",
+    "math": "12,500 competition mathematics problems",
+    "aime": "American Invitational Mathematics Examination",
+    "mmmu": "Multimodal understanding with visual reasoning",
+    "citationAccuracy": "Fact-checking and source attribution (internal testing)",
+    "adaptive": "Context retention and learning from feedback (internal testing)"
+  },
+  "categoryWeights": {
+    "reasoning": {
+      "mmlu": 0.40,
+      "gpqa": 0.30,
+      "arenaElo": 0.30
+    },
+    "math": {
+      "gsm8k": 0.40,
+      "math": 0.40,
+      "aime": 0.20
+    },
+    "research": {
+      "mmlu": 0.35,
+      "mmmu": 0.30,
+      "citationAccuracy": 0.35
+    },
+    "learning": {
+      "humaneval": 0.40,
+      "sweBench": 0.40,
+      "adaptive": 0.20
+    }
+  }
+}
