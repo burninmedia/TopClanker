@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://topclanker.netlify.app/sitemap.xml
+Sitemap: https://topclanker.com/sitemap.xml
 
