@@ -1,105 +1,165 @@
 {
-  "lastUpdated": "2024-11-16",
+  "lastUpdated": "2026-02-19",
   "agents": [
     {
       "rank": 1,
-      "name": "Claude Sonnet 4",
+      "name": "GPT-4 Turbo (0409)",
       "category": "reasoning",
       "type": "closed",
-      "privacy": "high",
-      "score": 98,
-      "link": "https://claude.ai",
-      "description": "Advanced reasoning and analysis"
+      "privacy": "medium",
+      "score": 100,
+      "benchmarkScore": 87.7,
+      "link": "https://openai.com",
+      "description": "Top overall performance. Best balance of speed and quality.",
+      "benchmarks": {
+        "mmlu": 88.7,
+        "humaneval": 90.2,
+        "gsm8k": 89.8
+      }
     },
     {
       "rank": 2,
-      "name": "GPT-4 Turbo",
+      "name": "o1-preview",
       "category": "reasoning",
       "type": "closed",
       "privacy": "medium",
-      "score": 96,
+      "score": 99,
+      "benchmarkScore": 89.3,
       "link": "https://openai.com",
-      "description": "Strong general-purpose reasoning"
+      "description": "Best for complex reasoning and chain-of-thought tasks.",
+      "benchmarks": {
+        "mmlu": 92.8,
+        "math": 85.0,
+        "gpqa": 78.4
+      }
     },
     {
       "rank": 3,
-      "name": "Gemini Pro",
-      "category": "research",
+      "name": "GPT-4 Omni",
+      "category": "reasoning",
       "type": "closed",
       "privacy": "medium",
-      "score": 94,
-      "link": "https://deepmind.google",
-      "description": "Multimodal research capabilities"
+      "score": 98,
+      "benchmarkScore": 81.7,
+      "link": "https://openai.com",
+      "description": "Multimodal powerhouse with excellent speed.",
+      "benchmarks": {
+        "mmlu": 88.7,
+        "mmmu": 69.1,
+        "humaneval": 90.2
+      }
     },
     {
       "rank": 4,
-      "name": "Llama 3.1 405B",
-      "category": "reasoning",
-      "type": "open-source",
-      "privacy": "high",
-      "score": 92,
-      "link": "https://llama.meta.com",
-      "description": "Open-source powerhouse"
-    },
-    {
-      "rank": 5,
-      "name": "Mistral Large",
-      "category": "math",
-      "type": "open-source",
-      "privacy": "high",
-      "score": 90,
-      "link": "https://mistral.ai",
-      "description": "Strong mathematical reasoning"
-    },
-    {
-      "rank": 6,
-      "name": "Claude Opus 4",
+      "name": "Claude 3.5 Sonnet",
       "category": "research",
       "type": "closed",
       "privacy": "high",
       "score": 97,
+      "benchmarkScore": 82.3,
       "link": "https://claude.ai",
-      "description": "Deep research and analysis"
+      "description": "Best chat and vision. Excellent research capabilities.",
+      "benchmarks": {
+        "mmlu": 88.7,
+        "gpqa": 59.4,
+        "humaneval": 92.0
+      }
+    },
+    {
+      "rank": 5,
+      "name": "Gemini 2.5 Pro",
+      "category": "research",
+      "type": "closed",
+      "privacy": "medium",
+      "score": 96,
+      "benchmarkScore": 81.3,
+      "link": "https://deepmind.google",
+      "description": "Top multimodal research with long context.",
+      "benchmarks": {
+        "mmlu": 88.0,
+        "mmmu": 79.6,
+        "gpqa": 65.0
+      }
+    },
+    {
+      "rank": 6,
+      "name": "Claude 3 Opus",
+      "category": "research",
+      "type": "closed",
+      "privacy": "high",
+      "score": 91,
+      "benchmarkScore": 77.4,
+      "link": "https://claude.ai",
+      "description": "Best for deep research and creative content.",
+      "benchmarks": {
+        "mmlu": 86.8,
+        "gpqa": 57.0,
+        "mmmu": 61.5
+      }
     },
     {
       "rank": 7,
-      "name": "GPT-4o",
-      "category": "learning",
-      "type": "closed",
-      "privacy": "medium",
+      "name": "DeepSeek V3",
+      "category": "reasoning",
+      "type": "open-source",
+      "privacy": "high",
       "score": 89,
-      "link": "https://openai.com",
-      "description": "Multimodal learning capabilities"
+      "benchmarkScore": 78.5,
+      "link": "https://github.com/deepseek-ai",
+      "description": "Top open-source model. Exceptional value.",
+      "benchmarks": {
+        "mmlu": 87.5,
+        "humaneval": 85.0,
+        "math": 70.0
+      }
     },
     {
       "rank": 8,
-      "name": "DeepSeek V2",
-      "category": "math",
+      "name": "Llama 3.3 70B",
+      "category": "reasoning",
       "type": "open-source",
       "privacy": "high",
-      "score": 88,
-      "link": "https://github.com/deepseek-ai",
-      "description": "Specialized mathematical reasoning"
+      "score": 86,
+      "benchmarkScore": 75.2,
+      "link": "https://llama.meta.com",
+      "description": "Best open-source reasoning. Great for self-hosting.",
+      "benchmarks": {
+        "mmlu": 86.0,
+        "gpqa": 52.0,
+        "arenaElo": 1250
+      }
     },
     {
       "rank": 9,
       "name": "Qwen 2.5",
-      "category": "reasoning",
+      "category": "math",
       "type": "open-source",
       "privacy": "high",
-      "score": 87,
+      "score": 85,
+      "benchmarkScore": 74.8,
       "link": "https://github.com/QwenLM",
-      "description": "Efficient reasoning model"
+      "description": "Strong open-source math and coding.",
+      "benchmarks": {
+        "mmlu": 85.0,
+        "math": 65.0,
+        "humaneval": 84.0
+      }
     },
     {
       "rank": 10,
-      "name": "Yi-Large",
-      "category": "learning",
+      "name": "Mistral Large 2",
+      "category": "math",
       "type": "open-source",
       "privacy": "high",
-      "score": 86,
-      "link": "https://github.com/01-ai",
-      "description": "Adaptive learning capabilities"
+      "score": 83,
+      "benchmarkScore": 72.0,
+      "link": "https://mistral.ai",
+      "description": "Excellent open-source math reasoning.",
+      "benchmarks": {
+        "gsm8k": 92.0,
+        "math": 68.0,
+        "aime": 65.0
+      }
     }
   ]
 }
