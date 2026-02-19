@@ -5,6 +5,8 @@ class RankingsApp {
     constructor() {
         this.data = null;
         this.currentFilter = 'all';
+        this.currentPage = 1;
+        this.itemsPerPage = 10;
         this.init();
     }
 
@@ -35,6 +37,7 @@ class RankingsApp {
 
     handleFilterChange(category) {
         this.currentFilter = category;
+        this.currentPage = 1;
         
         // Update active button
         document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -57,9 +60,22 @@ class RankingsApp {
         );
     }
 
+    getTotalPages() {
+        const agents = this.getFilteredAgents();
+        return Math.ceil(agents.length / this.itemsPerPage);
+    }
+
+    getPaginatedAgents() {
+        const agents = this.getFilteredAgents();
+        const start = (this.currentPage - 1) * this.itemsPerPage;
+        const end = start + this.itemsPerPage;
+        return agents.slice(start, end);
+    }
+
     render() {
         this.renderLastUpdated();
         this.renderTable();
+        this.renderPagination();
     }
 
     renderLastUpdated() {
@@ -73,7 +89,7 @@ class RankingsApp {
         const tbody = document.getElementById('rankingsTableBody');
         if (!tbody) return;
 
-        const agents = this.getFilteredAgents();
+        const agents = this.getPaginatedAgents();
         
         if (agents.length === 0) {
             tbody.innerHTML = this.getEmptyState();
@@ -81,6 +97,59 @@ class RankingsApp {
         }
 
         tbody.innerHTML = agents.map(agent => this.createTableRow(agent)).join('');
+    }
+
+    renderPagination() {
+        const paginationContainer = document.getElementById('pagination');
+        if (!paginationContainer) return;
+
+        const totalPages = this.getTotalPages();
+        
+        if (totalPages <= 1) {
+            paginationContainer.innerHTML = '';
+            return;
+        }
+
+        let paginationHTML = '<div class="flex items-center justify-center gap-2 mt-6">';
+        
+        // Previous button
+        if (this.currentPage > 1) {
+            paginationHTML += `<button onclick="app.goToPage(${this.currentPage - 1})" class="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-700">← Previous</button>`;
+        }
+        
+        // Page numbers
+        for (let i = 1; i <= totalPages; i++) {
+            if (i === 1 || i === totalPages || (i >= this.currentPage - 1 && i <= this.currentPage + 1)) {
+                if (i === this.currentPage) {
+                    paginationHTML += `<button class="px-4 py-2 rounded-lg bg-blue-600 text-white">${i}</button>`;
+                } else {
+                    paginationHTML += `<button onclick="app.goToPage(${i})" class="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-700">${i}</button>`;
+                }
+            } else if (i === this.currentPage - 2 || i === this.currentPage + 2) {
+                paginationHTML += `<span class="px-2 text-gray-500">...</span>`;
+            }
+        }
+        
+        // Next button
+        if (this.currentPage < totalPages) {
+            paginationHTML += `<button onclick="app.goToPage(${this.currentPage + 1})" class="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-700">Next →</button>`;
+        }
+        
+        paginationHTML += '</div>';
+        
+        // Add info
+        const agents = this.getFilteredAgents();
+        const start = (this.currentPage - 1) * this.itemsPerPage + 1;
+        const end = Math.min(this.currentPage * this.itemsPerPage, agents.length);
+        paginationHTML += `<p class="text-center text-gray-500 text-sm mt-2">Showing ${start}-${end} of ${agents.length} models</p>`;
+        
+        paginationContainer.innerHTML = paginationHTML;
+    }
+
+    goToPage(page) {
+        this.currentPage = page;
+        this.render();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     createTableRow(agent) {
@@ -212,8 +281,9 @@ class RankingsApp {
 }
 
 // Initialize app when DOM is ready
+let app;
 document.addEventListener('DOMContentLoaded', () => {
-    new RankingsApp();
+    app = new RankingsApp();
 });
 
 // Smooth scroll for anchor links

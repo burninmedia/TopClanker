@@ -3,99 +3,75 @@
   "agents": [
     {
       "rank": 1,
-      "name": "GPT-4 Turbo (0409)",
+      "name": "Claude Opus 4.6",
       "category": "reasoning",
       "type": "closed",
-      "privacy": "medium",
+      "privacy": "high",
       "score": 100,
-      "benchmarkScore": 87.7,
-      "link": "https://openai.com",
-      "description": "Top overall performance. Best balance of speed and quality.",
-      "benchmarks": {
-        "mmlu": 88.7,
-        "humaneval": 90.2,
-        "gsm8k": 89.8
-      }
+      "benchmarkScore": 92,
+      "link": "https://claude.ai",
+      "description": "The best overall. Agentic coding, 1M token context, adaptive thinking.",
+      "benchmarks": { "mmlu": 89, "humaneval": 92, "gsm8k": 96.4, "swebench": 72 }
     },
     {
       "rank": 2,
-      "name": "o1-preview",
-      "category": "reasoning",
-      "type": "closed",
-      "privacy": "medium",
-      "score": 99,
-      "benchmarkScore": 89.3,
-      "link": "https://openai.com",
-      "description": "Best for complex reasoning and chain-of-thought tasks.",
-      "benchmarks": {
-        "mmlu": 92.8,
-        "math": 85.0,
-        "gpqa": 78.4
-      }
-    },
-    {
-      "rank": 3,
-      "name": "GPT-4 Omni",
+      "name": "GPT-4.5",
       "category": "reasoning",
       "type": "closed",
       "privacy": "medium",
       "score": 98,
-      "benchmarkScore": 81.7,
+      "benchmarkScore": 88,
       "link": "https://openai.com",
-      "description": "Multimodal powerhouse with excellent speed.",
-      "benchmarks": {
-        "mmlu": 88.7,
-        "mmmu": 69.1,
-        "humaneval": 90.2
-      }
+      "description": "Latest GPT-4 iteration. Strong across all benchmarks.",
+      "benchmarks": { "mmlu": 88.7, "humaneval": 90, "gsm8k": 92, "gpqa": 68 }
     },
     {
-      "rank": 4,
-      "name": "Claude 3.5 Sonnet",
-      "category": "research",
-      "type": "closed",
-      "privacy": "high",
-      "score": 97,
-      "benchmarkScore": 82.3,
-      "link": "https://claude.ai",
-      "description": "Best chat and vision. Excellent research capabilities.",
-      "benchmarks": {
-        "mmlu": 88.7,
-        "gpqa": 59.4,
-        "humaneval": 92.0
-      }
-    },
-    {
-      "rank": 5,
+      "rank": 3,
       "name": "Gemini 2.5 Pro",
       "category": "research",
       "type": "closed",
       "privacy": "medium",
-      "score": 96,
-      "benchmarkScore": 81.3,
+      "score": 97,
+      "benchmarkScore": 87,
       "link": "https://deepmind.google",
-      "description": "Top multimodal research with long context.",
-      "benchmarks": {
-        "mmlu": 88.0,
-        "mmmu": 79.6,
-        "gpqa": 65.0
-      }
+      "description": "Best context window (2M tokens). Excellent multimodal.",
+      "benchmarks": { "mmlu": 88, "mmmu": 79.6, "gpqa": 65, "humaneval": 88 }
+    },
+    {
+      "rank": 4,
+      "name": "MiniMax 2.5",
+      "category": "reasoning",
+      "type": "closed",
+      "privacy": "high",
+      "score": 96,
+      "benchmarkScore": 89.7,
+      "link": "https://minimax.io",
+      "description": "Surprise contender. Matches Claude on MMLU. Great pricing.",
+      "benchmarks": { "mmlu": 89.7, "gpqa": 65, "humaneval": 87, "gsm8k": 90 }
+    },
+    {
+      "rank": 5,
+      "name": "Claude Sonnet 4",
+      "category": "reasoning",
+      "type": "closed",
+      "privacy": "high",
+      "score": 95,
+      "benchmarkScore": 86,
+      "link": "https://claude.ai",
+      "description": "Best value Claude. Great for everyday use.",
+      "benchmarks": { "mmlu": 88, "humaneval": 92, "gsm8k": 95, "swebench": 72 }
     },
     {
       "rank": 6,
-      "name": "Claude 3 Opus",
-      "category": "research",
+      "name": "o1-pro",
+      "category": "reasoning",
       "type": "closed",
-      "privacy": "high",
-      "score": 91,
-      "benchmarkScore": 77.4,
-      "link": "https://claude.ai",
-      "description": "Best for deep research and creative content.",
-      "benchmarks": {
-        "mmlu": 86.8,
-        "gpqa": 57.0,
-        "mmmu": 61.5
-      }
+      "privacy": "medium",
+      "score": 94,
+      "benchmarkScore": 91,
+      "link": "https://openai.com",
+      "description": "Most powerful reasoning. Slow but unmatched on math/code.",
+      "benchmarks": { "mmlu": 94, "math": 90, "gpqa": 80, "aime": 87 }
     },
     {
       "rank": 7,
@@ -103,63 +79,107 @@
       "category": "reasoning",
       "type": "open-source",
       "privacy": "high",
-      "score": 89,
-      "benchmarkScore": 78.5,
+      "score": 92,
+      "benchmarkScore": 84,
       "link": "https://github.com/deepseek-ai",
-      "description": "Top open-source model. Exceptional value.",
-      "benchmarks": {
-        "mmlu": 87.5,
-        "humaneval": 85.0,
-        "math": 70.0
-      }
+      "description": "Best open-source overall. Incredible value.",
+      "benchmarks": { "mmlu": 87.5, "humaneval": 85, "gsm8k": 88, "math": 70 }
     },
     {
       "rank": 8,
-      "name": "Llama 3.3 70B",
+      "name": "Gemini 2.0 Flash",
       "category": "reasoning",
-      "type": "open-source",
-      "privacy": "high",
-      "score": 86,
-      "benchmarkScore": 75.2,
-      "link": "https://llama.meta.com",
-      "description": "Best open-source reasoning. Great for self-hosting.",
-      "benchmarks": {
-        "mmlu": 86.0,
-        "gpqa": 52.0,
-        "arenaElo": 1250
-      }
+      "type": "closed",
+      "privacy": "medium",
+      "score": 90,
+      "benchmarkScore": 82,
+      "link": "https://deepmind.google",
+      "description": "Best speed/quality balance. Very fast.",
+      "benchmarks": { "mmlu": 85, "humaneval": 84, "gsm8k": 86, "mmmu": 75 }
     },
     {
       "rank": 9,
-      "name": "Qwen 2.5",
-      "category": "math",
+      "name": "Llama 4 Scout",
+      "category": "reasoning",
       "type": "open-source",
       "privacy": "high",
-      "score": 85,
-      "benchmarkScore": 74.8,
-      "link": "https://github.com/QwenLM",
-      "description": "Strong open-source math and coding.",
-      "benchmarks": {
-        "mmlu": 85.0,
-        "math": 65.0,
-        "humaneval": 84.0
-      }
+      "score": 88,
+      "benchmarkScore": 80,
+      "link": "https://llama.meta.com",
+      "description": "Meta's best. 10M context window. Great for long docs.",
+      "benchmarks": { "mmlu": 86, "humaneval": 82, "gsm8k": 85, "arenaElo": 1280 }
     },
     {
       "rank": 10,
+      "name": "Qwen 2.5 Ultra",
+      "category": "math",
+      "type": "open-source",
+      "privacy": "high",
+      "score": 87,
+      "benchmarkScore": 79,
+      "link": "https://github.com/QwenLM",
+      "description": "Best open-source for math. Alibaba delivers.",
+      "benchmarks": { "mmlu": 86, "math": 75, "gsm8k": 90, "aime": 72 }
+    },
+    {
+      "rank": 11,
       "name": "Mistral Large 2",
       "category": "math",
       "type": "open-source",
       "privacy": "high",
-      "score": 83,
-      "benchmarkScore": 72.0,
+      "score": 85,
+      "benchmarkScore": 77,
       "link": "https://mistral.ai",
-      "description": "Excellent open-source math reasoning.",
-      "benchmarks": {
-        "gsm8k": 92.0,
-        "math": 68.0,
-        "aime": 65.0
-      }
+      "description": "Strong open-source math. Good alternative to Qwen.",
+      "benchmarks": { "mmlu": 85, "gsm8k": 92, "math": 68, "aime": 65 }
+    },
+    {
+      "rank": 12,
+      "name": "Sonnet 4 (Older)",
+      "category": "research",
+      "type": "closed",
+      "privacy": "high",
+      "score": 84,
+      "benchmarkScore": 75,
+      "link": "https://claude.ai",
+      "description": "Still solid. Good for research tasks.",
+      "benchmarks": { "mmlu": 86, "gpqa": 55, "humaneval": 88, "mmmu": 68 }
+    },
+    {
+      "rank": 13,
+      "name": "Llama 3.3 70B",
+      "category": "reasoning",
+      "type": "open-source",
+      "privacy": "high",
+      "score": 82,
+      "benchmarkScore": 74,
+      "link": "https://llama.meta.com",
+      "description": "Reliable open-source. Good for self-hosting.",
+      "benchmarks": { "mmlu": 86, "gpqa": 52, "arenaElo": 1250, "humaneval": 80 }
+    },
+    {
+      "rank": 14,
+      "name": "Command R7B",
+      "category": "reasoning",
+      "type": "open-source",
+      "privacy": "high",
+      "score": 80,
+      "benchmarkScore": 72,
+      "link": "https://cohere.com",
+      "description": "Cohere's best. Good for enterprise use cases.",
+      "benchmarks": { "mmlu": 84, "humaneval": 78, "gsm8k": 82, "gpqa": 48 }
+    },
+    {
+      "rank": 15,
+      "name": "Yi-Large",
+      "category": "learning",
+      "type": "open-source",
+      "privacy": "high",
+      "score": 78,
+      "benchmarkScore": 70,
+      "link": "https://github.com/01-ai",
+      "description": "01.AI's flagship. Competitive with Llama.",
+      "benchmarks": { "mmlu": 83, "gpqa": 45, "humaneval": 76, "gsm8k": 80 }
     }
   ]
 }
