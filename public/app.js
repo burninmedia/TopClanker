@@ -75,6 +75,7 @@ class RankingsApp {
     render() {
         this.renderLastUpdated();
         this.renderTable();
+        this.renderCards();
         this.renderPagination();
     }
 
@@ -97,6 +98,56 @@ class RankingsApp {
         }
 
         tbody.innerHTML = agents.map(agent => this.createTableRow(agent)).join('');
+    }
+
+    renderCards() {
+        const container = document.getElementById('rankingsCards');
+        if (!container) return;
+
+        const agents = this.getPaginatedAgents();
+        
+        if (agents.length === 0) {
+            container.innerHTML = this.getEmptyState();
+            return;
+        }
+
+        container.innerHTML = agents.map(agent => this.createCard(agent)).join('');
+    }
+
+    createCard(agent) {
+        const benchmarkScoreDisplay = agent.benchmarkScore 
+            ? `<div class="text-2xl font-bold text-blue-600">${agent.benchmarkScore}</div>
+               <div class="text-xs text-gray-500">Benchmark</div>`
+            : `<div class="text-2xl font-bold text-blue-600">${agent.score || 'N/A'}</div>`;
+
+        return `
+            <div class="bg-white rounded-lg shadow p-4 border-l-4 border-blue-500">
+                <div class="flex items-start justify-between mb-3">
+                    <div class="flex items-center gap-3">
+                        ${this.createRankBadge(agent.rank)}
+                        <div>
+                            <h4 class="font-bold text-gray-900">${agent.name}</h4>
+                            ${agent.description ? `<p class="text-sm text-gray-500">${agent.description}</p>` : ''}
+                        </div>
+                    </div>
+                    ${agent.url ? `<a href="${agent.url}" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-800 text-sm font-medium">Visit →</a>` : ''}
+                </div>
+                <div class="flex flex-wrap gap-2 mb-3">
+                    ${this.createCategoryBadge(agent.category)}
+                    ${this.createTypeBadge(agent.type)}
+                </div>
+                <div class="flex items-center justify-between pt-3 border-t border-gray-100">
+                    <div class="flex items-center gap-2">
+                        <span class="text-sm text-gray-500">Privacy:</span>
+                        ${this.createPrivacyRating(agent.privacy)}
+                    </div>
+                    <div class="text-right">
+                        ${benchmarkScoreDisplay}
+                    </div>
+                </div>
+                ${agent.benchmarks ? this.createBenchmarkTooltip(agent.benchmarks) : ''}
+            </div>
+        `;
     }
 
     renderPagination() {

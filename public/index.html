@@ -102,8 +102,8 @@
                 <button class="filter-btn" data-category="learning">Learning</button>
             </div>
 
-            <!-- Rankings Table -->
-            <div class="bg-white rounded-lg shadow overflow-hidden">
+            <!-- Rankings Table (Desktop) -->
+            <div class="bg-white rounded-lg shadow overflow-hidden hidden md:block">
                 <div class="overflow-x-auto">
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
@@ -122,9 +122,15 @@
                         </tbody>
                     </table>
                 </div>
-                <!-- Pagination -->
-                <div id="pagination" class="p-4 bg-gray-50"></div>
             </div>
+
+            <!-- Rankings Cards (Mobile) -->
+            <div id="rankingsCards" class="md:hidden space-y-4">
+                <!-- Populated by JavaScript -->
+            </div>
+
+            <!-- Pagination (works for both views) -->
+            <div id="pagination" class="p-4 bg-gray-50 rounded-b-lg"></div>
         </section>
 
         <!-- Ad Spot - Sidebar would go here in future -->
