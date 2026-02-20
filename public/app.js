@@ -43,7 +43,8 @@ class RankingsApp {
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.classList.remove('active');
         });
-        event.target.classList.add('active');
+        const activeBtn = document.querySelector(`.filter-btn[data-category="${category}"]`);
+        if (activeBtn) activeBtn.classList.add('active');
         
         this.render();
     }
@@ -75,6 +76,7 @@ class RankingsApp {
     render() {
         this.renderLastUpdated();
         this.renderTable();
+        this.renderCards();
         this.renderPagination();
     }
 
@@ -97,6 +99,77 @@ class RankingsApp {
         }
 
         tbody.innerHTML = agents.map(agent => this.createTableRow(agent)).join('');
+    }
+
+    renderCards() {
+        const container = document.getElementById('rankingsCards');
+        if (!container) return;
+
+        if (!this.data) {
+            container.innerHTML = '<div class="text-center py-8 text-gray-500"><p>Loading rankings...</p></div>';
+            return;
+        }
+
+        const agents = this.getPaginatedAgents();
+        
+        if (agents.length === 0) {
+            container.innerHTML = '<div class="text-center py-8 text-gray-500">No agents found</div>';
+            return;
+        }
+
+        try {
+            container.innerHTML = agents.map(agent => this.createCard(agent)).join('');
+        } catch (e) {
+            console.error('Error rendering cards:', e);
+            container.innerHTML = '<div class="text-center py-8 text-red-500">Error loading rankings</div>';
+        }
+    }
+
+    createCard(agent) {
+        // Build benchmark chips if available
+        let benchmarksHtml = '';
+        if (agent.benchmarks) {
+            const bm = agent.benchmarks;
+            const chips = [];
+            if (bm.swebench) chips.push(`<span class="text-xs bg-gray-100 px-2 py-1 rounded">SWE: ${bm.swebench}%</span>`);
+            if (bm.mmlu) chips.push(`<span class="text-xs bg-gray-100 px-2 py-1 rounded">MMLU: ${bm.mmlu}%</span>`);
+            if (bm.humaneval) chips.push(`<span class="text-xs bg-gray-100 px-2 py-1 rounded">HumanEval: ${bm.humaneval}%</span>`);
+            if (bm.gsm8k) chips.push(`<span class="text-xs bg-gray-100 px-2 py-1 rounded">GSM8K: ${bm.gsm8k}%</span>`);
+            if (chips.length > 0) {
+                benchmarksHtml = `<div class="flex flex-wrap gap-1 mt-2">${chips.join('')}</div>`;
+            }
+        }
+
+        const scoreDisplay = agent.benchmarkScore 
+            ? `<div class="text-2xl font-bold text-blue-600">${agent.benchmarkScore}</div><div class="text-xs text-gray-500">Score</div>`
+            : `<div class="text-2xl font-bold text-blue-600">${agent.score || 'N/A'}</div>`;
+
+        return `
+            <div class="bg-white rounded-lg shadow p-4 border-l-4 border-blue-500">
+                <div class="flex items-start justify-between mb-2">
+                    <div class="flex items-center gap-2">
+                        <span class="text-lg font-bold text-gray-400">#${agent.rank}</span>
+                        <span class="font-bold text-gray-900">${agent.name}</span>
+                    </div>
+                    ${agent.url ? `<a href="${agent.url}" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-800 text-sm font-medium">Visit →</a>` : ''}
+                </div>
+                ${agent.description ? `<p class="text-sm text-gray-600 mb-3">${agent.description}</p>` : ''}
+                <div class="flex flex-wrap gap-2 mb-3">
+                    ${this.createCategoryBadge(agent.category)}
+                    ${this.createTypeBadge(agent.type)}
+                </div>
+                ${benchmarksHtml}
+                <div class="flex items-center justify-between pt-3 mt-3 border-t border-gray-100">
+                    <div class="flex items-center gap-2">
+                        <span class="text-sm text-gray-500">Privacy:</span>
+                        ${this.createPrivacyRating(agent.privacy)}
+                    </div>
+                    <div class="text-right">
+                        ${scoreDisplay}
+                    </div>
+                </div>
+            </div>
+        `;
     }
 
     renderPagination() {

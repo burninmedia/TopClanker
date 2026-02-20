@@ -102,8 +102,8 @@
                 <button class="filter-btn" data-category="learning">Learning</button>
             </div>
 
-            <!-- Rankings Table -->
-            <div class="bg-white rounded-lg shadow overflow-hidden">
+            <!-- Rankings Table (Desktop) -->
+            <div class="bg-white rounded-lg shadow overflow-hidden hidden md:block">
                 <div class="overflow-x-auto">
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
@@ -122,9 +122,135 @@
                         </tbody>
                     </table>
                 </div>
-                <!-- Pagination -->
-                <div id="pagination" class="p-4 bg-gray-50"></div>
             </div>
+
+            <!-- Rankings Cards (Mobile - static, no JS required) -->
+            <div id="rankingsCards" class="md:hidden space-y-4">
+                <div class="bg-white rounded-lg shadow p-4 border-l-4 border-blue-500">
+                    <div class="flex items-start justify-between mb-2">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg font-bold text-gray-400">#1</span>
+                            <span class="font-bold text-gray-900">Claude Opus 4.6</span>
+                        </div>
+                        <a href="https://claude.ai" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-800 text-sm font-medium">Visit</a>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-3">The best overall. Agentic coding, 1M token context, adaptive thinking.</p>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="text-xs px-2 py-1 rounded bg-blue-100 text-blue-700">REASONING</span>
+                        <span class="text-xs px-2 py-1 rounded bg-purple-100 text-purple-700">CLOSED</span>
+                    </div>
+                    <div class="flex flex-wrap gap-1 mt-2">
+                        <span class="text-xs bg-gray-100 px-2 py-1 rounded">SWE: 72%</span>
+                        <span class="text-xs bg-gray-100 px-2 py-1 rounded">MMLU: 89%</span>
+                        <span class="text-xs bg-gray-100 px-2 py-1 rounded">HE: 92%</span>
+                        <span class="text-xs bg-gray-100 px-2 py-1 rounded">GSM: 96.4%</span>
+                    </div>
+                    <div class="flex items-center justify-between pt-3 mt-3 border-t border-gray-100">
+                        <span class="text-sm text-gray-500">Privacy: HIGH</span>
+                        <span class="text-2xl font-bold text-blue-600">100</span>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow p-4 border-l-4 border-blue-500">
+                    <div class="flex items-start justify-between mb-2">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg font-bold text-gray-400">#2</span>
+                            <span class="font-bold text-gray-900">GPT-4.5</span>
+                        </div>
+                        <a href="https://openai.com" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-800 text-sm font-medium">Visit</a>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-3">Latest GPT-4 iteration. Strong across all benchmarks.</p>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="text-xs px-2 py-1 rounded bg-blue-100 text-blue-700">REASONING</span>
+                        <span class="text-xs px-2 py-1 rounded bg-purple-100 text-purple-700">CLOSED</span>
+                    </div>
+                    <div class="flex flex-wrap gap-1 mt-2">
+                        <span class="text-xs bg-gray-100 px-2 py-1 rounded">MMLU: 88.7%</span>
+                        <span class="text-xs bg-gray-100 px-2 py-1 rounded">HE: 90%</span>
+                        <span class="text-xs bg-gray-100 px-2 py-1 rounded">GSM: 92%</span>
+                    </div>
+                    <div class="flex items-center justify-between pt-3 mt-3 border-t border-gray-100">
+                        <span class="text-sm text-gray-500">Privacy: MEDIUM</span>
+                        <span class="text-2xl font-bold text-blue-600">98</span>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow p-4 border-l-4 border-blue-500">
+                    <div class="flex items-start justify-between mb-2">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg font-bold text-gray-400">#3</span>
+                            <span class="font-bold text-gray-900">Gemini 2.5 Pro</span>
+                        </div>
+                        <a href="https://deepmind.google" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-800 text-sm font-medium">Visit</a>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-3">Best context window (2M tokens). Excellent multimodal.</p>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="text-xs px-2 py-1 rounded bg-green-100 text-green-700">RESEARCH</span>
+                        <span class="text-xs px-2 py-1 rounded bg-purple-100 text-purple-700">CLOSED</span>
+                    </div>
+                    <div class="flex flex-wrap gap-1 mt-2">
+                        <span class="text-xs bg-gray-100 px-2 py-1 rounded">MMLU: 88%</span>
+                        <span class="text-xs bg-gray-100 px-2 py-1 rounded">HE: 88%</span>
+                    </div>
+                    <div class="flex items-center justify-between pt-3 mt-3 border-t border-gray-100">
+                        <span class="text-sm text-gray-500">Privacy: MEDIUM</span>
+                        <span class="text-2xl font-bold text-blue-600">97</span>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow p-4 border-l-4 border-blue-500">
+                    <div class="flex items-start justify-between mb-2">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg font-bold text-gray-400">#4</span>
+                            <span class="font-bold text-gray-900">MiniMax 2.5</span>
+                        </div>
+                        <a href="https://minimax.io" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-800 text-sm font-medium">Visit</a>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-3">Surprise contender. Matches Claude on MMLU. Great pricing.</p>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="text-xs px-2 py-1 rounded bg-blue-100 text-blue-700">REASONING</span>
+                        <span class="text-xs px-2 py-1 rounded bg-purple-100 text-purple-700">CLOSED</span>
+                    </div>
+                    <div class="flex flex-wrap gap-1 mt-2">
+                        <span class="text-xs bg-gray-100 px-2 py-1 rounded">MMLU: 89.7%</span>
+                        <span class="text-xs bg-gray-100 px-2 py-1 rounded">HE: 87%</span>
+                        <span class="text-xs bg-gray-100 px-2 py-1 rounded">GSM: 90%</span>
+                    </div>
+                    <div class="flex items-center justify-between pt-3 mt-3 border-t border-gray-100">
+                        <span class="text-sm text-gray-500">Privacy: HIGH</span>
+                        <span class="text-2xl font-bold text-blue-600">96</span>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow p-4 border-l-4 border-blue-500">
+                    <div class="flex items-start justify-between mb-2">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg font-bold text-gray-400">#5</span>
+                            <span class="font-bold text-gray-900">Claude Sonnet 4</span>
+                        </div>
+                        <a href="https://claude.ai" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-800 text-sm font-medium">Visit</a>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-3">Best value Claude. Great for everyday use.</p>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="text-xs px-2 py-1 rounded bg-blue-100 text-blue-700">REASONING</span>
+                        <span class="text-xs px-2 py-1 rounded bg-purple-100 text-purple-700">CLOSED</span>
+                    </div>
+                    <div class="flex flex-wrap gap-1 mt-2">
+                        <span class="text-xs bg-gray-100 px-2 py-1 rounded">SWE: 72%</span>
+                        <span class="text-xs bg-gray-100 px-2 py-1 rounded">MMLU: 88%</span>
+                        <span class="text-xs bg-gray-100 px-2 py-1 rounded">HE: 92%</span>
+                    </div>
+                    <div class="flex items-center justify-between pt-3 mt-3 border-t border-gray-100">
+                        <span class="text-sm text-gray-500">Privacy: HIGH</span>
+                        <span class="text-2xl font-bold text-blue-600">95</span>
+                    </div>
+                </div>
+                
+                <p class="text-center text-gray-500 text-sm py-4">+5 more on desktop</p>
+            </div>
+
+            <!-- Pagination (works for both views) -->
+            <div id="pagination" class="p-4 bg-gray-50 rounded-b-lg"></div>
         </section>
 
         <!-- Ad Spot - Sidebar would go here in future -->
@@ -196,33 +322,17 @@
             <h3 class="text-3xl font-bold mb-6">Latest Articles</h3>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <article class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow">
-                    <p class="text-sm text-gray-500 mb-2">February 19, 2026</p>
+                    <p class="text-sm text-gray-500 mb-2">February 20, 2026</p>
                     <h4 class="text-xl font-bold mb-2">
-                        <a href="/blog/open-source-vs-closed-source-ai-models-2026.html" class="text-gray-900 hover:text-blue-600">
-                            Open Source vs Closed Source AI Models in 2026
+                        <a href="/blog/minimax-m2-5-vs-claude-opus-4-6-breakthrough.html" class="text-gray-900 hover:text-blue-600">
+                            MiniMax M2.5 vs Claude Opus 4.6: The $0.15 Model
                         </a>
                     </h4>
                     <p class="text-gray-600 text-sm mb-4">
-                        The numbers don't lie. MIT research shows open models achieve 90% of closed model 
-                        performance at 13% of the cost.
+                        MiniMax M2.5 scores 80.2% on SWE-Bench Verified—within 0.6% of Claude Opus 4.6—at 
+                        roughly $0.15 per task vs $3.00.
                     </p>
-                    <a href="/blog/open-source-vs-closed-source-ai-models-2026.html" class="text-blue-600 hover:underline text-sm font-medium">
-                        Read more →
-                    </a>
-                </article>
-                
-                <article class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow">
-                    <p class="text-sm text-gray-500 mb-2">February 19, 2026</p>
-                    <h4 class="text-xl font-bold mb-2">
-                        <a href="/blog/ai-benchmarks-explained-2026.html" class="text-gray-900 hover:text-blue-600">
-                            AI Benchmarks Explained: What Actually Matters
-                        </a>
-                    </h4>
-                    <p class="text-gray-600 text-sm mb-4">
-                        MMLU, GSM8K, HumanEval, GPQA — we break down what each benchmark measures 
-                        and which ones matter for your use case.
-                    </p>
-                    <a href="/blog/ai-benchmarks-explained-2026.html" class="text-blue-600 hover:underline text-sm font-medium">
+                    <a href="/blog/minimax-m2-5-vs-claude-opus-4-6-breakthrough.html" class="text-blue-600 hover:underline text-sm font-medium">
                         Read more →
                     </a>
                 </article>
@@ -239,6 +349,22 @@
                         when to use them vs standard LLMs.
                     </p>
                     <a href="/blog/reasoning-models-explained-2026.html" class="text-blue-600 hover:underline text-sm font-medium">
+                        Read more →
+                    </a>
+                </article>
+                
+                <article class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow">
+                    <p class="text-sm text-gray-500 mb-2">February 19, 2026</p>
+                    <h4 class="text-xl font-bold mb-2">
+                        <a href="/blog/ai-benchmarks-explained-2026.html" class="text-gray-900 hover:text-blue-600">
+                            AI Benchmarks Explained: What Actually Matters
+                        </a>
+                    </h4>
+                    <p class="text-gray-600 text-sm mb-4">
+                        MMLU, GSM8K, HumanEval, GPQA — we break down what each benchmark measures 
+                        and which ones matter for your use case.
+                    </p>
+                    <a href="/blog/ai-benchmarks-explained-2026.html" class="text-blue-600 hover:underline text-sm font-medium">
                         Read more →
                     </a>
                 </article>
@@ -260,7 +386,8 @@
                     <ul class="space-y-2 text-sm">
                         <li><a href="#rankings" class="hover:text-white">Rankings</a></li>
                         <li><a href="#categories" class="hover:text-white">Categories</a></li>
-                        <li><a href="#learn" class="hover:text-white">Learn</a></li>
+                        <li><a href="/blog/" class="hover:text-white">Blog</a></li>
+                        <li><a href="privacy.html" class="hover:text-white">Privacy</a></li>
                     </ul>
                 </div>
                 <div>
