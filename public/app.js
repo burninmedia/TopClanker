@@ -115,37 +115,48 @@ class RankingsApp {
     }
 
     createCard(agent) {
-        const benchmarkScoreDisplay = agent.benchmarkScore 
-            ? `<div class="text-2xl font-bold text-blue-600">${agent.benchmarkScore}</div>
-               <div class="text-xs text-gray-500">Benchmark</div>`
+        // Build benchmark chips if available
+        let benchmarksHtml = '';
+        if (agent.benchmarks) {
+            const bm = agent.benchmarks;
+            const chips = [];
+            if (bm.swebench) chips.push(`<span class="text-xs bg-gray-100 px-2 py-1 rounded">SWE: ${bm.swebench}%</span>`);
+            if (bm.mmlu) chips.push(`<span class="text-xs bg-gray-100 px-2 py-1 rounded">MMLU: ${bm.mmlu}%</span>`);
+            if (bm.humaneval) chips.push(`<span class="text-xs bg-gray-100 px-2 py-1 rounded">HumanEval: ${bm.humaneval}%</span>`);
+            if (bm.gsm8k) chips.push(`<span class="text-xs bg-gray-100 px-2 py-1 rounded">GSM8K: ${bm.gsm8k}%</span>`);
+            if (chips.length > 0) {
+                benchmarksHtml = `<div class="flex flex-wrap gap-1 mt-2">${chips.join('')}</div>`;
+            }
+        }
+
+        const scoreDisplay = agent.benchmarkScore 
+            ? `<div class="text-2xl font-bold text-blue-600">${agent.benchmarkScore}</div><div class="text-xs text-gray-500">Score</div>`
             : `<div class="text-2xl font-bold text-blue-600">${agent.score || 'N/A'}</div>`;
 
         return `
             <div class="bg-white rounded-lg shadow p-4 border-l-4 border-blue-500">
-                <div class="flex items-start justify-between mb-3">
-                    <div class="flex items-center gap-3">
-                        ${this.createRankBadge(agent.rank)}
-                        <div>
-                            <h4 class="font-bold text-gray-900">${agent.name}</h4>
-                            ${agent.description ? `<p class="text-sm text-gray-500">${agent.description}</p>` : ''}
-                        </div>
+                <div class="flex items-start justify-between mb-2">
+                    <div class="flex items-center gap-2">
+                        <span class="text-lg font-bold text-gray-400">#${agent.rank}</span>
+                        <span class="font-bold text-gray-900">${agent.name}</span>
                     </div>
                     ${agent.url ? `<a href="${agent.url}" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-800 text-sm font-medium">Visit →</a>` : ''}
                 </div>
+                ${agent.description ? `<p class="text-sm text-gray-600 mb-3">${agent.description}</p>` : ''}
                 <div class="flex flex-wrap gap-2 mb-3">
                     ${this.createCategoryBadge(agent.category)}
                     ${this.createTypeBadge(agent.type)}
                 </div>
-                <div class="flex items-center justify-between pt-3 border-t border-gray-100">
+                ${benchmarksHtml}
+                <div class="flex items-center justify-between pt-3 mt-3 border-t border-gray-100">
                     <div class="flex items-center gap-2">
                         <span class="text-sm text-gray-500">Privacy:</span>
                         ${this.createPrivacyRating(agent.privacy)}
                     </div>
                     <div class="text-right">
-                        ${benchmarkScoreDisplay}
+                        ${scoreDisplay}
                     </div>
                 </div>
-                ${agent.benchmarks ? this.createBenchmarkTooltip(agent.benchmarks) : ''}
             </div>
         `;
     }
