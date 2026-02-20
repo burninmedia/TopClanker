@@ -42,8 +42,15 @@
 
 ### Add Blog Post
 1. Create HTML file or integrate CMS (future)
-2. Link from blog section
-3. Deploy
+2. **Research & Sources (REQUIRED)**:
+   - Fact-check all claims with data/benchmarks
+   - Link to primary sources (official model releases, benchmark leaderboards)
+   - Include a "Sources" section at the end with numbered references
+   - Prefer reputable sources: official company posts, Vellum, Artificial Analysis, Epoch AI, etc.
+   - Avoid: vague claims, unsourced statistics, AI slop
+3. Link from blog index (public/blog/index.html)
+4. Add to homepage latest articles (public/index.html)
+5. Deploy
 
 ## Testing Locally
 
