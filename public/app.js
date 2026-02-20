@@ -104,14 +104,24 @@ class RankingsApp {
         const container = document.getElementById('rankingsCards');
         if (!container) return;
 
-        const agents = this.getPaginatedAgents();
-        
-        if (agents.length === 0) {
-            container.innerHTML = this.getEmptyState();
+        if (!this.data) {
+            container.innerHTML = '<div class="text-center py-8 text-gray-500"><p>Loading rankings...</p></div>';
             return;
         }
 
-        container.innerHTML = agents.map(agent => this.createCard(agent)).join('');
+        const agents = this.getPaginatedAgents();
+        
+        if (agents.length === 0) {
+            container.innerHTML = '<div class="text-center py-8 text-gray-500">No agents found</div>';
+            return;
+        }
+
+        try {
+            container.innerHTML = agents.map(agent => this.createCard(agent)).join('');
+        } catch (e) {
+            console.error('Error rendering cards:', e);
+            container.innerHTML = '<div class="text-center py-8 text-red-500">Error loading rankings</div>';
+        }
     }
 
     createCard(agent) {
