@@ -43,7 +43,8 @@ class RankingsApp {
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.classList.remove('active');
         });
-        event.target.classList.add('active');
+        const activeBtn = document.querySelector(`.filter-btn[data-category="${category}"]`);
+        if (activeBtn) activeBtn.classList.add('active');
         
         this.render();
     }
