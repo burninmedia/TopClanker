@@ -12,8 +12,55 @@ class RankingsApp {
 
     async init() {
         await this.loadData();
+        await this.loadBlogPosts();
         this.setupEventListeners();
         this.render();
+    }
+
+    async loadBlogPosts() {
+        const container = document.getElementById('blog-posts');
+        if (!container) return;
+        
+        try {
+            const response = await fetch('/blog/blog-index.json');
+            const posts = await response.json();
+            
+            // Sort by date descending and take latest 3
+            const latestPosts = posts
+                .sort((a, b) => new Date(b.date) - new Date(a.date))
+                .slice(0, 3);
+            
+            if (latestPosts.length === 0) {
+                container.innerHTML = '<div class="text-center py-8 text-gray-500">No articles yet</div>';
+                return;
+            }
+            
+            const months = ['January', 'February', 'March', 'April', 'May', 'June', 
+                           'July', 'August', 'September', 'October', 'November', 'December'];
+            
+            container.innerHTML = latestPosts.map(post => {
+                const date = new Date(post.date + 'T00:00:00');
+                const formattedDate = `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+                const shortTitle = post.title.length > 60 ? post.title.substring(0, 60) + '...' : post.title;
+                
+                return `
+                    <article class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow">
+                        <p class="text-sm text-gray-500 mb-2">${formattedDate}</p>
+                        <h4 class="text-xl font-bold mb-2">
+                            <a href="/blog/${post.file}" class="text-gray-900 hover:text-blue-600">
+                                ${shortTitle}
+                            </a>
+                        </h4>
+                        <a href="/blog/${post.file}" class="text-blue-600 hover:underline text-sm font-medium">
+                            Read more →
+                        </a>
+                    </article>
+                `;
+            }).join('');
+        } catch (error) {
+            console.error('Error loading blog posts:', error);
+            container.innerHTML = '<div class="text-center py-8 text-gray-500">Unable to load articles</div>';
+        }
     }
 
     async loadData() {
