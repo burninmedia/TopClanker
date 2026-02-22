@@ -14,6 +14,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Validate JavaScript syntax
+        run: |
+          # Check for obvious JS syntax issues
+          if ! node --check public/app.js 2>/dev/null; then
+            echo "ERROR: app.js has JavaScript syntax errors"
+            exit 1
+          fi
+          echo "✓ app.js has valid JavaScript syntax"
+
       - name: Validate blog-index.json exists
         run: |
           if [ ! -f "public/blog/blog-index.json" ]; then
@@ -76,3 +85,28 @@ jobs:
             exit 1
           fi
           echo "✓ blog-posts container exists"
+
+      - name: Validate blog content is fresh
+        run: |
+          # Check that blog-index.json has posts from the last 30 days
+          python3 << 'EOF'
+import json
+from datetime import datetime, timedelta
+
+with open('public/blog/blog-index.json') as f:
+    posts = json.load(f)
+
+if not posts:
+    print("ERROR: No posts in blog-index.json")
+    exit(1)
+
+# Check most recent post date
+latest_date = max(datetime.strptime(p['date'], '%Y-%m-%d') for p in posts)
+days_old = (datetime.now() - latest_date).days
+
+if days_old > 30:
+    print(f"ERROR: Latest blog post is {days_old} days old (max 30)")
+    exit(1)
+
+print(f"✓ Latest blog post is {days_old} days old")
+EOF
