@@ -3,6 +3,7 @@
 
 class RankingsApp {
     constructor() {
+        console.log('[TopClanker] Initializing app...');
         this.data = null;
         this.currentFilter = 'all';
         this.currentPage = 1;
@@ -18,12 +19,19 @@ class RankingsApp {
     }
 
     async loadBlogPosts() {
+        console.log('[TopClanker] Loading blog posts...');
         const container = document.getElementById('blog-posts');
-        if (!container) return;
+        if (!container) {
+            console.error('[TopClanker] Blog container not found');
+            return;
+        }
         
         try {
+            console.log('[TopClanker] Fetching blog-index.json...');
             const response = await fetch('/blog/blog-index.json');
+            console.log('[TopClanker] Response status:', response.status);
             const posts = await response.json();
+            console.log('[TopClanker] Loaded posts:', posts.length);
             
             // Sort by date descending and take latest 3
             const latestPosts = posts
