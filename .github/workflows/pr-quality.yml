@@ -1,0 +1,112 @@
+name: PR Quality Check
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'public/**'
+      - '!.github/**'
+
+jobs:
+  validate-homepage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Validate JavaScript syntax
+        run: |
+          # Check for obvious JS syntax issues
+          if ! node --check public/app.js 2>/dev/null; then
+            echo "ERROR: app.js has JavaScript syntax errors"
+            exit 1
+          fi
+          echo "✓ app.js has valid JavaScript syntax"
+
+      - name: Validate blog-index.json exists
+        run: |
+          if [ ! -f "public/blog/blog-index.json" ]; then
+            echo "ERROR: public/blog/blog-index.json not found"
+            exit 1
+          fi
+          echo "✓ blog-index.json exists"
+
+      - name: Validate blog posts are not hardcoded
+        run: |
+          # Check that the loading placeholder exists (dynamic loading)
+          if grep -q "Loading latest articles" public/index.html; then
+            echo "✓ Loading placeholder found (dynamic loading enabled)"
+          else
+            echo "ERROR: Loading placeholder missing - blog may be hardcoded"
+            exit 1
+          fi
+
+          # Check that NO hardcoded blog articles remain in index.html
+          if grep -q '<article class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow">' public/index.html; then
+            echo "ERROR: Found hardcoded blog articles in index.html"
+            exit 1
+          fi
+          echo "✓ No hardcoded blog articles in index.html"
+
+      - name: Validate blog-index.json structure
+        run: |
+          # Validate JSON is valid
+          if ! python3 -c "import json; json.load(open('public/blog/blog-index.json'))"; then
+            echo "ERROR: blog-index.json is not valid JSON"
+            exit 1
+          fi
+          echo "✓ blog-index.json is valid JSON"
+
+          # Check it has required fields
+          if ! python3 -c "import json; posts = json.load(open('public/blog/blog-index.json')); assert all('file' in p and 'title' in p and 'date' in p for p in posts)"; then
+            echo "ERROR: blog-index.json missing required fields (file, title, date)"
+            exit 1
+          fi
+          echo "✓ blog-index.json has required fields"
+
+      - name: Validate app.js has blog loading code
+        run: |
+          if ! grep -q "loadBlogPosts" public/app.js; then
+            echo "ERROR: app.js missing loadBlogPosts function"
+            exit 1
+          fi
+          echo "✓ app.js has loadBlogPosts function"
+
+          if ! grep -q "blog-index.json" public/app.js; then
+            echo "ERROR: app.js not referencing blog-index.json"
+            exit 1
+          fi
+          echo "✓ app.js references blog-index.json"
+
+      - name: Validate blog container exists
+        run: |
+          if ! grep -q 'id="blog-posts"' public/index.html; then
+            echo "ERROR: blog-posts container missing from index.html"
+            exit 1
+          fi
+          echo "✓ blog-posts container exists"
+
+      - name: Validate blog content is fresh
+        run: |
+          # Check that blog-index.json has posts from the last 30 days
+          python3 << 'EOF'
+import json
+from datetime import datetime, timedelta
+
+with open('public/blog/blog-index.json') as f:
+    posts = json.load(f)
+
+if not posts:
+    print("ERROR: No posts in blog-index.json")
+    exit(1)
+
+# Check most recent post date
+latest_date = max(datetime.strptime(p['date'], '%Y-%m-%d') for p in posts)
+days_old = (datetime.now() - latest_date).days
+
+if days_old > 30:
+    print(f"ERROR: Latest blog post is {days_old} days old (max 30)")
+    exit(1)
+
+print(f"✓ Latest blog post is {days_old} days old")
+EOF
