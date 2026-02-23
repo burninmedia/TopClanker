@@ -102,6 +102,12 @@
                 <button class="filter-btn" data-category="learning">Learning</button>
             </div>
 
+            <!-- Local Models Filter -->
+            <div class="flex flex-wrap gap-2 mb-6" id="localFilter">
+                <button class="filter-btn active" data-local="all">All Models</button>
+                <button class="filter-btn" data-local="local">🏠 Local Only (8GB VRAM)</button>
+            </div>
+
             <!-- Rankings Table (Desktop) -->
             <div class="bg-white rounded-lg shadow overflow-hidden hidden md:block">
                 <div class="overflow-x-auto">
@@ -251,6 +257,17 @@
 
             <!-- Pagination (works for both views) -->
             <div id="pagination" class="p-4 bg-gray-50 rounded-b-lg"></div>
+        </section>
+
+        <!-- Recent Blog Posts Section -->
+        <section id="recent-blog" class="mb-12">
+            <h3 class="text-3xl font-bold mb-6">Recent Blog Posts</h3>
+            <div id="recent-blog-posts" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Populated by JavaScript -->
+            </div>
+            <div class="text-center mt-6">
+                <a href="/blog/" class="text-blue-600 hover:text-blue-800 font-medium">View all posts →</a>
+            </div>
         </section>
 
         <!-- Ad Spot - Sidebar would go here in future -->

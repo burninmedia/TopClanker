@@ -6,14 +6,32 @@ class RankingsApp {
         console.log('[TopClanker] Initializing app...');
         this.data = null;
         this.currentFilter = 'all';
+        this.currentLocalFilter = 'all';
         this.currentPage = 1;
         this.itemsPerPage = 10;
+        
+        // Local models that run on 8GB VRAM or less
+        this.localModels = [
+            'Qwen 3 4B', 'Qwen 2.5 4B', 'Qwen 2.5 Ultra',
+            'Mistral 7B', 'Mistral Large 2', 'Mistral Small',
+            'Phi-4 Mini', 'Phi-3 Mini', 'Phi-4',
+            'Llama 3.2 3B', 'Llama 3.2 1B', 'Llama 3.3 70B', 'Llama 3 8B', 'Llama 4 Scout',
+            'DeepSeek Coder 6.7B', 'DeepSeek Coder 7B', 'DeepSeek V3', 'DeepSeek R1',
+            'Gemma 3 4B', 'Gemma 2 9B', 'Gemma 2B',
+            'Command R7B', 'Command R',
+            'Yi-Large', 'Yi-6B',
+            'Mixtral 8x7B', 'Mixtral 8x22B',
+            'Mathstral 7B',
+            'Codestral 7B'
+        ];
+        
         this.init();
     }
 
     async init() {
         await this.loadData();
         await this.loadBlogPosts();
+        await this.loadRecentBlogPosts();
         this.setupEventListeners();
         this.render();
     }
@@ -71,6 +89,62 @@ class RankingsApp {
         }
     }
 
+    async loadRecentBlogPosts() {
+        console.log('[TopClanker] Loading recent blog posts...');
+        const container = document.getElementById('recent-blog-posts');
+        if (!container) {
+            console.error('[TopClanker] Recent blog container not found');
+            return;
+        }
+        
+        try {
+            const response = await fetch('/blog/blog-index.json');
+            const posts = await response.json();
+            
+            // Sort by date descending and take latest 3
+            const latestPosts = posts
+                .sort((a, b) => new Date(b.date) - new Date(a.date))
+                .slice(0, 3);
+            
+            if (latestPosts.length === 0) {
+                container.innerHTML = '<div class="text-center py-8 text-gray-500">No articles yet</div>';
+                return;
+            }
+            
+            const months = ['January', 'February', 'March', 'April', 'May', 'June', 
+                           'July', 'August', 'September', 'October', 'November', 'December'];
+            
+            // Extract clean title (remove " - TopClanker Blog" suffix)
+            const cleanTitle = (title) => {
+                return title.replace(/ - TopClanker( Blog)?$/, '');
+            };
+            
+            container.innerHTML = latestPosts.map(post => {
+                const date = new Date(post.date + 'T00:00:00');
+                const formattedDate = `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+                const title = cleanTitle(post.title);
+                const shortTitle = title.length > 55 ? title.substring(0, 55) + '...' : title;
+                
+                return `
+                    <article class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow">
+                        <p class="text-sm text-gray-500 mb-2">${formattedDate}</p>
+                        <h4 class="text-xl font-bold mb-2">
+                            <a href="/blog/${post.file}" class="text-gray-900 hover:text-blue-600">
+                                ${shortTitle}
+                            </a>
+                        </h4>
+                        <a href="/blog/${post.file}" class="text-blue-600 hover:underline text-sm font-medium">
+                            Read more →
+                        </a>
+                    </article>
+                `;
+            }).join('');
+        } catch (error) {
+            console.error('Error loading recent blog posts:', error);
+            container.innerHTML = '<div class="text-center py-8 text-gray-500">Unable to load articles</div>';
+        }
+    }
+
     async loadData() {
         try {
             const response = await fetch('data.json');
@@ -85,9 +159,36 @@ class RankingsApp {
         const filterButtons = document.querySelectorAll('.filter-btn');
         filterButtons.forEach(btn => {
             btn.addEventListener('click', (e) => {
-                this.handleFilterChange(e.target.dataset.category);
+                const category = e.target.dataset.category;
+                const local = e.target.dataset.local;
+                
+                if (category !== undefined) {
+                    this.handleFilterChange(category);
+                } else if (local !== undefined) {
+                    this.handleLocalFilterChange(local);
+                }
             });
         });
+    }
+
+    handleLocalFilterChange(localFilter) {
+        this.currentLocalFilter = localFilter;
+        this.currentPage = 1;
+        
+        // Update active button
+        document.querySelectorAll('#localFilter .filter-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        const activeBtn = document.querySelector(`#localFilter .filter-btn[data-local="${localFilter}"]`);
+        if (activeBtn) activeBtn.classList.add('active');
+        
+        this.render();
+    }
+
+    isLocalModel(agentName) {
+        return this.localModels.some(local => 
+            agentName.toLowerCase().includes(local.toLowerCase())
+        );
     }
 
     handleFilterChange(category) {
@@ -107,13 +208,23 @@ class RankingsApp {
     getFilteredAgents() {
         if (!this.data || !this.data.agents) return [];
         
-        if (this.currentFilter === 'all') {
-            return this.data.agents;
+        let agents = this.data.agents;
+        
+        // Filter by category
+        if (this.currentFilter !== 'all') {
+            agents = agents.filter(agent => 
+                agent.category === this.currentFilter
+            );
         }
         
-        return this.data.agents.filter(agent => 
-            agent.category === this.currentFilter
-        );
+        // Filter by local models
+        if (this.currentLocalFilter === 'local') {
+            agents = agents.filter(agent => 
+                this.isLocalModel(agent.name)
+            );
+        }
+        
+        return agents;
     }
 
     getTotalPages() {
