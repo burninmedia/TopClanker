@@ -236,6 +236,34 @@
                     </div>
                 </div>
 
+                <h2 class="text-2xl font-bold mt-8 mb-4">LM Studio & CPU Offload: What Actually Works</h2>
+                <p class="mb-4">
+                    <strong>Yes, all GGUF models support CPU offload</strong> — it's a function of the llama.cpp backend 
+                    that LM Studio, Ollama, and oobabooga all use. But there's a catch: you still need enough 
+                    system RAM to hold the <em>entire model</em>, even with GPU offloading.
+                </p>
+                <p class="mb-4">
+                    Here's how it works:
+                </p>
+                <ul class="list-disc pl-6 mb-6 space-y-2">
+                    <li><strong>GPU layers</strong> — Model weights loaded in VRAM for fast inference</li>
+                    <li><strong>CPU layers</strong> — Remaining weights stay in system RAM, swapped as needed</li>
+                    <li><strong>The catch</strong> — You need RAM = model size, even with 0% GPU offload</li>
+                </ul>
+                <p class="mb-4">
+                    <strong>LM Studio defaults</strong> are conservative — it won't max out your GPU by default. 
+                    You can adjust GPU layer count manually:
+                </p>
+                <ul class="list-disc pl-6 mb-6 space-y-2">
+                    <li><code>--gpu 0.5</code> — Offload 50% of layers to GPU</li>
+                    <li><code>--gpu max</code> — Offload everything possible</li>
+                    <li><code>--gpu off</code> — CPU only (useful for debugging)</li>
+                </ul>
+                <p class="text-gray-600 italic mb-6">
+                    Pro tip: Even with partial GPU offload, you'll see 2-5x speedup over CPU-only. 
+                    The PCIe bus is slower than VRAM, but GPU compute is still way faster than CPU.
+                </p>
+
                 <h2 class="text-2xl font-bold mt-8 mb-4">The Bottom Line</h2>
                 <p class="mb-4">
                     Your 8GB 3070 Ti isn't as limited as you think. With proper configuration, you've got 
