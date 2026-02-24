@@ -1,5 +1,35 @@
 [
   {
+    "file": "rtx-gpu-llm-benchmarks-2026.html",
+    "title": "RTX GPU LLM Benchmarks: What Can Your Card Actually Run? - TopClanker Blog",
+    "date": "2026-02-24"
+  },
+  {
+    "file": "taalas-hc1-17000-tokens-second-2026.html",
+    "title": "Taalas HC1: 17,000 Tokens/Second — The Local LLM Game Changer? - TopClanker",
+    "date": "2026-02-24"
+  },
+  {
+    "file": "gpu-vram-vs-shared-ram.html",
+    "title": "GPU VRAM vs System RAM: What You Can Actually Run on a 16GB Budget - TopClanker",
+    "date": "2026-02-23"
+  },
+  {
+    "file": "ai-model-pricing-2026-analysis.html",
+    "title": "AI Model Pricing 2026: Cost Per Million Tokens Analysis - TopClanker Blog",
+    "date": "2026-02-23"
+  },
+  {
+    "file": "qwen3-dominates-local-llms-2026.html",
+    "title": "Qwen3 Dominates Local LLMs: The 2026 Benchmark Results - TopClanker",
+    "date": "2026-02-22"
+  },
+  {
+    "file": "local-llm-hardware-guide-2026.html",
+    "title": "Local LLM Hardware Guide 2026: From Gaming GPUs to Enterprise Solutions - TopClanker",
+    "date": "2026-02-21"
+  },
+  {
     "file": "ai-benchmarks-explained-2026.html",
     "title": "AI Benchmarks Explained: What Actually Matters in 2026 - TopClanker Blog",
     "date": "2026-02-21"
@@ -18,11 +48,6 @@
     "file": "open-source-vs-closed-source-ai-models-2026.html",
     "title": "Open Source vs Closed Source AI Models in 2026 - TopClanker Blog",
     "date": "2026-02-21"
-  },
-  {
-    "file": "qwen3-dominates-local-llms-2026.html",
-    "title": "Qwen3 Dominates Local LLMs: The 2026 Benchmark Results - TopClanker",
-    "date": "2026-02-22"
   },
   {
     "file": "reasoning-models-explained-2026.html",

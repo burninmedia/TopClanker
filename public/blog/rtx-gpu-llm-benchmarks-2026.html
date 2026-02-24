@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RTX GPU LLM Benchmarks: What Can Your Card Actually Run? | TopClanker</title>
+    <meta name="description" content="Complete benchmark table showing which local LLM models run on each RTX GPU from RTX 3060 to 4090. Token speeds, VRAM requirements, and recommendations.">
+    <meta property="og:title" content="RTX GPU LLM Benchmarks: What Can Your Card Actually Run?">
+    <meta property="og:description" content="Complete benchmark table showing which local LLM models run on each RTX GPU from RTX 3060 to 4090.">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://topclanker.com/blog/rtx-gpu-llm-benchmarks-2026.html">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/" class="logo">⚡ TopClanker</a>
+            <a href="/methodology.html">Methodology</a>
+            <a href="/blog/">Blog</a>
+        </nav>
+    </header>
+
+    <main>
+        <article>
+            <h1>RTX GPU LLM Benchmarks: What Can Your Card Actually Run?</h1>
+            
+            <p class="meta">February 24, 2026 • <a href="/methodology.html">Methodology</a></p>
+
+            <p>You've got an RTX GPU and want to run local LLMs. But which models actually fit in your VRAM, and what kind of speed can you expect?</p>
+
+            <p>This guide cuts through the noise with real benchmark data from <a href="https://www.hardware-corner.net/gpu-ranking-local-llm/" target="_blank" rel="noopener">Hardware Corner</a> testing llama.cpp on Ubuntu with CUDA 12.8. All speeds are token generation at 16K context using Q4_K_XL quantization.</p>
+
+            <h2>The Quick Reference Table</h2>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>GPU</th>
+                            <th>VRAM</th>
+                            <th>7B-8B</th>
+                            <th>14B</th>
+                            <th>30B</th>
+                            <th>70B</th>
+                            <th>Best For</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>RTX 4060 Ti</td>
+                            <td>8GB</td>
+                            <td>34 t/s ✓</td>
+                            <td>22 t/s ✓</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>7B models, coding assistants</td>
+                        </tr>
+                        <tr>
+                            <td>RTX 4060 Ti</td>
+                            <td>16GB</td>
+                            <td>34 t/s ✓</td>
+                            <td>22 t/s ✓</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>8B-14B, longer context</td>
+                        </tr>
+                        <tr>
+                            <td>RTX 3060</td>
+                            <td>12GB</td>
+                            <td>42 t/s ✓</td>
+                            <td>23 t/s ✓</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>Budget 7B-14B</td>
+                        </tr>
+                        <tr>
+                            <td>RTX 4070</td>
+                            <td>12GB</td>
+                            <td>52 t/s ✓</td>
+                            <td>33 t/s ✓</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>Fast 7B-14B</td>
+                        </tr>
+                        <tr>
+                            <td>RTX 4070 SUPER</td>
+                            <td>12GB</td>
+                            <td>56 t/s ✓</td>
+                            <td>37 t/s ✓</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>Solid 14B performer</td>
+                        </tr>
+                        <tr>
+                            <td>RTX 4070 Ti</td>
+                            <td>12GB</td>
+                            <td>58 t/s ✓</td>
+                            <td>38 t/s ✓</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>14B at higher speed</td>
+                        </tr>
+                        <tr>
+                            <td>RTX 4070 Ti SUPER</td>
+                            <td>16GB</td>
+                            <td>72 t/s ✓</td>
+                            <td>47 t/s ✓</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>16GB sweet spot</td>
+                        </tr>
+                        <tr>
+                            <td>RTX 3080</td>
+                            <td>10GB</td>
+                            <td>74 t/s ✓</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>Fast 7B-8B</td>
+                        </tr>
+                        <tr>
+                            <td>RTX 3080 Ti</td>
+                            <td>12GB</td>
+                            <td>88 t/s ✓</td>
+                            <td>52 t/s ✓</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>Solid 14B workhorse</td>
+                        </tr>
+                        <tr>
+                            <td>RTX 3090</td>
+                            <td>24GB</td>
+                            <td>87 t/s ✓</td>
+                            <td>52 t/s ✓</td>
+                            <td>114 t/s ✓</td>
+                            <td>—*</td>
+                            <td>24GB sweet spot</td>
+                        </tr>
+                        <tr>
+                            <td>RTX 3090 Ti</td>
+                            <td>24GB</td>
+                            <td>94 t/s ✓</td>
+                            <td>57 t/s ✓</td>
+                            <td>122 t/s ✓</td>
+                            <td>—*</td>
+                            <td>Fastest 30B single GPU</td>
+                        </tr>
+                        <tr>
+                            <td>RTX 4080</td>
+                            <td>16GB</td>
+                            <td>78 t/s ✓</td>
+                            <td>51 t/s ✓</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>Premium 14B</td>
+                        </tr>
+                        <tr>
+                            <td>RTX 4080 SUPER</td>
+                            <td>16GB</td>
+                            <td>79 t/s ✓</td>
+                            <td>53 t/s ✓</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>Premium 14B</td>
+                        </tr>
+                        <tr>
+                            <td>RTX 4090</td>
+                            <td>24GB</td>
+                            <td>104 t/s ✓</td>
+                            <td>69 t/s ✓</td>
+                            <td>140 t/s ✓</td>
+                            <td>—*</td>
+                            <td>Consumer king</td>
+                        </tr>
+                        <tr>
+                            <td>RTX 5090</td>
+                            <td>32GB</td>
+                            <td>145 t/s ✓</td>
+                            <td>103 t/s ✓</td>
+                            <td>142 t/s ✓</td>
+                            <td>—*</td>
+                            <td>Best consumer LLM GPU</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="note"><em>*70B models require offloading or dual-GPU setups on consumer cards. See below for details.</em></p>
+
+            <h2>VRAM Requirements by Model Size</h2>
+
+            <p>Here's roughly what you need in VRAM for different quantization levels:</p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Model Size</th>
+                            <th>FP16</th>
+                            <th>Q8</th>
+                            <th>Q6</th>
+                            <th>Q4_K_XL</th>
+                            <th>Q4_K_M</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>7B</td>
+                            <td>14GB</td>
+                            <td>7GB</td>
+                            <td>5.5GB</td>
+                            <td>4.5GB</td>
+                            <td>3.5GB</td>
+                        </tr>
+                        <tr>
+                            <td>8B</td>
+                            <td>16GB</td>
+                            <td>8GB</td>
+                            <td>6GB</td>
+                            <td>5GB</td>
+                            <td>4GB</td>
+                        </tr>
+                        <tr>
+                            <td>14B</td>
+                            <td>28GB</td>
+                            <td>14GB</td>
+                            <td>10GB</td>
+                            <td>8GB</td>
+                            <td>6GB</td>
+                        </tr>
+                        <tr>
+                            <td>30B</td>
+                            <td>60GB</td>
+                            <td>30GB</td>
+                            <td>22GB</td>
+                            <td>18GB</td>
+                            <td>14GB</td>
+                        </tr>
+                        <tr>
+                            <td>70B</td>
+                            <td>140GB</td>
+                            <td>70GB</td>
+                            <td>50GB</td>
+                            <td>40GB</td>
+                            <td>32GB</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>What Actually Fits in Each GPU</h2>
+
+            <h3>8GB VRAM (RTX 4060 Ti 8GB)</h3>
+            <ul>
+                <li><strong>7B models:</strong> Q4 and below — runs great</li>
+                <li><strong>8B models:</strong> Q3 or lower</li>
+                <li><strong>14B:</strong> Q2 or lower only (slow, not recommended)</li>
+            </ul>
+
+            <h3>12GB VRAM (RTX 3060, 3080 10GB, 4070 series)</h3>
+            <ul>
+                <li><strong>7B-8B models:</strong> Any quantization — flies</li>
+                <li><strong>14B models:</strong> Q4-Q6 works well</li>
+                <li><strong>30B:</strong> Q4 minimum, but expect slower speeds</li>
+            </ul>
+
+            <h3>16GB VRAM (RTX 4060 Ti 16GB, 4080 series)</h3>
+            <ul>
+                <li><strong>14B models:</strong> Q6-Q8 comfortably</li>
+                <li><strong>30B models:</strong> Q4-Q5 works</li>
+                <li><strong>34B MoE models:</strong> Q4 works on some</li>
+            </ul>
+
+            <h3>24GB VRAM (RTX 3090, 3090 Ti, RTX 4090)</h3>
+            <ul>
+                <li><strong>30B models:</strong> Q6-Q8 at full speed</li>
+                <li><strong>70B models:</strong> Can offload ~50% to VRAM with Q4, rest to RAM — usable but slow (3-6 t/s)</li>
+                <li><strong>Long context:</strong> Can handle 32K+ contexts on 14B-30B models</li>
+            </ul>
+
+            <h2>Recommendations by Use Case</h2>
+
+            <h3>Budget Build (Under $400)</h3>
+            <p><strong>RTX 3060 12GB</strong> — Used market is ~$200-250. Handles 7B-14B at Q4-Q5. Not blazing fast but totally usable for coding assistants and chat.</p>
+
+            <h3>Best Value (~$400-600)</h3>
+            <p><strong>RTX 3090 24GB (used)</strong> — The king of value. $600-800 gets you 24GB VRAM, enough for 30B models. Still competitive with newer cards on token speed.</p>
+
+            <h3>16GB Sweet Spot (~$750-1200)</h3>
+            <p><strong>RTX 4070 Ti SUPER 16GB</strong> — Best balance of speed and capacity. 72 t/s on 8B, 47 t/s on 14B. Can push into 30B territory with quantization.</p>
+
+            <h3>No Compromise (~$2000+)</h3>
+            <p><strong>RTX 4090 24GB</strong> — Still the consumer king. 140 t/s on 30B models. Can run 70B with partial offload.</p>
+
+            <p><strong>RTX 5090 32GB</strong> — New champion. 145 t/s on 8B, 142 t/s on 30B. Long context handling is in a league its own.</p>
+
+            <h2>Pro of Tips</h2>
+
+            <ol>
+                <li><strong>Use LM Studio</strong> — It handles GPU layer allocation automatically and has-click downloads for quantized models.</li>
+ one                <li><strong>Lower context when possible</strong> — 4K-8K context uses significantly less VRAM than 16K+ and runs faster.</li>
+                <li><strong>Q4_K_M is the sweet spot</strong> — Good quality, fits in less VRAM, barely distinguishable from FP16 in chat use.</li>
+                <li><strong>Enable CPU offload</strong> — If a model is slightly too big, offloading layers to CPU RAM is slower but works.</li>
+            </ol>
+
+            <h2>Bottom Line</h2>
+
+            <p>If you have a 12GB card, stick to 7B-14B models. If you want 30B capability, you need 16GB+ or better yet, grab a used 24GB RTX 3090 — it's still the best price-to-VRAM ratio in 2026.</p>
+
+        </article>
+    </main>
+
+    <footer>
+        <p>TopClanker tracks AI model rankings and publishes practical guides for running LLMs locally. <a href="/methodology.html">Methodology</a> • <a href="/blog/">More Articles</a></p>
+    </footer>
+</body>
+</html>
