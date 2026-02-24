@@ -295,11 +295,11 @@
 
             <p><strong>RTX 5090 32GB</strong> — New champion. 145 t/s on 8B, 142 t/s on 30B. Long context handling is in a league its own.</p>
 
-            <h2>Pro of Tips</h2>
+            <h2>Pro Tips</h2>
 
             <ol>
-                <li><strong>Use LM Studio</strong> — It handles GPU layer allocation automatically and has-click downloads for quantized models.</li>
- one                <li><strong>Lower context when possible</strong> — 4K-8K context uses significantly less VRAM than 16K+ and runs faster.</li>
+                <li><strong>Use LM Studio</strong> — It handles GPU layer allocation automatically and one-click downloads for quantized models.</li>
+                <li><strong>Lower context when possible</strong> — 4K-8K context uses significantly less VRAM than 16K+ and runs faster.</li>
                 <li><strong>Q4_K_M is the sweet spot</strong> — Good quality, fits in less VRAM, barely distinguishable from FP16 in chat use.</li>
                 <li><strong>Enable CPU offload</strong> — If a model is slightly too big, offloading layers to CPU RAM is slower but works.</li>
             </ol>
