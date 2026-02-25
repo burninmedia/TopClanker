@@ -1,64 +1,58 @@
-# TopClanker Ranking Sources & Methodology
+# TopClanker Ranking Sources
 
-## Data Quality Standards
+This document tracks sites and sources we use for LLM rankings. We don't cite these in blog posts — we use them to build our own data store with real-world numbers.
 
-We only source rankings from:
-- Peer-reviewed benchmarks (MMLU, GSM8K, HumanEval, GPQA)
-- Trusted leaderboards: LMSYS Chatbot Arena, Hugging Face Open LLM Leaderboard
-- Company official announcements with benchmark data
+## Cloud LLM Rankings
 
-## Primary Sources
+| Site | URL | What's Useful |
+|------|-----|---------------|
+| LLM Stats | https://llm-stats.com/ | Comprehensive leaderboards, pricing, context windows |
+| Artificial Analysis | https://artificialanalysis.ai/leaderboards/models | 100+ models, intelligence/price/speed metrics |
+| Onyx AI | https://www.onyx.app/llm-leaderboard | Coding, reasoning, math, agentic benchmarks |
+| Open Source LLM Leaderboard (Onyx) | https://www.onyx.app/open-llm-leaderboard | Open source models, SWE-bench, LiveCodeBench |
+| VERTU | https://vertu.com/lifestyle/open-source-llm-leaderboard-2026-rankings-benchmarks-the-best-models-right-now/ | MMLU, MMLU-Pro, HumanEval, SWE-bench, GPQA, MATH |
+| Klu AI | https://klu.ai/llm-leaderboard | Model comparisons, pricing |
+| LiveBench | https://livebench.ai/ | Live, continuously updated benchmarks |
+| SEAL (Scale AI) | https://scale.com/leaderboard | Expert-driven evaluations |
 
-### Benchmark Tests
-| Benchmark | Source | URL |
-|-----------|--------|-----|
-| MMLU | Hugging Face | https://huggingface.co/leaderboards |
-| GSM8K | OpenAI/Stanford | https://github.com/openai/grade-school-math |
-| HumanEval | OpenAI | https://github.com/openai/human-eval |
-| GPQA | AI21 Labs | https://github.com/AI21Labs/GPQA |
-| SWE-Bench | Princeton | https://swe-bench.github.io |
+## Local/GPU LLM Rankings
 
-### Leaderboards
-| Leaderboard | Source | URL |
-|-------------|--------|-----|
-| Chatbot Arena | LMSYS | https://chat.lmsys.org |
-| Open LLM Leaderboard | Hugging Face | https://huggingface.co/spaces/open-llm-leaderboard |
-| Artificial Analysis | Artificial Analysis | https://artificialanalysis.ai |
+| Site | URL | What's Useful |
+|------|-----|---------------|
+| Hardware Corner | https://www.hardware-corner.net/gpu-ranking-local-llm/ | GPU rankings for LLM inference, token/sec by model/GPU |
+| Local AI Master | https://localaimaster.com/blog/best-gpus-for-ai-2025 | GPU benchmarks, cost-to-speed ratio |
+| LocalLLM.in | https://localllm.in/blog/best-gpus-llm-inference-2025 | GPU benchmarks, Q4_K_M performance |
+| Best GPUs for AI | https://www.bestgpusforai.com/ | 3090 vs 4090 comparisons, inference stacks |
+| Puget Systems | https://www.pugetsystems.com/labs/articles/llm-inference-consumer-gpu-performance/ | Consumer GPU inference benchmarks |
+| LLM Token Generation Simulator | https://kamilstanuch.github.io/LLM-token-generation-simulator/ | Interactive speed simulator |
 
-### Model Documentation (for verification)
-- Anthropic: https://www.anthropic.com
-- OpenAI: https://openai.com
-- Google DeepMind: https://deepmind.google
-- Meta AI: https://ai.meta.com
-- DeepSeek: https://github.com/deepseek-ai
-- Mistral: https://mistral.ai
-- Qwen: https://github.com/QwenLM
+## Community Benchmarks (Reddit)
 
-## Ranking Criteria
+| Source | URL | What's Useful |
+|--------|-----|---------------|
+| r/LocalLLaMA Benchmarks | https://www.reddit.com/r/LocalLLaMA/ | Real-world user benchmarks, RTX 3090/4090/5090 tests |
+| vLLM Benchmarks | GitHub: XiongjieDai/GPU-Benchmarks-on-LLM-Inference | Quantitative GPU benchmarks |
 
-### Score Calculation
-1. Primary: Benchmark average (MMLU 40%, domain-specific 40%, Chatbot Arena 20%)
-2. Adjust for: Context window, pricing, privacy
-3. Subjective: "No bullshit" factor (real-world usability)
+## Key Benchmarks We Track
 
-### Update Schedule
-- Check sources weekly
-- Full ranking update bi-weekly
-- Hotfix for major releases
+- **MMLU / MMLU-Pro**: General knowledge
+- **HumanEval**: Code generation
+- **SWE-bench Verified**: Real-world software engineering
+- **LiveCodeBench**: Coding competition
+- **GPQA**: Graduate-level QA
+- **MATH-500**: Math reasoning
+- **IFEval**: Instruction following
+- **Chatbot Arena**: Human preference
 
-## Verification Process
+## Update Cadence
 
-Before publishing:
-1. [ ] Cross-reference at least 2 sources
-2. [ ] Verify with official model documentation
-3. [ ] Check date of benchmark data (must be < 3 months old)
-4. [ ] Note any caveats or limitations
+- Cloud models: Weekly checks
+- GPU benchmarks: Monthly
+- Reddit community: Ongoing monitoring
 
-## Known Limitations
+## Notes
 
-- Some "benchmark" scores are self-reported by companies
-- Benchmarks don't capture all use cases
-- Real-world performance may vary
-
-## Last Updated
-2026-02-19
+- Prioritize real-world tests over model developer papers
+- Cross-reference benchmark claims with multiple sources
+- Note the date — fast-moving space, prefer recent data
+- Track inference engine (vLLM, llama.cpp, TensorRT-LLM) — speeds vary significantly
