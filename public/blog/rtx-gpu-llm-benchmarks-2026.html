@@ -14,19 +14,30 @@
     <link rel="stylesheet" href="/style.css">
 </head>
 <body class="bg-gray-50 text-gray-900">
-    <header>
-        <nav>
-            <a href="/" class="logo">⚡ TopClanker</a>
-            <a href="/methodology.html">Methodology</a>
-            <a href="/blog/">Blog</a>
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <a href="/" class="text-2xl font-bold text-blue-600">TopClanker</a>
+                    <span class="text-sm text-gray-500">Blog</span>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="/" class="text-gray-700 hover:text-blue-600 font-medium">Rankings</a>
+                    <a href="/methodology.html" class="text-gray-700 hover:text-blue-600 font-medium">Methodology</a>
+                </div>
+            </div>
         </nav>
     </header>
 
-    <main>
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <article>
-            <h1>RTX GPU LLM Benchmarks: What Can Your Card Actually Run?</h1>
-            
-            <p class="meta">February 24, 2026 • <a href="/methodology.html">Methodology</a></p>
+            <header class="mb-8">
+                <p class="text-sm text-gray-500 mb-2">February 24, 2026</p>
+                <h1 class="text-4xl font-bold mb-4">RTX GPU LLM Benchmarks: What Can Your Card Actually Run?</h1>
+                <p class="text-xl text-gray-600">
+                    Complete benchmark table showing which local LLM models run on each RTX GPU from RTX 3060 to 5090. Token speeds, VRAM requirements, and recommendations for every budget.
+                </p>
+            </header>
 
             <p>You've got an RTX GPU and want to run local LLMs. But which models actually fit in your VRAM, and what kind of speed can you expect?</p>
 
