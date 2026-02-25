@@ -1,0 +1,518 @@
+{
+  "lastUpdated": "2026-02-24",
+  "source": "hardware-corner.net",
+  "sourceUrl": "https://www.hardware-corner.net/gpu-ranking-local-llm/",
+  "methodology": "llama.cpp llama-bench on Ubuntu 24.04 with CUDA 12.8, Q4_K_XL quantization",
+  "benchmarks": [
+    {
+      "gpu": "RTX 5090",
+      "vram": 32,
+      "model": "Qwen3 8B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 145.34
+    },
+    {
+      "gpu": "RTX 5090",
+      "vram": 32,
+      "model": "Qwen3 14B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 102.68
+    },
+    {
+      "gpu": "RTX 5090",
+      "vram": 32,
+      "model": "Qwen3 30B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 141.63
+    },
+    {
+      "gpu": "RTX 5090",
+      "vram": 32,
+      "model": "Qwen3 32B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 50.92
+    },
+    {
+      "gpu": "RTX 5090",
+      "vram": 32,
+      "model": "gpt-oss 20B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 249.19
+    },
+    {
+      "gpu": "RTX 4090",
+      "vram": 24,
+      "model": "Qwen3 8B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 104.31
+    },
+    {
+      "gpu": "RTX 4090",
+      "vram": 24,
+      "model": "Qwen3 14B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 69.14
+    },
+    {
+      "gpu": "RTX 4090",
+      "vram": 24,
+      "model": "Qwen3 30B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 139.71
+    },
+    {
+      "gpu": "RTX 4090",
+      "vram": 24,
+      "model": "Qwen3 32B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 37.68
+    },
+    {
+      "gpu": "RTX 4090",
+      "vram": 24,
+      "model": "gpt-oss 20B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 163.92
+    },
+    {
+      "gpu": "RTX 3090",
+      "vram": 24,
+      "model": "Qwen3 8B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 87.45
+    },
+    {
+      "gpu": "RTX 3090",
+      "vram": 24,
+      "model": "Qwen3 14B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 52.14
+    },
+    {
+      "gpu": "RTX 3090",
+      "vram": 24,
+      "model": "Qwen3 30B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 113.84
+    },
+    {
+      "gpu": "RTX 3090",
+      "vram": 24,
+      "model": "Qwen3 32B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 30.28
+    },
+    {
+      "gpu": "RTX 3090",
+      "vram": 24,
+      "model": "gpt-oss 20B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 128.51
+    },
+    {
+      "gpu": "RTX 3090 Ti",
+      "vram": 24,
+      "model": "Qwen3 8B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 93.6
+    },
+    {
+      "gpu": "RTX 3090 Ti",
+      "vram": 24,
+      "model": "Qwen3 14B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 56.9
+    },
+    {
+      "gpu": "RTX 3090 Ti",
+      "vram": 24,
+      "model": "Qwen3 30B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 121.88
+    },
+    {
+      "gpu": "RTX 3090 Ti",
+      "vram": 24,
+      "model": "Qwen3 32B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 32.61
+    },
+    {
+      "gpu": "RTX 3090 Ti",
+      "vram": 24,
+      "model": "gpt-oss 20B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 137.55
+    },
+    {
+      "gpu": "RTX 4080 SUPER",
+      "vram": 16,
+      "model": "Qwen3 8B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 79.36
+    },
+    {
+      "gpu": "RTX 4080 SUPER",
+      "vram": 16,
+      "model": "Qwen3 14B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 52.76
+    },
+    {
+      "gpu": "RTX 4080 SUPER",
+      "vram": 16,
+      "model": "gpt-oss 20B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 122.96
+    },
+    {
+      "gpu": "RTX 4080",
+      "vram": 16,
+      "model": "Qwen3 8B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 77.86
+    },
+    {
+      "gpu": "RTX 4080",
+      "vram": 16,
+      "model": "Qwen3 14B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 51.22
+    },
+    {
+      "gpu": "RTX 4080",
+      "vram": 16,
+      "model": "gpt-oss 20B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 120.16
+    },
+    {
+      "gpu": "RTX 4070 Ti SUPER",
+      "vram": 16,
+      "model": "Qwen3 8B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 72.2
+    },
+    {
+      "gpu": "RTX 4070 Ti SUPER",
+      "vram": 16,
+      "model": "Qwen3 14B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 47.18
+    },
+    {
+      "gpu": "RTX 4070 Ti SUPER",
+      "vram": 16,
+      "model": "gpt-oss 20B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 113.6
+    },
+    {
+      "gpu": "RTX 4070 Ti",
+      "vram": 12,
+      "model": "Qwen3 8B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 57.55
+    },
+    {
+      "gpu": "RTX 4070 Ti",
+      "vram": 12,
+      "model": "Qwen3 14B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 37.75
+    },
+    {
+      "gpu": "RTX 4070 SUPER",
+      "vram": 12,
+      "model": "Qwen3 8B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 56.21
+    },
+    {
+      "gpu": "RTX 4070 SUPER",
+      "vram": 12,
+      "model": "Qwen3 14B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 37.15
+    },
+    {
+      "gpu": "RTX 4070",
+      "vram": 12,
+      "model": "Qwen3 8B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 52.07
+    },
+    {
+      "gpu": "RTX 4070",
+      "vram": 12,
+      "model": "Qwen3 14B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 32.66
+    },
+    {
+      "gpu": "RTX 3080 Ti",
+      "vram": 12,
+      "model": "Qwen3 8B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 87.94
+    },
+    {
+      "gpu": "RTX 3080 Ti",
+      "vram": 12,
+      "model": "Qwen3 14B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 52.29
+    },
+    {
+      "gpu": "RTX 3080",
+      "vram": 10,
+      "model": "Qwen3 8B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 74.24
+    },
+    {
+      "gpu": "RTX 3060",
+      "vram": 12,
+      "model": "Qwen3 8B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 41.97
+    },
+    {
+      "gpu": "RTX 3060",
+      "vram": 12,
+      "model": "Qwen3 14B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 22.66
+    },
+    {
+      "gpu": "RTX 4060 Ti",
+      "vram": 16,
+      "model": "Qwen3 8B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 34.31
+    },
+    {
+      "gpu": "RTX 4060 Ti",
+      "vram": 16,
+      "model": "Qwen3 14B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 22.36
+    },
+    {
+      "gpu": "RTX 4060 Ti",
+      "vram": 16,
+      "model": "gpt-oss 20B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 57.76
+    },
+    {
+      "gpu": "RTX 4060 Ti",
+      "vram": 8,
+      "model": "Qwen3 8B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 34.31
+    },
+    {
+      "gpu": "RTX 4060 Ti",
+      "vram": 8,
+      "model": "Qwen3 14B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 22.36
+    },
+    {
+      "gpu": "RTX 5070 Ti",
+      "vram": 16,
+      "model": "Qwen3 8B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 87.54
+    },
+    {
+      "gpu": "RTX 5070 Ti",
+      "vram": 16,
+      "model": "Qwen3 14B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 57.98
+    },
+    {
+      "gpu": "RTX 5070 Ti",
+      "vram": 16,
+      "model": "gpt-oss 20B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 133.05
+    },
+    {
+      "gpu": "RTX 5080",
+      "vram": 16,
+      "model": "Qwen3 8B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 94.14
+    },
+    {
+      "gpu": "RTX 5080",
+      "vram": 16,
+      "model": "Qwen3 14B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 64.04
+    },
+    {
+      "gpu": "RTX 5080",
+      "vram": 16,
+      "model": "gpt-oss 20B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 140.48
+    },
+    {
+      "gpu": "RTX 5070",
+      "vram": 12,
+      "model": "Qwen3 8B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 59.13
+    },
+    {
+      "gpu": "RTX 5070",
+      "vram": 12,
+      "model": "Qwen3 14B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 40.59
+    },
+    {
+      "gpu": "RTX 5060 Ti",
+      "vram": 16,
+      "model": "Qwen3 8B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 51.41
+    },
+    {
+      "gpu": "RTX 5060 Ti",
+      "vram": 16,
+      "model": "Qwen3 14B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 32.91
+    },
+    {
+      "gpu": "RTX 5060 Ti",
+      "vram": 16,
+      "model": "gpt-oss 20B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 82.42
+    },
+    {
+      "gpu": "RTX Pro 6000 WS",
+      "vram": 96,
+      "model": "Qwen3 8B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 140.62
+    },
+    {
+      "gpu": "RTX Pro 6000 WS",
+      "vram": 96,
+      "model": "Qwen3 14B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 96.86
+    },
+    {
+      "gpu": "RTX Pro 6000 WS",
+      "vram": 96,
+      "model": "Qwen3 30B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 139.76
+    },
+    {
+      "gpu": "RTX Pro 6000 WS",
+      "vram": 96,
+      "model": "Llama 70B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 28.24
+    },
+    {
+      "gpu": "RTX Pro 6000 WS",
+      "vram": 96,
+      "model": "gpt-oss 120B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 182.23
+    },
+    {
+      "gpu": "RTX Pro 6000 WS",
+      "vram": 96,
+      "model": "GLM 4.5 Air 106B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 82.87
+    },
+    {
+      "gpu": "RTX Pro 6000 WS",
+      "vram": 96,
+      "model": "Mistral Large 123B",
+      "quantization": "Q4_K_XL",
+      "context": "16K",
+      "tps": 17.73
+    }
+  ],
+  "notes": [
+    "RTX 4090 cannot fit 70B Q4 in VRAM alone - requires partial CPU offload",
+    "RTX 3090/3090 Ti 24GB can offload ~50% of 70B to VRAM",
+    "32K context speeds available for most GPUs - see hardware-corner.net for full data",
+    "All tests run with CUDA 12.8 on Ubuntu 24.04"
+  ]
+}
