@@ -32,3 +32,8 @@ dist/
 
 # Netlify
 .netlify/
+
+# Build artifacts
+*.zip
+*.tar.gz
+*.tar
