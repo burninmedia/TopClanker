@@ -1,0 +1,11 @@
+{
+  "posts": [
+    {
+      "slug": "deepseek-r1-vs-v3-local-guide",
+      "title": "DeepSeek R1 vs V3: The Complete Local Running Guide (2026)",
+      "description": "Compare DeepSeek R1 and V3 for local running. Benchmarks, hardware requirements, and which model to choose for your use case.",
+      "date": "2026-03-01",
+      "tags": ["DeepSeek", "R1", "V3", "local LLM", "Ollama", "LM Studio"]
+    }
+  ]
+}
