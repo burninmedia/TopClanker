@@ -13,7 +13,8 @@
       "description": "Highest intelligence. Agentic coding, 1M token context, adaptive thinking.",
       "benchmarks": { "mmlu": 89, "humaneval": 92, "gsm8k": 96.4, "swebench": 72 },
       "price": "$10.00/m tokens",
-      "speed": "75 t/s"
+      "speed": "75 t/s",
+      "vram": "api"
     },
     {
       "rank": 2,
@@ -27,7 +28,8 @@
       "description": "Top intelligence, excellent speed, 2M context window.",
       "benchmarks": { "mmlu": 88, "humaneval": 90, "gsm8k": 95, "swebench": 68 },
       "price": "$4.50/m tokens",
-      "speed": "93 t/s"
+      "speed": "93 t/s",
+      "vram": "api"
     },
     {
       "rank": 3,
@@ -41,7 +43,8 @@
       "description": "Latest GPT-5 with high reasoning. Strong across all benchmarks.",
       "benchmarks": { "mmlu": 89, "humaneval": 91, "gsm8k": 94, "gpqa": 70 },
       "price": "$4.81/m tokens",
-      "speed": "92 t/s"
+      "speed": "92 t/s",
+      "vram": "api"
     },
     {
       "rank": 4,
@@ -55,7 +58,8 @@
       "description": "Best value from Anthropic. Great reasoning, lower price than Opus.",
       "benchmarks": { "mmlu": 87, "humaneval": 89, "gsm8k": 93, "swebench": 65 },
       "price": "$6.00/m tokens",
-      "speed": "54 t/s"
+      "speed": "54 t/s",
+      "vram": "api"
     },
     {
       "rank": 5,
@@ -66,10 +70,11 @@
       "score": 96,
       "benchmarkScore": 88,
       "link": "https://deepseek.com",
-      "Description": "Open source reasoning model. 671B params, beats GPT-4 on reasoning.",
+      "description": "Open source reasoning model. 671B params, beats GPT-4 on reasoning.",
       "benchmarks": { "mmlu": 84, "humaneval": 90, "gsm8k": 97, "swebench": 49 },
       "price": "$0.90/m tokens (API)",
-      "speed": "45 t/s"
+      "speed": "45 t/s",
+      "vram": "32gb"
     },
     {
       "rank": 6,
@@ -83,7 +88,8 @@
       "description": "Open source general purpose. 685B params, excellent all-around.",
       "benchmarks": { "mmlu": 85, "humaneval": 88, "gsm8k": 92, "swebench": 68 },
       "price": "$0.48/m tokens",
-      "speed": "60 t/s"
+      "speed": "60 t/s",
+      "vram": "32gb"
     },
     {
       "rank": 7,
@@ -97,7 +103,8 @@
       "description": "Chinese reasoning model. 1T params, excellent coding.",
       "benchmarks": { "mmlu": 87, "humaneval": 99, "gsm8k": 96, "swebench": 77 },
       "price": "$2.00/m tokens",
-      "speed": "50 t/s"
+      "speed": "50 t/s",
+      "vram": "api"
     },
     {
       "rank": 8,
@@ -111,7 +118,8 @@
       "description": "Meta's latest. 10M context window, runs locally.",
       "benchmarks": { "mmlu": 82, "humaneval": 80, "gsm8k": 88, "swebench": 50 },
       "price": "Free (local)",
-      "speed": "varies by GPU"
+      "speed": "varies by GPU",
+      "vram": "16gb"
     },
     {
       "rank": 9,
@@ -125,7 +133,8 @@
       "description": "Best local model for speed. Excellent coding, runs on consumer GPU.",
       "benchmarks": { "mmlu": 80, "humaneval": 85, "gsm8k": 90, "swebench": 45 },
       "price": "Free (local)",
-      "speed": "100+ t/s on RTX 3090"
+      "speed": "100+ t/s on RTX 3090",
+      "vram": "16gb"
     },
     {
       "rank": 10,
@@ -139,7 +148,8 @@
       "description": "Elon's reasoning model. Fast, good for coding.",
       "benchmarks": { "mmlu": 78, "humaneval": 82, "gsm8k": 88, "swebench": 40 },
       "price": "$2.00/m tokens",
-      "speed": "80 t/s"
+      "speed": "80 t/s",
+      "vram": "api"
     }
   ],
   "gpuRankings": [

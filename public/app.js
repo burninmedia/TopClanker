@@ -7,6 +7,8 @@ class RankingsApp {
         this.data = null;
         this.currentFilter = 'all';
         this.currentLocalFilter = 'all';
+        this.currentVramFilter = 'all';  // all, 8gb, 12gb, 16gb, 24gb, 32gb, api
+        this.currentAppleFilter = 'all'; // all, 8gb, 16gb, 24gb, 32gb
         this.currentPage = 1;
         this.itemsPerPage = 10;
         
@@ -169,6 +171,34 @@ class RankingsApp {
                 }
             });
         });
+
+        // VRAM filter dropdown
+        const vramSelect = document.getElementById('vramSelect');
+        if (vramSelect) {
+            vramSelect.addEventListener('change', (e) => {
+                this.handleVramFilterChange(e.target.value);
+            });
+        }
+
+        // Apple memory filter dropdown
+        const appleSelect = document.getElementById('appleSelect');
+        if (appleSelect) {
+            appleSelect.addEventListener('change', (e) => {
+                this.handleAppleFilterChange(e.target.value);
+            });
+        }
+    }
+
+    handleVramFilterChange(vramFilter) {
+        this.currentVramFilter = vramFilter;
+        this.currentPage = 1;
+        this.render();
+    }
+
+    handleAppleFilterChange(appleFilter) {
+        this.currentAppleFilter = appleFilter;
+        this.currentPage = 1;
+        this.render();
     }
 
     handleLocalFilterChange(localFilter) {
@@ -185,9 +215,16 @@ class RankingsApp {
         this.render();
     }
 
-    isLocalModel(agentName) {
+    isLocalModel(agent) {
+        // Check if model has vram requirement (not API-only)
+        const vram = agent.vram || 'api';
+        if (vram !== 'api') {
+            return true;
+        }
+        // Fallback to name matching for legacy data
+        const name = agent.name || '';
         return this.localModels.some(local => 
-            agentName.toLowerCase().includes(local.toLowerCase())
+            name.toLowerCase().includes(local.toLowerCase())
         );
     }
 
@@ -220,8 +257,34 @@ class RankingsApp {
         // Filter by local models
         if (this.currentLocalFilter === 'local') {
             agents = agents.filter(agent => 
-                this.isLocalModel(agent.name)
+                this.isLocalModel(agent)
             );
+        }
+
+        // Filter by VRAM requirement
+        if (this.currentVramFilter !== 'all') {
+            agents = agents.filter(agent => {
+                const vram = agent.vram || 'api';
+                if (this.currentVramFilter === 'api') {
+                    return vram === 'api';
+                } else if (this.currentVramFilter === '32gb') {
+                    // 32GB+ shows models that need 32GB or are API-only
+                    return vram === 'api' || vram === '32gb';
+                } else {
+                    // For specific GB values, show API models + models that fit
+                    return vram === 'api' || vram === this.currentVramFilter;
+                }
+            });
+        }
+
+        // Filter by Apple unified memory (simplified - shows local models as compatible)
+        if (this.currentAppleFilter !== 'all') {
+            agents = agents.filter(agent => {
+                // Apple unified memory can run local models efficiently
+                // Show local models + API models
+                const vram = agent.vram || 'api';
+                return vram === 'api' || vram !== 'api';
+            });
         }
         
         return agents;
