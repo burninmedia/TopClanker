@@ -1,6 +1,13 @@
 {
   "posts": [
     {
+      "slug": "deepseek-v4-multimodal-2026",
+      "title": "DeepSeek V4 Is Coming: What We Know About the Multimodal Challenger",
+      "description": "DeepSeek V4 launches this week with native multimodal capabilities (text + image + video). Here's what the new model means for the AI landscape.",
+      "date": "2026-03-02",
+      "tags": ["DeepSeek", "V4", "multimodal", "LLM", "AI"]
+    },
+    {
       "slug": "deepseek-r1-vs-v3-local-guide",
       "title": "DeepSeek R1 vs V3: The Complete Local Running Guide (2026)",
       "description": "Compare DeepSeek R1 and V3 for local running. Benchmarks, hardware requirements, and which model to choose for your use case.",
