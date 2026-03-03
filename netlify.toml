@@ -2,14 +2,6 @@
   command = ""
   publish = "public"
 
-# Redirect rules - SPA fallback for non-existent paths
-# Static files (like /blog/*.html) are served directly, no redirect needed
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-  force = false
-
 # Headers for security and performance
 [[headers]]
   for = "/*"
