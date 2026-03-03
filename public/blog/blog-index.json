@@ -15,11 +15,6 @@
     "date": "2026-03-02"
   },
   {
-    "file": "government-dumps-anthropic.html",
-    "title": "The US Government Just Dumped Anthropic for OpenAI — Here's What Happened - TopClanker",
-    "date": "2026-03-03"
-  },
-  {
     "file": "ai-accelerator-chips-vs-gpu-2026.html",
     "title": "AI Accelerator Chips: Speed Demons vs. GPU Flexibility - TopClanker",
     "date": "2026-03-02"
@@ -75,6 +70,11 @@
     "date": "2026-03-02"
   },
   {
+    "file": "government-dumps-anthropic.html",
+    "title": "The US Government Just Dumped Anthropic for OpenAI — Here's What Happened - TopClanker",
+    "date": "2026-03-03"
+  },
+  {
     "file": "gpu-vram-vs-shared-ram.html",
     "title": "GPU VRAM vs System RAM: What You Can Actually Run on a 16GB Budget - TopClanker",
     "date": "2026-03-02"
@@ -128,5 +128,15 @@
     "file": "taalas-hc1-17000-tokens-second-2026.html",
     "title": "Taalas HC1: 17,000 Tokens/Second - The Local LLM Game Changer? - TopClanker",
     "date": "2026-03-02"
+  },
+  {
+    "file": "test-edge-cache.html",
+    "title": "TEST NEW FILE - March 3 2026 - TopClanker",
+    "date": "2026-03-03"
+  },
+  {
+    "file": "us-government-chooses-openai-over-anthropic-1772560988.html",
+    "title": "The US Government Just Dumped Anthropic for OpenAI — Here's What Happened - TopClanker",
+    "date": "2026-03-03"
   }
 ]
