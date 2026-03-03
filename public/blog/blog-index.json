@@ -1,57 +1,127 @@
-{
-  "posts": [
-    {
-      "slug": "openai-open-weight-2026",
-      "title": "OpenAI's First Open-Weight Models in 6 Years — Here's Why It Matters",
-      "description": "OpenAI just released new open-weight language models for the first time since 2019. Here is why this matters for local AI deployment.",
-      "date": "2026-03-02",
-      "tags": [
-        "OpenAI",
-        "open-weight",
-        "LLM",
-        "local AI",
-        "GPT-2"
-      ]
-    },
-    {
-      "slug": "anthropic-claude-cowork-enterprise-2026",
-      "title": "Anthropic's Claude Cowork Goes Enterprise: The Agent Revolution Is Here",
-      "description": "Anthropic launches Claude Cowork with enterprise plugins for finance, HR, and design. See how the new AI agent system aims to deliver on the promise of workplace AI.",
-      "date": "2026-03-02",
-      "tags": [
-        "Anthropic",
-        "Claude",
-        "enterprise",
-        "AI agents",
-        "productivity"
-      ]
-    },
-    {
-      "slug": "deepseek-v4-multimodal-2026",
-      "title": "DeepSeek V4 Is Coming: What We Know About the Multimodal Challenger",
-      "description": "DeepSeek V4 launches this week with native multimodal capabilities (text + image + video). Here's what the new model means for the AI landscape.",
-      "date": "2026-03-02",
-      "tags": [
-        "DeepSeek",
-        "V4",
-        "multimodal",
-        "LLM",
-        "AI"
-      ]
-    },
-    {
-      "slug": "deepseek-r1-vs-v3-local-guide",
-      "title": "DeepSeek R1 vs V3: The Complete Local Running Guide (2026)",
-      "description": "Compare DeepSeek R1 and V3 for local running. Benchmarks, hardware requirements, and which model to choose for your use case.",
-      "date": "2026-03-01",
-      "tags": [
-        "DeepSeek",
-        "R1",
-        "V3",
-        "local LLM",
-        "Ollama",
-        "LM Studio"
-      ]
-    }
-  ]
-}
+[
+  {
+    "file": "2026-03-01-ai-agents-executive-assistants.html",
+    "title": "AI Agents Are No Longer Chatbots: The $840 Billion Wake-Up Call - TopClanker",
+    "date": "2026-03-02"
+  },
+  {
+    "file": "2026-03-02-anthropic-claude-cowork-enterprise.html",
+    "title": "Anthropic's Claude Cowork Goes Enterprise: The Agent Revolution Is Here - TopClanker",
+    "date": "2026-03-02"
+  },
+  {
+    "file": "2026-03-02-anthropic-distillationgate.html",
+    "title": "Anthropic Accuses DeepSeek of Stealing Claude: The Irony Is Delicious - TopClanker",
+    "date": "2026-03-02"
+  },
+  {
+    "file": "ai-accelerator-chips-vs-gpu-2026.html",
+    "title": "AI Accelerator Chips: Speed Demons vs. GPU Flexibility - TopClanker",
+    "date": "2026-03-02"
+  },
+  {
+    "file": "ai-benchmarks-explained-2026.html",
+    "title": "AI Benchmarks Explained: What Actually Matters in 2026 - TopClanker Blog",
+    "date": "2026-03-02"
+  },
+  {
+    "file": "ai-investment-vs-doomsday-2026.html",
+    "title": "AI's Biggest Week: $110B Funding Meets the Doomsday Narrative - TopClanker",
+    "date": "2026-03-02"
+  },
+  {
+    "file": "ai-model-pricing-2026-analysis.html",
+    "title": "AI Model Pricing 2026: Cost Per Million Tokens Analysis - TopClanker",
+    "date": "2026-03-02"
+  },
+  {
+    "file": "ai-model-war-february-2026.html",
+    "title": "The February 2026 AI Model War: GPT-5, Claude, and DeepSeek Collide - TopClanker",
+    "date": "2026-03-02"
+  },
+  {
+    "file": "anthropic-claude-cowork-enterprise-2026.html",
+    "title": "Anthropic's Claude Cowork Goes Enterprise: The Agent Revolution Is Here - TopClanker",
+    "date": "2026-03-02"
+  },
+  {
+    "file": "anthropic-pentagon-ai-safety-2026.html",
+    "title": "Anthropic vs. Pentagon: The Standoff Over AI Safety - TopClanker",
+    "date": "2026-03-02"
+  },
+  {
+    "file": "deepseek-blackwell-2026.html",
+    "title": "DeepSeek's Next Move: Trained on Forbidden Nvidia Chips, Coming March 2026 - TopClanker",
+    "date": "2026-03-02"
+  },
+  {
+    "file": "deepseek-r1-vs-v3-local-guide.html",
+    "title": "DeepSeek R1 vs V3: The Complete Local Running Guide (2026)",
+    "date": "2026-03-01"
+  },
+  {
+    "file": "deepseek-v4-multimodal-2026.html",
+    "title": "DeepSeek V4 Is Coming: What We Know About the Multimodal Challenger",
+    "date": "2026-03-02"
+  },
+  {
+    "file": "ggml-joins-hugging-face-2026.html",
+    "title": "GGML Joins Hugging Face: What This Means for Local AI's Future - TopClanker",
+    "date": "2026-03-02"
+  },
+  {
+    "file": "gpu-vram-vs-shared-ram.html",
+    "title": "GPU VRAM vs System RAM: What You Can Actually Run on a 16GB Budget - TopClanker",
+    "date": "2026-03-02"
+  },
+  {
+    "file": "local-llm-hardware-guide-2026.html",
+    "title": "$1,300 Hardware Guide: Maximum Local LLM Power in 2026 - TopClanker",
+    "date": "2026-03-02"
+  },
+  {
+    "file": "local-llms-consumer-gpu-2026.html",
+    "title": "Local LLMs on Consumer GPUs 2026: What You Can Actually Run - TopClanker",
+    "date": "2026-03-02"
+  },
+  {
+    "file": "minimax-m2-5-vs-claude-opus-4-6-breakthrough.html",
+    "title": "MiniMax M2.5 vs Claude Opus 4.6: The $0.15 Model That Matches Excellence - TopClanker",
+    "date": "2026-03-02"
+  },
+  {
+    "file": "openai-open-weight-2026.html",
+    "title": "OpenAI's First Open-Weight Models in 6 Years — Here's Why It Matters",
+    "date": "2026-03-02"
+  },
+  {
+    "file": "open-source-vs-closed-source-ai-models-2026.html",
+    "title": "Open Source vs Closed Source AI Models in 2026 - TopClanker Blog",
+    "date": "2026-03-02"
+  },
+  {
+    "file": "qwen3-35b-a3b-coding-gamechanger.html",
+    "title": "Qwen3.5-35B-A3B: First Local LLM That Passes Real Coding Tests - TopClanker",
+    "date": "2026-03-02"
+  },
+  {
+    "file": "qwen3-dominates-local-llms-2026.html",
+    "title": "Qwen3 Dominates Local LLMs: The 2026 Benchmark Results - TopClanker",
+    "date": "2026-03-02"
+  },
+  {
+    "file": "reasoning-models-explained-2026.html",
+    "title": "Reasoning Models Explained: o1, DeepSeek R1, and the New AI Frontier - TopClanker Blog",
+    "date": "2026-03-02"
+  },
+  {
+    "file": "rtx-gpu-llm-benchmarks-2026.html",
+    "title": "RTX GPU LLM Benchmarks: What Can Your Card Actually Run? | TopClanker",
+    "date": "2026-03-02"
+  },
+  {
+    "file": "taalas-hc1-17000-tokens-second-2026.html",
+    "title": "Taalas HC1: 17,000 Tokens/Second - The Local LLM Game Changer? - TopClanker",
+    "date": "2026-03-02"
+  }
+]
