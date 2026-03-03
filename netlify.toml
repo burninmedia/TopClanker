@@ -2,7 +2,14 @@
   command = ""
   publish = "public"
 
-# Redirect rules (optional but good for SEO)
+# Serve blog posts directly (don't redirect to SPA)
+[[redirects]]
+  from = "/blog/*.html"
+  to = "/blog/:splat"
+  status = 200
+  force = true
+
+# Redirect rules (optional but good for SEO) - must be AFTER blog rules
 [[redirects]]
   from = "/*"
   to = "/index.html"
