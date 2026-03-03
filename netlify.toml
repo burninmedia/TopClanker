@@ -2,6 +2,20 @@
   command = ""
   publish = "public"
 
+# Serve blog posts directly - try different redirect syntax
+[[redirects]]
+  from = "/blog/*"
+  to = "/blog/:splat"
+  status = 200
+  force = true
+
+# SPA fallback for other routes
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
+
 # Headers for security and performance
 [[headers]]
   for = "/*"
