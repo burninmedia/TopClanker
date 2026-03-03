@@ -1,0 +1,2 @@
+# Serve blog posts directly - no SPA redirect
+/blog/* /blog/:splat 200
