@@ -13,6 +13,20 @@
       "description": "Compare DeepSeek R1 and V3 for local running. Benchmarks, hardware requirements, and which model to choose for your use case.",
       "date": "2026-03-01",
       "tags": ["DeepSeek", "R1", "V3", "local LLM", "Ollama", "LM Studio"]
+    },
+    {
+      "slug": "chatgpt-pentagon-boycott-2026",
+      "title": "1.5 Million Users Ditch ChatGPT in 48 Hours — Here's Why",
+      "description": "OpenAI's Pentagon deal sparked the biggest AI boycott yet. 1.5M users switched to Claude in 48 hours. Here's what happened and why it matters.",
+      "date": "2026-03-04",
+      "tags": ["OpenAI", "ChatGPT", "Pentagon", "boycott", "AI ethics"]
+    },
+    {
+      "slug": "qwen3-35b-a3b-coding-gamechanger-2026",
+      "title": "Qwen3.5-35B-A3B: First Local LLM That Passes Real Coding Tests",
+      "description": "Alibaba's Qwen3.5-35B-A3B scores 37.8% on SWE-bench Verified, nearly matching Claude Opus 4.6. Here's why this matters for local AI enthusiasts.",
+      "date": "2026-03-04",
+      "tags": ["Qwen", "local LLM", "coding", "SWE-bench", "open source"]
     }
   ]
 }
