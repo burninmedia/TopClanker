@@ -2,14 +2,7 @@
   command = ""
   publish = "public"
 
-# Serve blog posts directly - try different redirect syntax
-[[redirects]]
-  from = "/blog/*"
-  to = "/blog/:splat"
-  status = 200
-  force = true
-
-# SPA fallback for other routes
+# SPA fallback for other routes (only non-existent paths)
 [[redirects]]
   from = "/*"
   to = "/index.html"
