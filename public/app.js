@@ -48,7 +48,7 @@ class RankingsApp {
         
         try {
             console.log('[TopClanker] Fetching blog-index.json...');
-            const response = await fetch('/blog/blog-index.json?v=1772679399');
+            const response = await fetch('/blog/all-posts-2026.json?1772679399');
             console.log('[TopClanker] Response status:', response.status);
             const posts = await response.json();
             console.log('[TopClanker] Loaded posts:', posts.length);
@@ -100,7 +100,7 @@ class RankingsApp {
         }
         
         try {
-            const response = await fetch('/blog/blog-index.json?v=1772679399');
+            const response = await fetch('/blog/all-posts-2026.json?1772679399');
             const posts = await response.json();
             
             // Sort by date descending and take latest 3
