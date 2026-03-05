@@ -2,12 +2,6 @@
   command = ""
   publish = "public"
 
-# SPA fallback for other routes (only non-existent paths)
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-  force = false
 
 # Headers for security and performance
 [[headers]]
