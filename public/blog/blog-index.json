@@ -1,6 +1,13 @@
 {
   "posts": [
     {
+      "slug": "ollama-lm-studio-jan-2026",
+      "title": "Ollama vs LM Studio vs Jan: The 2026 Local LLM Showdown",
+      "description": "A practical guide comparing Ollama, LM Studio, and Jan — the three top tools for running LLMs locally in 2026. Pick the right one for your setup.",
+      "date": "2026-03-06",
+      "tags": ["Ollama", "LM Studio", "Jan", "local LLM", "AI", "tools"]
+    },
+    {
       "slug": "deepseek-v4-multimodal-2026",
       "title": "DeepSeek V4 Is Coming: What We Know About the Multimodal Challenger",
       "description": "DeepSeek V4 launches this week with native multimodal capabilities (text + image + video). Here's what the new model means for the AI landscape.",
