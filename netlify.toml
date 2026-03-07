@@ -2,6 +2,7 @@
   command = ""
   publish = "public"
 
+
 # Headers for security and performance
 [[headers]]
   for = "/*"
@@ -10,7 +11,6 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Cache-Control = "no-cache, no-store, must-revalidate"
 
 [[headers]]
   for = "/*.js"
@@ -21,13 +21,3 @@
   for = "/*.css"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "/*.json"
-  [headers.values]
-    Cache-Control = "no-cache, no-store, must-revalidate"
-
-[[headers]]
-  for = "/*.html"
-  [headers.values]
-    Cache-Control = "no-cache, no-store, must-revalidate"

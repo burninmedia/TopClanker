@@ -1,15 +1,5 @@
 [
   {
-    "file": "chatgpt-pentagon-boycott-2026.html",
-    "title": "1.5 Million Users Ditch ChatGPT in 48 Hours \u2014 Here's Why - TopClanker",
-    "date": "2026-03-04"
-  },
-  {
-    "file": "apple-m5-llm-inference-2026.html",
-    "title": "Apple's M5 Chip Is a Game-Changer for Local AI - TopClanker",
-    "date": "2026-03-03"
-  },
-  {
     "file": "2026-03-01-ai-agents-executive-assistants.html",
     "title": "AI Agents Are No Longer Chatbots: The $840 Billion Wake-Up Call - TopClanker",
     "date": "2026-03-02"
@@ -17,12 +7,17 @@
   {
     "file": "2026-03-02-anthropic-claude-cowork-enterprise.html",
     "title": "Anthropic's Claude Cowork Goes Enterprise: The Agent Revolution Is Here - TopClanker",
-    "date": "2026-03-02"
+    "date": "2026-03-03"
   },
   {
     "file": "2026-03-02-anthropic-distillationgate.html",
     "title": "Anthropic Accuses DeepSeek of Stealing Claude: The Irony Is Delicious - TopClanker",
     "date": "2026-03-02"
+  },
+  {
+    "file": "2026-03-05-gemini-lawsuit-fatal-delusion.html",
+    "title": "Father Sues Google: Gemini Chatbot Linked to Fatal Delusion - TopClanker",
+    "date": "2026-03-05"
   },
   {
     "file": "ai-accelerator-chips-vs-gpu-2026.html",
@@ -60,6 +55,16 @@
     "date": "2026-03-02"
   },
   {
+    "file": "apple-m5-llm-inference-2026.html",
+    "title": "Apple M5 Chip: 4x Faster LLM Inference - What It Means for Local AI - TopClanker",
+    "date": "2026-03-04"
+  },
+  {
+    "file": "chatgpt-pentagon-boycott-2026.html",
+    "title": "1.5 Million Users Ditch ChatGPT in 48 Hours — Here's Why - TopClanker",
+    "date": "2026-03-04"
+  },
+  {
     "file": "deepseek-blackwell-2026.html",
     "title": "DeepSeek's Next Move: Trained on Forbidden Nvidia Chips, Coming March 2026 - TopClanker",
     "date": "2026-03-02"
@@ -78,11 +83,6 @@
     "file": "ggml-joins-hugging-face-2026.html",
     "title": "GGML Joins Hugging Face: What This Means for Local AI's Future - TopClanker",
     "date": "2026-03-02"
-  },
-  {
-    "file": "government-dumps-anthropic.html",
-    "title": "The US Government Just Dumped Anthropic for OpenAI \u2014 Here's What Happened - TopClanker",
-    "date": "2026-03-03"
   },
   {
     "file": "gpu-vram-vs-shared-ram.html",
@@ -106,7 +106,7 @@
   },
   {
     "file": "openai-open-weight-2026.html",
-    "title": "OpenAI's First Open-Weight Models in 6 Years \u2014 Here's Why It Matters",
+    "title": "OpenAI's First Open-Weight Models in 6 Years — Here's Why It Matters",
     "date": "2026-03-02"
   },
   {
@@ -141,7 +141,12 @@
   },
   {
     "file": "us-government-chooses-openai-over-anthropic-1772560988.html",
-    "title": "The US Government Just Dumped Anthropic for OpenAI \u2014 Here's What Happened - TopClanker",
+    "title": "The US Government Just Dumped Anthropic for OpenAI — Here's What Happened - TopClanker",
+    "date": "2026-03-03"
+  },
+  {
+    "file": "us-govt-dumps-anthropic.html",
+    "title": "The US Government Just Dumped Anthropic for OpenAI — Here's What Happened - TopClanker",
     "date": "2026-03-03"
   }
 ]
