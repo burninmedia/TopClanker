@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - TopClanker</title>
+    <meta name="description" content="Deep dives on AI agent benchmarks, model comparisons, and practical AI guidance.">
+    <link rel="canonical" href="https://topclanker.com/blog/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://topclanker.com/blog/">
+    <meta property="og:title" content="TopClanker Blog - AI Insights">
+    <meta property="og:description" content="Deep dives on AI agent benchmarks, model comparisons, and practical AI guidance.">
+    <meta property="og:image" content="https://topclanker.com/og-image.png">
+    <meta property="og:site_name" content="TopClanker">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://topclanker.com/blog/">
+    <meta property="twitter:title" content="TopClanker Blog - AI Insights">
+    <meta property="twitter:description" content="Deep dives on AI agents, benchmarks, and what actually matters.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="canonical" href="https://topclanker.com/blog/">
+</head>
+<body class="bg-gray-50 text-gray-900">
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <a href="/" class="text-2xl font-bold text-blue-600">TopClanker</a>
+                    <span class="text-sm text-gray-500">Blog</span>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="/" class="text-gray-700 hover:text-blue-600 font-medium">Rankings</a>
+                    <a href="/methodology.html" class="text-gray-700 hover:text-blue-600 font-medium">Methodology</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <header class="mb-12">
+            <h1 class="text-4xl font-bold mb-4">TopClanker Blog</h1>
+            <p class="text-xl text-gray-600">
+                Deep dives on AI agents, benchmarks, and what actually matters.
+            </p>
+        </header>
+
+        <div id="blog-posts" class="space-y-8">
+            <p class="text-gray-500">Loading posts...</p>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-gray-300 py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>&copy; 2026 TopClanker. Built with zero bullshit.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Load blog posts dynamically from blog-index.json
+        async function loadBlogPosts() {
+            const container = document.getElementById('blog-posts');
+            
+            try {
+                const response = await fetch('/blog/blog-index.json');
+                if (!response.ok) throw new Error('Failed to load blog index');
+                
+                const posts = await response.json();
+                
+                if (!posts || posts.length === 0) {
+                    container.innerHTML = '<p class="text-gray-500">No posts yet.</p>';
+                    return;
+                }
+                
+                // Sort by date (newest first)
+                posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+                
+                container.innerHTML = posts.map(post => {
+                    // Extract readable title from the full title
+                    let displayTitle = post.title.replace(' - TopClanker', '').replace(' - TopClanker Blog', '');
+                    let displayDate = post.date;
+                    
+                    // Try to format date nicely
+                    try {
+                        const dateObj = new Date(post.date);
+                        if (!isNaN(dateObj)) {
+                            displayDate = dateObj.toLocaleDateString('en-US', { 
+                                year: 'numeric', 
+                                month: 'long', 
+                                day: 'numeric' 
+                            });
+                        }
+                    } catch (e) {}
+                    
+                    return `
+                        <article class="bg-white rounded-lg shadow p-8 hover:shadow-lg transition-shadow">
+                            <p class="text-sm text-gray-500 mb-2">${displayDate}</p>
+                            <h2 class="text-2xl font-bold mb-3">
+                                <a href="/blog/${post.file}" class="text-gray-900 hover:text-blue-600">
+                                    ${displayTitle}
+                                </a>
+                            </h2>
+                            <a href="/blog/${post.file}" class="text-blue-600 hover:underline font-medium">
+                                Read more →
+                            </a>
+                        </article>
+                    `;
+                }).join('');
+                
+            } catch (error) {
+                console.error('Error loading blog posts:', error);
+                container.innerHTML = '<p class="text-gray-500">Error loading posts. Please try again later.</p>';
+            }
+        }
+        
+        // Load on page load
+        loadBlogPosts();
+    </script>
+</body>
+</html>
+<!-- force rebuild Tue Mar  3 06:06:16 PM EST 2026 -->
+<!-- rebuild Tue Mar  3 06:18:36 PM EST 2026 -->
