@@ -264,26 +264,23 @@ class RankingsApp {
         // Filter by VRAM requirement
         if (this.currentVramFilter !== 'all') {
             agents = agents.filter(agent => {
-                const vram = agent.vram || 'api';
-                if (this.currentVramFilter === 'api') {
-                    return vram === 'api';
-                } else if (this.currentVramFilter === '32gb') {
-                    // 32GB+ shows models that need 32GB or are API-only
-                    return vram === 'api' || vram === '32gb';
-                } else {
-                    // For specific GB values, show API models + models that fit
-                    return vram === 'api' || vram === this.currentVramFilter;
+                if (agent.vram) {
+                    // Agent has explicit vram field — use it directly
+                    if (this.currentVramFilter === 'api') return agent.vram === 'api';
+                    if (this.currentVramFilter === '32gb') return agent.vram === '32gb';
+                    return agent.vram === this.currentVramFilter;
                 }
+                // No vram field: 'api' filter → cloud-only models; any size → local models
+                const isLocal = this.isLocalModel(agent);
+                return this.currentVramFilter === 'api' ? !isLocal : isLocal;
             });
         }
 
-        // Filter by Apple unified memory (simplified - shows local models as compatible)
+        // Filter by Apple unified memory — show local models runnable on Apple Silicon
         if (this.currentAppleFilter !== 'all') {
             agents = agents.filter(agent => {
-                // Apple unified memory can run local models efficiently
-                // Show local models + API models
-                const vram = agent.vram || 'api';
-                return vram === 'api' || vram !== 'api';
+                if (agent.vram) return agent.vram !== 'api';
+                return this.isLocalModel(agent);
             });
         }
         

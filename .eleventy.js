@@ -18,7 +18,6 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/favicon.svg");
   eleventyConfig.addPassthroughCopy("src/robots.txt");
   eleventyConfig.addPassthroughCopy("src/ads.txt");
-  eleventyConfig.addPassthroughCopy("src/sitemap.xml");
   eleventyConfig.addPassthroughCopy("src/_headers");
 
   // Blog static assets passthrough (existing HTML posts + JSON data files)
@@ -48,6 +47,9 @@ module.exports = function(eleventyConfig) {
     const d = date instanceof Date ? date : new Date(date);
     return d.toISOString().split("T")[0];
   });
+
+  // Limit filter — Nunjucks `slice` is chunking, not Array.slice
+  eleventyConfig.addFilter("limit", (arr, n) => arr.slice(0, n));
 
   return {
     dir: {
