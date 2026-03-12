@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepSeek R1 vs V3: The Complete Local Running Guide (2026)</title>
+    <meta name="description" content="Compare DeepSeek R1 and V3 for local running. Benchmarks, hardware requirements, and which model to choose for your use case.">
+    <meta name="keywords" content="DeepSeek R1, DeepSeek V3, local LLM, Ollama, LM Studio, GGML, local AI">
+    <link rel="stylesheet" href="/css/blog.css">
+</head>
+<body>
+    <article>
+        <header>
+            <h1>DeepSeek R1 vs V3: The Complete Local Running Guide</h1>
+            <p class="meta">Published March 1, 2026 | By TopClanker Team</p>
+        </header>
+
+        <p>Here's the deal: DeepSeek dropped two monsters in 2025-2026, and they're both free to run locally. But <strong>R1 and V3 are built for completely different jobs</strong>. Picking the wrong one will waste your GPU cycles.</p>
+
+        <p>This guide cuts through the noise with real benchmarks, actual hardware requirements, and zero marketing fluff.</p>
+
+        <h2>What You're Actually Comparing</h2>
+
+        <p><strong>DeepSeek R1</strong> is a reasoning model. It thinks out loud — working through problems step by step, checking its own logic, backtracking when it hits dead ends. Trained via pure reinforcement learning (no human reasoning traces), it developed chain-of-thought capabilities that match or beat OpenAI's o1 on math benchmarks.</p>
+
+        <p><strong>DeepSeek V3</strong> is the general-purpose flagship. Think of it as the smarter, cheaper alternative to GPT-4o and Claude 3.5 Sonnet. It doesn't "think" — it just answers. Fast.</p>
+
+        <p>DeepSeek themselves put it plainly: <em>"R1 falls short of V3 in general-purpose tasks."</em> But R1 destroys V3 on reasoning. Here's the data.</p>
+
+        <h2>Benchmark Showdown</h2>
+
+        <h3>Reasoning & Math</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Benchmark</th>
+                    <th>DeepSeek R1</th>
+                    <th>DeepSeek V3</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>AIME 2024</td>
+                    <td>79.8%</td>
+                    <td>N/A</td>
+                    <td>R1 = o1 tier</td>
+                </tr>
+                <tr>
+                    <td>MATH-500</td>
+                    <td>97.3%</td>
+                    <td>N/A</td>
+                    <td>R1 beats o1 here</td>
+                </tr>
+                <tr>
+                    <td>Codeforces Elo</td>
+                    <td>2,029</td>
+                    <td>N/A</td>
+                    <td>Candidate Master level</td>
+                </tr>
+                <tr>
+                    <td>MMLU</td>
+                    <td>~70%</td>
+                    <td>88.5%</td>
+                    <td>V3 wins general knowledge</td>
+                </tr>
+                <tr>
+                    <td>GPQA</td>
+                    <td>~60%</td>
+                    <td>59.1%</td>
+                    <td>Close on science</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Coding</h3>
+        <p>R1 excels at algorithmic coding and competitive programming. V3 (and especially V3.1) handle real-world software engineering better. For coding tasks, <a href="/blog/best-local-coding-models-2026">check our updated local coding model rankings</a>.</p>
+
+        <h2>The Hardware Reality Check</h2>
+
+        <p>This is where most people get tripped up.</p>
+
+        <p><strong>DeepSeek R1 (full 671B):</strong></p>
+        <ul>
+            <li>MoE architecture: 671B total params, 37B active per token</li>
+            <li>At Q4 quantization: ~336GB VRAM+RAM</li>
+            <li>Practical? Only on Mac Studio Ultra (512GB) or multi-GPU setups</li>
+        </ul>
+
+        <p><strong>DeepSeek V3 (full 671B):</strong></p>
+        <ul>
+            <li>Same MoE architecture</li>
+            <li>At Q4 quantization: ~400GB</li>
+            <li>At FP16: ~1,400GB</li>
+            <li><strong>Not practical for any consumer hardware.</strong></li>
+        </ul>
+
+        <p>Here's the key: <strong>run the distilled versions</strong>. DeepSeek distilled R1's reasoning into manageable sizes:</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Model</th>
+                    <th>VRAM (Q4)</th>
+                    <th>AIME 2024</th>
+                    <th>MATH-500</th>
+                    <th>Ollama</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>R1-Distill-7B (Qwen)</td>
+                    <td>~6 GB</td>
+                    <td>55.5%</td>
+                    <td>92.8%</td>
+                    <td><code>ollama pull deepseek-r1:7b</code></td>
+                </tr>
+                <tr>
+                    <td>R1-Distill-14B (Qwen)</td>
+                    <td>~11 GB</td>
+                    <td>69.7%</td>
+                    <td>93.9%</td>
+                    <td><code>ollama pull deepseek-r1:14b</code></td>
+                </tr>
+                <tr>
+                    <td>R1-Distill-32B (Qwen)</td>
+                    <td>~22 GB</td>
+                    <td>72.6%</td>
+                    <td>94.3%</td>
+                    <td><code>ollama pull deepseek-r1:32b</code></td>
+                </tr>
+                <tr>
+                    <td>R1-Distill-70B (Llama)</td>
+                    <td>~43 GB</td>
+                    <td>70.0%</td>
+                    <td>94.5%</td>
+                    <td><code>ollama pull deepseek-r1:70b</code></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p><strong>GPU recommendation:</strong></p>
+        <ul>
+            <li>8 GB VRAM → 7B model (~50 tok/s)</li>
+            <li>12 GB VRAM → 14B model (sweet spot, ~30 tok/s)</li>
+            <li>24 GB VRAM → 32B model (~20 tok/s)</li>
+            <li>48 GB+ VRAM → 70B model (~10 tok/s)</li>
+        </ul>
+
+        <h2>When to Use Each</h2>
+
+        <p><strong>Use R1 when:</strong></p>
+        <ul>
+            <li>Math homework or competition problems</li>
+            <li>Algorithm design</li>
+            <li>Multi-step logic puzzles</li>
+            <li>You need to see the model's reasoning (transparency)</li>
+            <li>Budget reasoning API calls ($0.55 input / $2.19 output per 1M tokens)</li>
+        </ul>
+
+        <p><strong>Use V3 when:</strong></p>
+        <ul>
+            <li>General chat and Q&A</li>
+            <li>Writing assistance</li>
+            <li>Code generation (real-world, not algorithms)</li>
+            <li>Information retrieval</li>
+            <li>Cheapest API rates ($0.28 input / $0.42 output per 1M tokens)</li>
+        </ul>
+
+        <p><strong>Don't use R1 for:</strong></p>
+        <ul>
+            <li>Simple questions — it overthinks. "What's the capital of France?" gets 200+ thinking tokens before the answer.</li>
+            <li>Creative writing — it's functional, not engaging.</li>
+            <li>Speed-critical applications — reasoning tokens add latency.</li>
+        </ul>
+
+        <h2>Running Locally: Quick Setup</h2>
+
+        <h3>Ollama (Recommended)</h3>
+        <pre><code># Pull the 14B distilled version (11GB VRAM)
+ollama pull deepseek-r1:14b
+
+# Important: Increase context length (default 4096 is too small)
+# Create a Modelfile:
+FROM deepseek-r1:14b
+PARAMETER num_ctx 16384
+
+ollama create deepseek-r1-14b-16k -f Modelfile</code></pre>
+
+        <h3>LM Studio</h3>
+        <p>Download from <a href="https://lmstudio.ai">lmstudio.ai</a>, search for "DeepSeek R1", and adjust the GPU layers slider. For a 14B model on 12GB VRAM, start with ~28 layers.</p>
+
+        <h2>The Bottom Line</h2>
+
+        <p>DeepSeek R1 and V3 aren't competitors — they're complements. R1 is your reasoning engine. V3 is your general assistant. Run both locally in their distilled forms:</p>
+
+        <ul>
+            <li><strong>7B/14B R1</strong> → Consumer GPU, strong math reasoning</li>
+            <li><strong>API V3</strong> → When you need GPT-4 class intelligence without the GPT-4 price</li>
+        </ul>
+
+        <p>The $5.6 million training cost for these models (vs. $100M+ for proprietary alternatives) is why open-source AI is eating the world. <a href="/blog/local-llm-rankings">See how they stack up in our full rankings</a>.</p>
+
+        <hr>
+
+        <h3>Sources</h3>
+        <ul>
+            <li><a href="https://dev.to/lemondata_dev/deepseek-r1-guide-architecture-benchmarks-and-practical-usage-in-2026-m8f">DeepSeek R1 Guide - DEV Community</a></li>
+            <li><a href="https://www.insiderllm.com/guides/deepseek-models-guide/">DeepSeek Models Guide - InsiderLLM</a></li>
+            <li><a href="https://arxiv.org/html/2412.19437v1">DeepSeek-V3 Technical Report</a></li>
+            <li><a href="https://www.sitepoint.com/deepseek-r1-open-source-reasoning/">DeepSeek R1 - SitePoint</a></li>
+        </ul>
+    </article>
+</body>
+</html>
