@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apple M5 Chip: 4x Faster LLM Inference - What It Means for Local AI - TopClanker</title>
+    <meta name="description" content="Apple's M5 chip delivers up to 4x faster LLM inference than M4. We break down the numbers and what they mean for running local AI on Mac.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://topclanker.com/blog/apple-m5-llm-inference-2026">
+    <meta property="og:title" content="Apple M5 Chip: 4x Faster LLM Inference - What It Means for Local AI">
+    <meta property="og:description" content="Apple's M5 chip delivers up to 4x faster LLM inference than M4. We break down the numbers and what they mean for running local AI on Mac.">
+    <meta property="og:image" content="https://topclanker.com/og-image.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://topclanker.com/blog/apple-m5-llm-inference-2026">
+    <meta property="twitter:title" content="Apple M5 Chip: 4x Faster LLM Inference">
+    <meta property="twitter:description" content="Apple's M5 chip delivers up to 4x faster LLM inference than M4. Here's what it means for local AI.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body class="bg-gray-50 text-gray-900">
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <nav class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <a href="/" class="text-2xl font-bold text-blue-600">TopClanker</a>
+                    <span class="text-sm text-gray-500">Blog</span>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="/" class="text-gray-700 hover:text-blue-600 font-medium">Rankings</a>
+                    <a href="/methodology.html" class="text-gray-700 hover:text-blue-600 font-medium">Methodology</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <article>
+            <header class="mb-8">
+                <p class="text-sm text-gray-500 mb-2">March 3, 2026</p>
+                <h1 class="text-4xl font-bold mb-4">Apple's M5 Chip Is a Game-Changer for Local AI</h1>
+                <p class="text-xl text-gray-600">Up to 4x faster LLM inference than M4 — here's what the numbers actually mean for your local AI setup.</p>
+            </header>
+
+            <div class="prose prose-lg max-w-none">
+                <p class="text-lg text-gray-700 mb-6">
+                    Apple just dropped their M5 chip benchmarks, and the local AI community is taking notice. 
+                    If you've been running LLMs on Mac, the M5 isn't just an incremental upgrade — it's a meaningful leap forward.
+                </p>
+
+                <h2 class="text-2xl font-bold mb-4 mt-8">The Numbers</h2>
+                
+                <div class="bg-white rounded-lg shadow p-6 mb-6">
+                    <table class="w-full text-left">
+                        <thead>
+                            <tr class="border-b">
+                                <th class="pb-2">Metric</th>
+                                <th class="pb-2">M4</th>
+                                <th class="pb-2">M5</th>
+                                <th class="pb-2 font-bold text-green-600">Improvement</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b">
+                                <td class="py-2">Memory Bandwidth</td>
+                                <td>120 GB/s</td>
+                                <td>153 GB/s</td>
+                                <td class="text-green-600 font-bold">+28%</td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="py-2">TTFT (14B model)</td>
+                                <td>~16s</td>
+                                <td>&lt;10s</td>
+                                <td class="text-green-600 font-bold">~4x faster</td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="py-2">Token Generation</td>
+                                <td>Baseline</td>
+                                <td>—</td>
+                                <td class="text-green-600 font-bold">+19-27%</td>
+                            </tr>
+                            <tr>
+                                <td class="py-2">M5 Max Bandwidth</td>
+                                <td>—</td>
+                                <td>614 GB/s</td>
+                                <td class="text-green-600 font-bold">4x M4 Pro</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2 class="text-2xl font-bold mb-4 mt-8">What This Actually Means</h2>
+                
+                <p class="mb-4">
+                    <strong>Time to First Token (TTFT):</strong> This is the big one. Apple claims up to 4x faster TTFT for dense models like Qwen 14B. 
+                    On an M4, waiting 16 seconds for that first response felt like an eternity. On M5? Under 10 seconds. That's the difference 
+                    between "this is unusable" and "this works."
+                </p>
+                
+                <p class="mb-4">
+                    <strong>Subsequent Token Generation:</strong> Once the first token drops, you're looking at 19-27% faster token streaming. 
+                    Not as dramatic as the TTFT jump, but meaningful. It adds up over a long conversation.
+                </p>
+                
+                <p class="mb-4">
+                    <strong>Memory Footprint:</strong> A MacBook Pro with 24GB unified memory can now comfortably run:
+                </p>
+                <ul class="list-disc pl-6 mb-4 space-y-2">
+                    <li>Qwen 8B in BF16 precision (~17.5 GB)</li>
+                    <li>Qwen 14B 4-bit quantized (~9 GB)</li>
+                    <li>Qwen 30B MoE 4-bit quantized (~17 GB)</li>
+                </ul>
+
+                <h2 class="text-2xl font-bold mb-4 mt-8">The MLX Factor</h2>
+                
+                <p class="mb-4">
+                    Apple's MLX framework is what makes this possible. It's their answer to CUDA — optimized specifically for Apple Silicon's 
+                    unified memory architecture. The key advantage: your model doesn't need to shuffle data between CPU and GPU. 
+                    Everything stays in unified memory, which is why the bandwidth numbers matter so much.
+                </p>
+                
+                <p class="mb-4">
+                    Getting started with MLX is dead simple:
+                </p>
+                
+                <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto mb-6"><code>pip install mlx-lm
+mlx_lm.chat --model mistralai/Mistral-7B-Instruct-v0.3</code></pre>
+
+                <h2 class="text-2xl font-bold mb-4 mt-8">Who Should Care?</h2>
+                
+                <ul class="list-disc pl-6 mb-6 space-y-2">
+                    <li><strong>Mac users with M4 or earlier:</strong> The upgrade is worth it. 4x TTFT is massive.</li>
+                    <li><strong>MLX users:</strong> This is the chip MLX was built for. The Neural Accelerators are designed for exactly this workload.</li>
+                    <li><strong>Local AI hobbyists:</strong> If you're already running LLMs locally on Mac, M5 makes it noticeably more usable.</li>
+                    <li><strong>Anyone considering a new MacBook Pro:</strong> If AI inference matters to you at all, M5 is the clear choice over M4.</li>
+                </ul>
+
+                <h2 class="text-2xl font-bold mb-4 mt-8">The Catch</h2>
+                
+                <p class="mb-4">
+                    There are a few things to keep in mind:
+                </p>
+                <ul class="list-disc pl-6 mb-6 space-y-2">
+                    <li>You need <strong>macOS 26.2 or later</strong> for the Neural Accelerator optimizations</li>
+                    <li>MLX only runs on Apple Silicon — no Intel Mac support</li>
+                    <li>4x faster is for compute-bound workloads (small context, first token). Token generation gains are more modest (19-27%)</li>
+                </ul>
+
+                <h2 class="text-2xl font-bold mb-4 mt-8">The Bottom Line</h2>
+                
+                <p class="mb-4">
+                    Apple's M5 isn't just marketing hype. The 4x TTFT improvement is real, and it addresses the single biggest pain point 
+                    of running LLMs locally on Mac. If you've been holding off because inference felt too slow, M5 might be the reason to finally upgrade.
+                </p>
+                
+                <p>
+                    For the local AI community, this is another signal that running models on your own hardware is becoming increasingly viable. 
+                    Apple's investing in this space, and that matters.
+                </p>
+            </div>
+
+            <footer class="mt-12 pt-8 border-t border-gray-200">
+                <div class="flex gap-2">
+                    <span class="bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded">Apple</span>
+                    <span class="bg-purple-100 text-purple-700 text-xs px-2 py-1 rounded">Hardware</span>
+                    <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded">Local AI</span>
+                    <span class="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded">MLX</span>
+                </div>
+            </footer>
+        </article>
+    </main>
+
+    <footer class="bg-gray-900 text-gray-300 py-8 mt-12">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>&copy; 2026 TopClanker. Built with zero bullshit.</p>
+        </div>
+    </footer>
+</body>
+</html>

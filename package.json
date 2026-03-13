@@ -3,14 +3,16 @@
   "version": "1.0.0",
   "description": "AI Agent Rankings - No bullshit, just data",
   "scripts": {
-    "build:css": "tailwindcss -i ./src/input.css -o ./public/output.css --minify",
-    "watch:css": "tailwindcss -i ./src/input.css -o ./public/output.css --watch",
-    "generate:blog-index": "bash scripts/generate-blog-index.sh",
-    "prebuild": "npm run generate:blog-index",
-    "precommit": "npm run generate:blog-index"
+    "build:css": "tailwindcss -i ./src/input.css -o ./src/output.css --minify",
+    "watch:css": "tailwindcss -i ./src/input.css -o ./src/output.css --watch",
+    "build:11ty": "eleventy",
+    "build": "npm run build:css && npm run build:11ty",
+    "watch": "eleventy --serve",
+    "start": "npm run watch"
   },
   "devDependencies": {
+    "@11ty/eleventy": "^3.1.2",
+    "markdown-it": "^14.1.1",
     "tailwindcss": "^3.4.0"
   }
 }
-

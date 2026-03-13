@@ -17,8 +17,24 @@ for file in "$BLOG_DIR"/*.html; do
     # Extract title from <title> tag
     title=$(grep -oP '(?<=<title>).*(?=</title>)' "$file" 2>/dev/null | head -1)
     
-    # Get file modification date
-    date=$(stat -c %y "$file" 2>/dev/null | cut -d' ' -f1 || stat -f %Sm -t %Y-%m-%d "$file")
+    # Extract date from YAML frontmatter (date: "2026-03-07") or meta date
+    date=$(grep -oP 'date:\s*"[^"]+"' "$file" 2>/dev/null | head -1 | sed 's/date:\s*"\([^"]*\)"/\1/')
+    
+    # Also try meta name="date" 
+    if [ -z "$date" ]; then
+        date=$(grep -oP 'name="date"\s+content="[^"]+"' "$file" 2>/dev/null | sed 's/.*content="\([^"]*\)"/\1/')
+    fi
+    
+    # Try to extract date from filename (2026-03-01-...)
+    if [ -z "$date" ]; then
+        filename=$(basename "$file")
+        date=$(echo "$filename" | grep -oP '^\d{4}-\d{2}-\d{2}' 2>/dev/null)
+    fi
+    
+    # Fallback to file modification date if no date found
+    if [ -z "$date" ]; then
+        date=$(stat -c %y "$file" 2>/dev/null | cut -d' ' -f1 || stat -f %Sm -t %Y-%m-%d "$file")
+    fi
     
     filename=$(basename "$file")
     

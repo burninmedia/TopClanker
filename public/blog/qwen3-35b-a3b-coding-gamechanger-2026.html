@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qwen3.5-35B-A3B: First Local LLM That Passes Real Coding Tests - TopClanker</title>
+    <meta name="description" content="Alibaba's Qwen3.5-35B-A3B scores 37.8% on SWE-bench Verified, nearly matching Claude Opus 4.6. Here's why this matters for local AI enthusiasts.">
+    <meta property="og:title" content="Qwen3.5-35B-A3B: First Local LLM That Passes Real Coding Tests">
+    <meta property="og:description" content="Alibaba's Qwen3.5-35B-A3B scores 37.8% on SWE-bench Verified, nearly matching Claude Opus 4.6. Here's why this matters for local AI enthusiasts.">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://topclanker.com/blog/qwen3-35b-a3b-coding-gamechanger.html">
+    <link rel="stylesheet" href="/output.css">
+</head>
+<body class="bg-gray-900 text-gray-100 font-sans">
+    <header class="border-b border-gray-800">
+        <div class="max-w-4xl mx-auto px-4 py-4">
+            <a href="/" class="text-2xl font-bold text-teal-400">TopClanker</a>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 py-8">
+        <article>
+            <header class="mb-8">
+                <h1 class="text-4xl font-bold mb-4">Qwen3.5-35B-A3B: First Local LLM That Passes Real Coding Tests</h1>
+                <p class="text-gray-400 mb-2">Published March 4, 2026</p>
+                <p class="text-teal-400">Local AI • Coding • Open Source</p>
+            </header>
+
+            <div class="prose prose-invert prose-lg max-w-none">
+                <p class="text-xl text-gray-300 mb-6">Alibaba's Qwen3.5-35B-A3B just scored 37.8% on SWE-bench Verified Hard — nearly matching Claude Opus 4.6 at 40%. The kicker: it's a 3-billion-active-parameter model you can run on your own GPU.</p>
+
+                <h2 class="text-2xl font-bold mt-8 mb-4">What This Means</h2>
+                <p>For years, the narrative has been: if you want serious coding capability, you need GPT-4 or Claude Opus. Those require API calls, subscription fees, and sending your code to third-party servers. Qwen3.5 changes that equation.</p>
+
+                <p>The model uses a novel "verify-on-edit" agent strategy that breaks down coding tasks into smaller, verifiable steps. Instead of generating one large block of code and hoping it works, the model:</p>
+                <ol class="list-decimal pl-6 mb-6 space-y-2">
+                    <li>Generates a small edit</li>
+                    <li>Verifies it works</li>
+                    <li>Builds on success</li>
+                    <li>Rolls back failures immediately</li>
+                </ol>
+
+                <h2 class="text-2xl font-bold mt-8 mb-4">The Numbers</h2>
+                <ul class="list-disc pl-6 mb-6 space-y-2">
+                    <li><strong>37.8%</strong> on SWE-bench Verified Hard (full model)</li>
+                    <li><strong>3B active parameters</strong> (far smaller than frontier models)</li>
+                    <li><strong>~35B total parameters</strong> with Mixture of Experts architecture</li>
+                    <li><strong>Runs on consumer hardware</strong> — 24GB VRAM recommended</li>
+                </ul>
+
+                <h2 class="text-2xl font-bold mt-8 mb-4">Why It Matters for Local AI</h2>
+                <p>This isn't just another benchmark win. It's validation that small models + good prompting strategies can compete with frontier models on real coding tasks. For developers who care about:</p>
+                <ul class="list-disc pl-6 mb-6 space-y-2">
+                    <li><strong>Privacy</strong> — your code stays on your machine</li>
+                    <li><strong>Cost</strong> — no per-token API fees</li>
+                    <li><strong>Control</strong> — customize system prompts and behavior</li>
+                    <li><strong>Speed</strong> — local inference with dedicated GPU</li>
+                </ul>
+
+                <p>Qwen3.5-35B-A3B delivers the closest experience to Claude/GPT-4 for local development workflows.</p>
+
+                <h2 class="text-2xl font-bold mt-8 mb-4">How to Run It</h2>
+                <p>You'll need:</p>
+                <ul class="list-disc pl-6 mb-6 space-y-2">
+                    <li>GPU with 24GB+ VRAM (RTX 3090, RTX 4090, or equivalent)</li>
+                    <li>LM Studio, Ollama, or text-generation-webui</li>
+                    <li>Q4_K_M or Q5_K_S quantization for best quality/performance balance</li>
+                </ul>
+
+                <pre class="bg-gray-800 p-4 rounded-lg overflow-x-auto mb-6"><code># Example with LM Studio
+# Search for "Qwen3.5-35B-A3B" in the model browser
+# Recommended: Q4_K_M or better quantization
+# Set context length to 8192+ for complex files</code></pre>
+
+                <h2 class="text-2xl font-bold mt-8 mb-4">The Bottom Line</h2>
+                <p>Qwen3.5-35B-A3B represents a inflection point for local AI coding assistants. You can now build a coding companion that:</p>
+                <ul class="list-disc pl-6 mb-6 space-y-2">
+                    <li>Handles real SWE-bench level tasks</li>
+                    <li>Runs entirely offline</li>
+                    <li>Costs nothing after hardware purchase</li>
+                    <li>Keeps your proprietary code private</li>
+                </ul>
+
+                <p>The gap between local and API-based models is closing fast. If you've been waiting for a local model that can actually help with production code — this is it.</p>
+
+                <hr class="border-gray-700 my-8">
+
+                <h3 class="text-xl font-bold mb-4">Sources</h3>
+                <ul class="text-sm text-gray-400 space-y-2">
+                    <li><a href="https://www.reddit.com/r/LocalLLaMA/comments/1l8h9v/qwen35135ba3b_first_local_llm_that_passes_real/" class="text-teal-400 hover:underline">r/LocalLLaMA - Qwen3.5-35B-A3B Announcement (203 upvotes)</a></li>
+                    <li><a href="https://github.com/Money-Coast-3905/qwen-coder-experiments" class="text-teal-400 hover:underline">GitHub - Original experiment logs by u/Money-Coast-3905</a></li>
+                </ul>
+            </div>
+        </article>
+
+        <footer class="mt-12 pt-8 border-t border-gray-800">
+            <a href="/blog" class="text-teal-400 hover:underline">← Back to Blog</a>
+        </footer>
+    </main>
+</body>
+</html>
