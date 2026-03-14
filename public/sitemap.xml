@@ -211,8 +211,20 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://topclanker.com/blog/reasoning-models-explained-2026.html</loc>
-    <lastmod>2026-02-21</lastmod>
+    <loc>https://topclanker.com/blog/qwen3-35b-a3b-coding-gamechanger.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://topclanker.com/blog/us-government-chooses-openai-over-anthropic-1772560988.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://topclanker.com/blog/us-govt-dumps-anthropic.html</loc>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
