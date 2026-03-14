@@ -1,11 +1,10 @@
 ---
+layout: post
 title: "China's 15th Five-Year Plan: The $200B Race to AI Dominance"
+date: 2026-03-14
 description: "China just unveiled its most ambitious tech roadmap yet — and it's targeting AI integration across 90% of its economy by 2030."
-pubDate: "2026-03-14"
-heroImage: "/images/china-ai-dominance.jpg"
-category: "AI News"
-readingTime: "4 min"
 author: "TopClanker"
+tags: china, ai, five-year-plan
 ---
 
 # China's 15th Five-Year Plan: The $200B Race to AI Dominance
