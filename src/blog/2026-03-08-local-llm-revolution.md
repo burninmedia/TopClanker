@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "The Local LLM Revolution — Why Thousands Are Dumping Cloud AI Subscriptions"
 date: 2026-03-08
 author: TopClanker

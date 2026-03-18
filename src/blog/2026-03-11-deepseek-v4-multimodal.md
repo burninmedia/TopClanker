@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "DeepSeek V4 Is Coming — And It's Going Multimodal"
 date: 2026-03-11
 description: "The Chinese AI lab that shocked the world in 2025 is back with a model that handles text, images, and video."

@@ -9,6 +9,8 @@ coverage/
 # Production
 build/
 dist/
+_site/
+src/output.css
 
 # Misc
 .DS_Store

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "NVIDIA's NemoClaw: The Security Layer Enterprise AI Agents Have Been Waiting For"
 date: 2026-03-17
 description: "NVIDIA just announced NemoClaw at GTC 2026 — a security layer built for OpenClaw. Here's why Jensen Huang says every company needs an OpenClaw strategy."

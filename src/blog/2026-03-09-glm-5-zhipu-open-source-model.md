@@ -1,10 +1,9 @@
 ---
+layout: post
 title: "GLM-5: The Open-Source Model That Changes Everything"
 date: 2026-03-09
-categories:
-  - AI
-  - Open Source
-  - LLMs
+description: "Zhipu AI's GLM-5 is a 744-billion-parameter open-source model that beats GPT-5.2 and Claude Opus 4.6 on key benchmarks—and runs for a fraction of the cost."
+tags: [ai, open-source, llms]
 ---
 
 The AI landscape shifted quietly in February 2026—and almost nobody noticed. Zhipu AI released [GLM-5](https://chat.z.ai), a 744-billion-parameter open-source model that doesn't just compete with the best closed models from OpenAI and Anthropic—it beats them on key benchmarks, runs for a fraction of the cost, and does it all without a single NVIDIA chip.

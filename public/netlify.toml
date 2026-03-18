@@ -1,6 +1,16 @@
 [build]
-  command = "npm run build"
-  publish = "_site"
+  # No build command needed - this is pure HTML/CSS/JS
+  command = ""
+  
+  # Publish directory is the root
+  publish = "."
+
+# Redirect rules (optional but good for SEO)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
 
 # Headers for security and performance
 [[headers]]
@@ -10,7 +20,6 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Cache-Control = "no-cache, no-store, must-revalidate"
 
 [[headers]]
   for = "/*.js"
@@ -21,13 +30,3 @@
   for = "/*.css"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "/*.json"
-  [headers.values]
-    Cache-Control = "no-cache, no-store, must-revalidate"
-
-[[headers]]
-  for = "/*.html"
-  [headers.values]
-    Cache-Control = "no-cache, no-store, must-revalidate"

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "GPT-5.4 Just Dropped — And It's the First AI That Beats Humans at Using Computers"
 date: 2026-03-10
 description: "OpenAI's latest model doesn't just write code — it uses computers like a pro. The OSWorld benchmark just got shattered."

@@ -1,0 +1,90 @@
+---
+layout: base
+title: "Blog - TopClanker"
+description: "Deep dives on AI agent benchmarks, model comparisons, and practical AI guidance."
+permalink: /blog/index.html
+---
+
+<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <header class="mb-12">
+        <h1 class="text-4xl font-bold mb-4">TopClanker Blog</h1>
+        <p class="text-xl text-gray-600">
+            Deep dives on AI agents, benchmarks, and what actually matters.
+        </p>
+    </header>
+
+    {% if collections.posts | length %}
+    <div class="space-y-8 mb-12">
+        <h2 class="text-2xl font-semibold text-gray-800">Latest Posts</h2>
+        {% for post in collections.posts %}
+        <article class="bg-white rounded-lg shadow p-8 hover:shadow-lg transition-shadow">
+            <p class="text-sm text-gray-500 mb-2">{{ post.date | dateDisplay }}</p>
+            <h2 class="text-2xl font-bold mb-3">
+                <a href="{{ post.url }}" class="text-gray-900 hover:text-blue-600">
+                    {{ post.data.title }}
+                </a>
+            </h2>
+            {% if post.data.description %}
+            <p class="text-gray-600 mb-3">{{ post.data.description | truncate(150) }}</p>
+            {% endif %}
+            <a href="{{ post.url }}" class="text-blue-600 hover:underline font-medium">
+                Read more →
+            </a>
+        </article>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Legacy posts loaded from JSON for backward compatibility -->
+    <div id="legacy-posts-section">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-6">More Articles</h2>
+        <div id="legacy-blog-posts" class="space-y-8">
+            <p class="text-gray-500">Loading...</p>
+        </div>
+    </div>
+</main>
+
+<script>
+(async function() {
+    const container = document.getElementById('legacy-blog-posts');
+    try {
+        const response = await fetch('/blog/all-posts-2026.json');
+        if (!response.ok) throw new Error('Failed');
+        const posts = await response.json();
+
+        // Already-rendered post URLs to exclude from legacy list
+        const rendered = new Set([
+            {% for post in collections.posts %}
+            "{{ post.url }}",
+            {% endfor %}
+        ]);
+
+        const months = ['January','February','March','April','May','June',
+                        'July','August','September','October','November','December'];
+
+        const filtered = posts
+            .filter(p => !rendered.has('/blog/' + p.file.replace('.html', '/')) && !rendered.has('/blog/' + p.file))
+            .sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        if (!filtered.length) {
+            document.getElementById('legacy-posts-section').style.display = 'none';
+            return;
+        }
+
+        container.innerHTML = filtered.map(post => {
+            const d = new Date(post.date + 'T00:00:00');
+            const dateStr = months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+            const title = post.title.replace(/ - TopClanker( Blog)?$/, '');
+            return `<article class="bg-white rounded-lg shadow p-8 hover:shadow-lg transition-shadow">
+                <p class="text-sm text-gray-500 mb-2">${dateStr}</p>
+                <h2 class="text-2xl font-bold mb-3">
+                    <a href="/blog/${post.file}" class="text-gray-900 hover:text-blue-600">${title}</a>
+                </h2>
+                <a href="/blog/${post.file}" class="text-blue-600 hover:underline font-medium">Read more →</a>
+            </article>`;
+        }).join('');
+    } catch(e) {
+        document.getElementById('legacy-posts-section').style.display = 'none';
+    }
+})();
+</script>
