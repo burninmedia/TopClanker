@@ -59,6 +59,14 @@ Each tier maps to specific models based on capability and cost. A "simple" query
 
 The 70% savings claim comes from a simple insight: **most OpenClaw queries are simpler than we think**. A well-tuned routing system can send 60-80% of queries to cheaper models without quality loss.
 
+Real user results from around the web:
+
+| Before Manifest | After Manifest | Savings |
+|-----------------|----------------|---------|
+| $150/month | $35/month | 77% |
+| $347/month | $68/month | 80% |
+| $720/month | $72/month | 90% |
+
 Your actual savings depend on:
 
 - **Your current model mix** — If you're already using cheap models, savings are smaller
