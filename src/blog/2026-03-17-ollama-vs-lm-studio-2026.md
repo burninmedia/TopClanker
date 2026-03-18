@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Ollama vs LM Studio 2026 — Which One Should You Use?"
 date: 2026-03-17
 author: TopClanker
