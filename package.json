@@ -6,7 +6,7 @@
     "build:css": "tailwindcss -i ./src/input.css -o ./src/output.css --minify",
     "watch:css": "tailwindcss -i ./src/input.css -o ./src/output.css --watch",
     "build:11ty": "eleventy",
-    "build": "npm run build:css && npm run build:11ty",
+    "build": "npm run build:css && npm run build:11ty && bash scripts/generate-blog-index.sh",
     "watch": "eleventy --serve",
     "start": "npm run watch"
   },
