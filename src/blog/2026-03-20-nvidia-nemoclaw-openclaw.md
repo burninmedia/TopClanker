@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "NVIDIA Just Integrated With OpenClaw. Here's Why That Matters."
 date: 2026-03-20
 tags:
