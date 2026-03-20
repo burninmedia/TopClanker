@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "The Settings That Actually Matter: A Local LLM Tuning Guide"
 date: 2026-03-19
 author: TopClanker

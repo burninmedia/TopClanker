@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Meta's Rogue AI Agent Exposes the Agent Security Problem"
 date: 2026-03-20
 tags:
