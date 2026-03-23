@@ -208,9 +208,13 @@ class RankingsApp {
         // Update active button
         document.querySelectorAll('#localFilter .filter-btn').forEach(btn => {
             btn.classList.remove('active');
+            btn.setAttribute('aria-pressed', 'false');
         });
         const activeBtn = document.querySelector(`#localFilter .filter-btn[data-local="${localFilter}"]`);
-        if (activeBtn) activeBtn.classList.add('active');
+        if (activeBtn) {
+            activeBtn.classList.add('active');
+            activeBtn.setAttribute('aria-pressed', 'true');
+        }
         
         this.render();
     }
@@ -235,9 +239,13 @@ class RankingsApp {
         // Update active button
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.classList.remove('active');
+            btn.setAttribute('aria-pressed', 'false');
         });
         const activeBtn = document.querySelector(`.filter-btn[data-category="${category}"]`);
-        if (activeBtn) activeBtn.classList.add('active');
+        if (activeBtn) {
+            activeBtn.classList.add('active');
+            activeBtn.setAttribute('aria-pressed', 'true');
+        }
         
         this.render();
     }
