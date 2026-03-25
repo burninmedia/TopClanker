@@ -132,24 +132,24 @@
             </div>
 
             <!-- Category Filter -->
-            <div class="flex flex-wrap gap-2 mb-6" id="categoryFilter">
-                <button class="filter-btn active" data-category="all">All</button>
-                <button class="filter-btn" data-category="reasoning">Reasoning</button>
-                <button class="filter-btn" data-category="math">Math</button>
-                <button class="filter-btn" data-category="research">Research</button>
-                <button class="filter-btn" data-category="learning">Learning</button>
+            <div class="flex flex-wrap gap-2 mb-6" id="categoryFilter" role="group" aria-label="Filter by category">
+                <button class="filter-btn active" data-category="all" aria-pressed="true">All</button>
+                <button class="filter-btn" data-category="reasoning" aria-pressed="false">Reasoning</button>
+                <button class="filter-btn" data-category="math" aria-pressed="false">Math</button>
+                <button class="filter-btn" data-category="research" aria-pressed="false">Research</button>
+                <button class="filter-btn" data-category="learning" aria-pressed="false">Learning</button>
             </div>
 
             <!-- Local Models Filter -->
-            <div class="flex flex-wrap gap-2 mb-6" id="localFilter">
-                <button class="filter-btn active" data-local="all">All Models</button>
-                <button class="filter-btn" data-local="local">🏠 Local Only</button>
+            <div class="flex flex-wrap gap-2 mb-6" id="localFilter" role="group" aria-label="Filter by model type">
+                <button class="filter-btn active" data-local="all" aria-pressed="true">All Models</button>
+                <button class="filter-btn" data-local="local" aria-pressed="false">🏠 Local Only</button>
             </div>
 
             <!-- Memory Filter -->
             <div class="flex flex-wrap items-center gap-2 mb-6" id="memoryFilter">
-                <span class="text-sm text-gray-600 font-medium">VRAM:</span>
-                <select id="vramSelect" class="filter-select">
+                <span class="text-sm text-gray-600 font-medium" id="vramLabel">VRAM:</span>
+                <select id="vramSelect" class="filter-select" aria-labelledby="vramLabel">
                     <option value="all">All Models</option>
                     <option value="8gb">8GB</option>
                     <option value="12gb">12GB</option>
@@ -158,8 +158,8 @@
                     <option value="32gb">32GB+</option>
                     <option value="api">API Only (Cloud)</option>
                 </select>
-                <span class="text-sm text-gray-600 font-medium ml-4">Apple:</span>
-                <select id="appleSelect" class="filter-select">
+                <span class="text-sm text-gray-600 font-medium ml-4" id="appleLabel">Apple:</span>
+                <select id="appleSelect" class="filter-select" aria-labelledby="appleLabel">
                     <option value="all">All</option>
                     <option value="8gb">8GB Unified</option>
                     <option value="16gb">16GB Unified</option>
