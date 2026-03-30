@@ -3,9 +3,6 @@ name: PR Quality Check
 on:
   pull_request:
     branches: [main]
-    paths:
-      - '_site/**'
-      - '!.github/**'
 
 jobs:
   validate-homepage:
@@ -13,6 +10,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Build site
+        run: npm run build
 
       - name: Validate JavaScript syntax
         run: |
