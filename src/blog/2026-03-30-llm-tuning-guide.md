@@ -12,7 +12,7 @@ Stop touching everything. Most Local LLM settings exist for a reason, but only a
 
 If you've ever fallen down a rabbit hole of Local LLM settings and emerged two hours later with nothing to show for it — you're not alone. The problem isn't a lack of options. It's knowing which ones move the needle and which ones are just there to make you feel like you're piloting a spaceship.
 
-This guide cuts through that. Four settings. That's it. Get these right and your模型的 outputs will improve noticeably. The rest is noise.
+This guide cuts through that. Four settings. That's it. Get these right and your model's outputs will improve noticeably. The rest is noise.
 
 ---
 
