@@ -2,20 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://topclanker.com/</loc>
-    <lastmod>2026-03-14</lastmod>
+    <lastmod>2026-04-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://topclanker.com/methodology.html</loc>
-    <lastmod>2026-02-26</lastmod>
+    <lastmod>2026-04-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://topclanker.com/privacy.html</loc>
     <lastmod>2026-02-26</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
@@ -67,181 +67,157 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://topclanker.com/blog/apple-m5-llm-inference-2026.html</loc>
-    <lastmod>2026-02-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://topclanker.com/blog/chatgpt-pentagon-boycott-2026.html</loc>
-    <lastmod>2026-02-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://topclanker.com/blog/deepseek-blackwell-2026.html</loc>
-    <lastmod>2026-02-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://topclanker.com/blog/deepseek-v4-multimodal-2026.html</loc>
-    <lastmod>2026-02-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://topclanker.com/blog/deepseek-r1-vs-v3-local-guide.html</loc>
+    <loc>https://topclanker.com/blog/2026-03-01-deepseek-r1-vs-v3-local-guide.html</loc>
     <lastmod>2026-03-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://topclanker.com/blog/ai-model-war-february-2026.html</loc>
-    <lastmod>2026-02-28</lastmod>
+    <loc>https://topclanker.com/blog/apple-m5-llm-inference-2026.html</loc>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://topclanker.com/blog/anthropic-pentagon-ai-safety-2026.html</loc>
-    <lastmod>2026-02-27</lastmod>
+    <loc>https://topclanker.com/blog/chatgpt-pentagon-boycott-2026.html</loc>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://topclanker.com/blog/anthropic-claude-cowork-enterprise-2026.html</loc>
-    <lastmod>2026-02-21</lastmod>
+    <loc>https://topclanker.com/blog/deepseek-blackwell-2026.html</loc>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://topclanker.com/blog/ai-investment-vs-doomsday-2026.html</loc>
-    <lastmod>2026-02-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://topclanker.com/blog/local-llms-consumer-gpu-2026.html</loc>
-    <lastmod>2026-02-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://topclanker.com/blog/minimax-m2-5-vs-claude-opus-4-6-breakthrough.html</loc>
-    <lastmod>2026-02-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://topclanker.com/blog/ollama-lm-studio-jan-2026.html</loc>
-    <lastmod>2026-01-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://topclanker.com/blog/openai-open-weight-2026.html</loc>
-    <lastmod>2026-02-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://topclanker.com/blog/open-source-vs-closed-source-ai-models-2026.html</loc>
-    <lastmod>2026-02-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://topclanker.com/blog/qwen3-dominates-local-llms-2026.html</loc>
-    <lastmod>2026-02-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://topclanker.com/blog/qwen3-35b-a3b-coding-gamechanger-2026.html</loc>
-    <lastmod>2026-02-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://topclanker.com/blog/ggml-joins-hugging-face-2026.html</loc>
-    <lastmod>2026-02-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://topclanker.com/blog/local-llm-hardware-guide-2026.html</loc>
-    <lastmod>2026-02-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://topclanker.com/blog/ai-benchmarks-explained-2026.html</loc>
-    <lastmod>2026-02-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://topclanker.com/blog/ai-model-pricing-2026-analysis.html</loc>
-    <lastmod>2026-02-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://topclanker.com/blog/gpu-vram-vs-shared-ram.html</loc>
-    <lastmod>2026-02-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://topclanker.com/blog/taalas-hc1-17000-tokens-second-2026.html</loc>
-    <lastmod>2026-02-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://topclanker.com/blog/reasoning-models-explained-2026.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://topclanker.com/blog/rtx-gpu-llm-benchmarks-2026.html</loc>
-    <lastmod>2026-02-25</lastmod>
+    <loc>https://topclanker.com/blog/deepseek-v4-multimodal-2026.html</loc>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://topclanker.com/blog/ai-accelerator-chips-vs-gpu-2026.html</loc>
-    <lastmod>2026-02-25</lastmod>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://topclanker.com/blog/qwen3-35b-a3b-coding-gamechanger.html</loc>
+    <loc>https://topclanker.com/blog/ai-benchmarks-explained-2026.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://topclanker.com/blog/ai-investment-vs-doomsday-2026.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://topclanker.com/blog/ai-model-war-february-2026.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://topclanker.com/blog/ai-model-pricing-2026-analysis.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://topclanker.com/blog/anthropic-pentagon-ai-safety-2026.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://topclanker.com/blog/anthropic-claude-cowork-enterprise-2026.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://topclanker.com/blog/ggml-joins-hugging-face-2026.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://topclanker.com/blog/gpu-vram-vs-shared-ram.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://topclanker.com/blog/local-llm-hardware-guide-2026.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://topclanker.com/blog/local-llms-consumer-gpu-2026.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://topclanker.com/blog/minimax-m2-5-vs-claude-opus-4-6-breakthrough.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://topclanker.com/blog/ollama-lm-studio-jan-2026.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://topclanker.com/blog/openai-open-weight-2026.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://topclanker.com/blog/open-source-vs-closed-source-ai-models-2026.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://topclanker.com/blog/qwen3-dominates-local-llms-2026.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://topclanker.com/blog/qwen3-35b-a3b-coding-gamechanger-2026.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://topclanker.com/blog/reasoning-models-explained-2026.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://topclanker.com/blog/rtx-gpu-llm-benchmarks-2026.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://topclanker.com/blog/taalas-hc1-17000-tokens-second-2026.html</loc>
     <lastmod>2026-03-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://topclanker.com/blog/us-government-chooses-openai-over-anthropic-1772560988.html</loc>
-    <lastmod>2026-03-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://topclanker.com/blog/us-govt-dumps-anthropic.html</loc>
-    <lastmod>2026-03-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://topclanker.com/blog/govt-choose-openai.htm</loc>
-    <lastmod>2026-03-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://topclanker.com/blog/us-gov-dumps-anthropic/</loc>
     <lastmod>2026-03-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
