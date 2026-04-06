@@ -67,8 +67,20 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://topclanker.com/blog/2026-03-01-deepseek-r1-vs-v3-local-guide.html</loc>
+    <loc>https://topclanker.com/blog/deepseek-r1-vs-v3-local-guide.html</loc>
     <lastmod>2026-03-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://topclanker.com/blog/qwen3-35b-a3b-coding-gamechanger.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://topclanker.com/blog/us-govt-dumps-anthropic.html</loc>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
