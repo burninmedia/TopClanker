@@ -2,10 +2,9 @@ name: PR Quality Check
 
 on:
   pull_request:
-    branches: [main]
-    paths:
-      - 'public/**'
-      - '!.github/**'
+    branches: [main, staging]
+  push:
+    branches: [main, staging]
 
 jobs:
   validate-homepage:
@@ -14,10 +13,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Build site
+        run: npm run build
+
       - name: Validate JavaScript syntax
         run: |
           # Check for obvious JS syntax issues
-          if ! node --check public/app.js 2>/dev/null; then
+          if ! node --check _site/app.js 2>/dev/null; then
             echo "ERROR: app.js has JavaScript syntax errors"
             exit 1
           fi
@@ -25,8 +27,8 @@ jobs:
 
       - name: Validate blog-index.json exists
         run: |
-          if [ ! -f "public/blog/blog-index.json" ]; then
-            echo "ERROR: public/blog/blog-index.json not found"
+          if [ ! -f "_site/blog/blog-index.json" ]; then
+            echo "ERROR: _site/blog/blog-index.json not found"
             exit 1
           fi
           echo "✓ blog-index.json exists"
@@ -34,7 +36,7 @@ jobs:
       - name: Validate blog posts are not hardcoded
         run: |
           # Check that the loading placeholder exists (dynamic loading)
-          if grep -q "Loading latest articles" public/index.html; then
+          if grep -q "Loading latest articles" _site/index.html; then
             echo "✓ Loading placeholder found (dynamic loading enabled)"
           else
             echo "ERROR: Loading placeholder missing - blog may be hardcoded"
@@ -42,7 +44,7 @@ jobs:
           fi
 
           # Check that NO hardcoded blog articles remain in index.html
-          if grep -q '<article class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow">' public/index.html; then
+          if grep -q '<article class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow">' _site/index.html; then
             echo "ERROR: Found hardcoded blog articles in index.html"
             exit 1
           fi
@@ -51,14 +53,14 @@ jobs:
       - name: Validate blog-index.json structure
         run: |
           # Validate JSON is valid
-          if ! python3 -c "import json; json.load(open('public/blog/blog-index.json'))"; then
+          if ! python3 -c "import json; json.load(open('_site/blog/blog-index.json'))"; then
             echo "ERROR: blog-index.json is not valid JSON"
             exit 1
           fi
           echo "✓ blog-index.json is valid JSON"
 
           # Check it has required fields
-          if ! python3 -c "import json; posts = json.load(open('public/blog/blog-index.json')); assert all('file' in p and 'title' in p and 'date' in p for p in posts)"; then
+          if ! python3 -c "import json; posts = json.load(open('_site/blog/blog-index.json')); assert all('file' in p and 'title' in p and 'date' in p for p in posts)"; then
             echo "ERROR: blog-index.json missing required fields (file, title, date)"
             exit 1
           fi
@@ -66,13 +68,13 @@ jobs:
 
       - name: Validate app.js has blog loading code
         run: |
-          if ! grep -q "loadBlogPosts" public/app.js; then
+          if ! grep -q "loadBlogPosts" _site/app.js; then
             echo "ERROR: app.js missing loadBlogPosts function"
             exit 1
           fi
           echo "✓ app.js has loadBlogPosts function"
 
-          if ! grep -q "blog-index.json" public/app.js; then
+          if ! grep -q "blog-index.json" _site/app.js; then
             echo "ERROR: app.js not referencing blog-index.json"
             exit 1
           fi
@@ -80,7 +82,7 @@ jobs:
 
       - name: Validate blog container exists
         run: |
-          if ! grep -q 'id="blog-posts"' public/index.html; then
+          if ! grep -q 'id="blog-posts"' _site/index.html; then
             echo "ERROR: blog-posts container missing from index.html"
             exit 1
           fi
@@ -93,7 +95,7 @@ jobs:
 import json
 from datetime import datetime, timedelta
 
-with open('public/blog/blog-index.json') as f:
+with open('_site/blog/blog-index.json') as f:
     posts = json.load(f)
 
 if not posts:
