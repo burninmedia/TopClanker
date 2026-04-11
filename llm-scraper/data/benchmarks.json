@@ -1,0 +1,58 @@
+{
+  "mmlu": {
+    "display_name": "MMLU",
+    "scale": "0-100",
+    "higher_is_better": true,
+    "authoritative_source": "hf_leaderboard",
+    "benchmark_type": "knowledge",
+    "description": "Massive Multitask Language Understanding — broad academic knowledge across 57 subjects."
+  },
+  "arc": {
+    "display_name": "ARC",
+    "scale": "0-100",
+    "higher_is_better": true,
+    "authoritative_source": "hf_leaderboard",
+    "benchmark_type": "reasoning",
+    "description": "AI2 Reasoning Challenge — grade-school science questions requiring reasoning."
+  },
+  "hellaswag": {
+    "display_name": "HellaSwag",
+    "scale": "0-100",
+    "higher_is_better": true,
+    "authoritative_source": "hf_leaderboard",
+    "benchmark_type": "commonsense",
+    "description": "Sentence completion task testing commonsense inference."
+  },
+  "truthfulqa": {
+    "display_name": "TruthfulQA",
+    "scale": "0-100",
+    "higher_is_better": true,
+    "authoritative_source": "hf_leaderboard",
+    "benchmark_type": "safety",
+    "description": "Measures whether a model produces truthful answers under adversarial prompts."
+  },
+  "winogrande": {
+    "display_name": "Winogrande",
+    "scale": "0-100",
+    "higher_is_better": true,
+    "authoritative_source": "hf_leaderboard",
+    "benchmark_type": "commonsense",
+    "description": "Pronoun resolution task testing commonsense reasoning."
+  },
+  "gsm8k": {
+    "display_name": "GSM8K",
+    "scale": "0-100",
+    "higher_is_better": true,
+    "authoritative_source": "hf_leaderboard",
+    "benchmark_type": "math",
+    "description": "Grade-school math word problems requiring multi-step reasoning."
+  },
+  "lmsys_elo": {
+    "display_name": "Arena Elo",
+    "scale": "600-1400",
+    "higher_is_better": true,
+    "authoritative_source": "lmsys_arena",
+    "benchmark_type": "human_preference",
+    "description": "LMSYS Chatbot Arena Elo score derived from blind human pairwise preference votes."
+  }
+}

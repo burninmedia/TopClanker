@@ -1,0 +1,174 @@
+name: Weekly LLM Benchmark Scraper
+
+on:
+  schedule:
+    - cron: "0 0 * * 0"
+  workflow_dispatch:
+
+concurrency:
+  group: scraper-pipeline
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo (full history)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Set up Python 3.11 with pip cache
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Create runtime directories
+        run: |
+          mkdir -p data/raw
+          mkdir -p data/archive
+
+      - name: Ensure PR labels exist
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh label create "automated"    --color "0075ca" --description "Created by automation" --force
+          gh label create "data-update"  --color "e4e669" --description "LLM benchmark data update" --force
+          gh label create "needs-review" --color "d93f0b" --description "Unknown model names need review" --force
+
+      - name: Run scraper pipeline
+        id: pipeline
+        run: python run.py
+        continue-on-error: true
+
+      - name: Abort on hard failure
+        if: steps.pipeline.outcome == 'failure'
+        run: |
+          echo "Pipeline hard-failed (exit code 1). Aborting workflow."
+          exit 1
+
+      - name: Capture pipeline exit code
+        id: exitcode
+        run: |
+          echo "code=$(cat .pipeline_exit_code 2>/dev/null || echo '0')" >> $GITHUB_OUTPUT
+
+      - name: Check for data changes
+        id: changes
+        run: |
+          git add data/master.json data/weekly_diff.json data/archive/ data/needs_review.json
+          if git diff --cached --quiet; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "No data changes detected — skipping PR."
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Set date variable
+        if: steps.changes.outputs.changed == 'true'
+        id: date
+        run: echo "today=$(date +%Y-%m-%d)" >> $GITHUB_OUTPUT
+
+      - name: Create or reset branch
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git checkout -B data/update-${{ steps.date.outputs.today }}
+
+      - name: Commit data files
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          SUMMARY=$(cat .pipeline_summary 2>/dev/null || echo "Summary unavailable")
+          git commit -m "data: weekly update ${{ steps.date.outputs.today }}
+
+          ${SUMMARY}"
+
+      - name: Push branch
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git push origin data/update-${{ steps.date.outputs.today }} --force
+
+      - name: Check for existing PR on this branch
+        if: steps.changes.outputs.changed == 'true'
+        id: existing_pr
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PR_NUMBER=$(gh pr list \
+            --head data/update-${{ steps.date.outputs.today }} \
+            --json number \
+            --jq '.[0].number')
+          echo "number=${PR_NUMBER}" >> $GITHUB_OUTPUT
+
+      - name: Build PR body
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          SUMMARY=$(cat .pipeline_summary 2>/dev/null || echo "No summary available")
+          REVIEW_ITEMS=$(cat .needs_review_new 2>/dev/null || echo "None")
+          cat <<EOF > .pr_body.txt
+          ## Weekly LLM Benchmark Update — ${{ steps.date.outputs.today }}
+
+          ${SUMMARY}
+
+          ### New model names flagged for review
+          ${REVIEW_ITEMS}
+
+          ---
+          *If the \`needs-review\` label is present, add the flagged aliases to
+          \`data/models.json\` before merging.*
+          EOF
+
+      - name: Create PR
+        if: steps.changes.outputs.changed == 'true' && steps.existing_pr.outputs.number == ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          LABELS="automated,data-update"
+          [ "${{ steps.exitcode.outputs.code }}" = "2" ] && LABELS="${LABELS},needs-review"
+          gh pr create \
+            --title "Weekly data update: ${{ steps.date.outputs.today }}" \
+            --body-file .pr_body.txt \
+            --base main \
+            --head data/update-${{ steps.date.outputs.today }} \
+            --label "${LABELS}"
+
+      - name: Update existing PR body
+        if: steps.changes.outputs.changed == 'true' && steps.existing_pr.outputs.number != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr edit ${{ steps.existing_pr.outputs.number }} \
+            --body-file .pr_body.txt
+          echo "Updated existing PR #${{ steps.existing_pr.outputs.number }}"
+
+      - name: Enable auto-merge (clean runs only)
+        if: |
+          steps.changes.outputs.changed == 'true' &&
+          steps.exitcode.outputs.code == '0' &&
+          steps.existing_pr.outputs.number == ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PR_NUMBER=$(gh pr list \
+            --head data/update-${{ steps.date.outputs.today }} \
+            --json number \
+            --jq '.[0].number')
+          gh pr merge "${PR_NUMBER}" --squash --auto || \
+            echo "Auto-merge unavailable — merge manually. See repo Settings > General > Allow auto-merge."
+
+      - name: Clean up temp files
+        if: always()
+        run: |
+          rm -f .pipeline_exit_code .pipeline_summary .needs_review_new .pr_body.txt
