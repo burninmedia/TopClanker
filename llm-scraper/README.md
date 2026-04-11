@@ -136,6 +136,32 @@ run. The three tracked data artifacts are:
 - `data/weekly_diff.json` — site-facing summary of what changed this week.
 - `data/needs_review.json` — human review queue of unknown model names.
 
+## Testing
+
+The pipeline ships with a pytest suite covering normalize, diff, the
+orchestrator, scraper helpers, and registry-data integrity. None of the
+tests touch the network — `run.py` is exercised against monkeypatched
+in-memory scrapers, and every test gets its own isolated temp data tree
+via the `scenario` fixture in `tests/conftest.py`.
+
+```bash
+cd llm-scraper
+pip install -r requirements.txt -r requirements-dev.txt
+python -m pytest tests/ -v
+```
+
+What's covered:
+
+| Suite                | What it pins down                                                  |
+|----------------------|---------------------------------------------------------------------|
+| `test_data.py`       | benchmarks.json and models.json schemas; alias uniqueness across models |
+| `test_scrapers.py`   | Pure helpers: score coercion, column-name → benchmark mapping, CSV column picking |
+| `test_normalize.py`  | Alias resolution, `benchmark_type` propagation, authoritative-source rule, `needs_review` dedup |
+| `test_diff.py`       | Added/updated/removed detection, latest-archive selection, deltas, `benchmark_type` carry-through |
+| `test_run.py`        | Exit codes (0/2), archive skip-on-empty, archive re-run protection, temp file format, scraper soft-failure handling |
+
+Roughly 45 tests; the whole suite runs in well under a second.
+
 ## Manually adding a model alias
 
 When the weekly PR is labeled `needs-review`, it means the scraper found a
