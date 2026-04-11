@@ -35,12 +35,13 @@ ARCHIVE_DIR = DATA_DIR / "archive"
 MASTER_PATH = DATA_DIR / "master.json"
 BENCHMARKS_PATH = DATA_DIR / "benchmarks.json"
 
-# Temp files for GitHub Actions consumption. Per spec, these live at the repo
-# root — i.e. the parent of llm-scraper/ when the pipeline is run as-is.
-REPO_ROOT = SCRIPT_DIR.parent
-EXIT_CODE_PATH = REPO_ROOT / ".pipeline_exit_code"
-SUMMARY_PATH = REPO_ROOT / ".pipeline_summary"
-NEEDS_REVIEW_NEW_PATH = REPO_ROOT / ".needs_review_new"
+# Temp files for GitHub Actions consumption. These live alongside run.py
+# (inside llm-scraper/). The workflow sets `working-directory: llm-scraper`
+# for every shell step, so relative paths like `.pipeline_exit_code` in the
+# YAML resolve to exactly this location.
+EXIT_CODE_PATH = SCRIPT_DIR / ".pipeline_exit_code"
+SUMMARY_PATH = SCRIPT_DIR / ".pipeline_summary"
+NEEDS_REVIEW_NEW_PATH = SCRIPT_DIR / ".needs_review_new"
 
 console = Console()
 

@@ -103,35 +103,15 @@ There are two possibilities. Pick the one that matches your layout.
 Nothing to do — Netlify already rebuilds on every push to `main`, and the
 weekly workflow pushes to `main` via the auto-merged PR.
 
-### 4. About the workflow file location
+### 4. Repository layout
 
-The spec places the workflow at `llm-scraper/.github/workflows/scrape.yml`.
-GitHub Actions **only** discovers workflows under `.github/workflows/` at the
-**repository root**. There are two common ways to make this run:
-
-- **Scraper lives in its own repo:** move the whole `llm-scraper/` contents to
-  the root of that repo — the paths in the workflow (`data/...`, `run.py`)
-  already assume that layout.
-- **Scraper is a subdirectory of the site repo (current layout):** copy
-  `llm-scraper/.github/workflows/scrape.yml` up to the repo-root
-  `.github/workflows/` and add a `defaults.run.working-directory: llm-scraper`
-  block at the top of the `scrape` job so every `run:` step executes from
-  inside `llm-scraper/`:
-
-  ```yaml
-  jobs:
-    scrape:
-      runs-on: ubuntu-latest
-      defaults:
-        run:
-          working-directory: llm-scraper
-      steps:
-        ...
-  ```
-
-  Also adjust the `git add` paths in the "Check for data changes" step to
-  `llm-scraper/data/master.json` etc., since `git add` is not affected by
-  `working-directory`.
+The workflow file lives at the repo root (`.github/workflows/scrape.yml`) —
+that is the only location GitHub Actions actually discovers workflows from.
+The scraper code and data all live under `llm-scraper/`, and the workflow
+uses `defaults.run.working-directory: llm-scraper` so every shell step
+executes inside that subdirectory. This means the relative paths you see in
+the YAML (`data/...`, `.pipeline_*`, `python run.py`) all resolve against
+`llm-scraper/` at runtime.
 
 ## Local development
 
