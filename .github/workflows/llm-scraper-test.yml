@@ -1,0 +1,53 @@
+name: LLM Scraper Tests
+
+on:
+  pull_request:
+    paths:
+      - "llm-scraper/**"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: llm-scraper
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt -r requirements-dev.txt
+
+      # ── Hard gate: unit tests must pass ──
+      - name: Run unit tests
+        run: python -m pytest tests/ -v
+
+      # ── Advisory: hit the real APIs and show what comes back ──
+      - name: Create runtime directories
+        run: mkdir -p data/raw data/archive
+
+      - name: Run live scraper smoke test
+        id: smoke
+        continue-on-error: true
+        run: python tests/smoke_scrapers.py
+
+      - name: Post scraper results to job summary
+        if: always()
+        run: |
+          if [ -f scraper_smoke_results.md ]; then
+            cat scraper_smoke_results.md >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "Smoke test did not produce a report." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Clean up runtime artifacts
+        if: always()
+        run: rm -rf data/raw data/archive scraper_smoke_results.md
