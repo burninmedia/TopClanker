@@ -177,3 +177,57 @@ def test_lmsys_records_from_json_skips_rows_without_rating():
     payload = [{"model": "foo"}, {"model": "bar", "rating": "not-a-number"}]
     records = lmsys_arena._records_from_json_payload(payload)
     assert records == []
+
+
+# ---------- LMSYS MT-bench CSV fallback (4th-tier source) ----------
+
+
+def test_lmsys_mtbench_csv_parses_known_columns(monkeypatch):
+    """End-to-end check of the MT-bench fallback: simulate the Space tree
+    advertising a dated CSV with the real-world column header we saw in CI,
+    then verify the scraper emits benchmark='mtbench' records."""
+
+    # Simulated Space tree: two dated CSVs plus unrelated files.
+    fake_tree = [
+        {"type": "file", "path": "README.md"},
+        {"type": "file", "path": "leaderboard_table_20250101.csv"},
+        {"type": "file", "path": "leaderboard_table_20250804.csv"},
+        {"type": "file", "path": "elo_results_20250804.pkl"},
+    ]
+    # Exact header we observed in the failing CI run plus a couple of rows.
+    fake_csv = (
+        "key,Model,MT-bench (score),MMLU,Knowledge cutoff date,License,Organization,Link\n"
+        "gpt-4o,GPT-4o,9.32,0.887,2024-10,Proprietary,OpenAI,https://openai.com\n"
+        "claude-3-5-sonnet,Claude 3.5 Sonnet,8.95,0.883,2024-04,Proprietary,Anthropic,https://anthropic.com\n"
+        ",,,,,,,\n"  # junk row: should be skipped
+    )
+
+    def fake_get_json(client, url):
+        assert url == lmsys_arena.SPACE_TREE_API
+        return fake_tree
+
+    def fake_get_text(client, url):
+        # Should pick the newer CSV first (2025-08-04 > 2025-01-01).
+        assert url.endswith("leaderboard_table_20250804.csv")
+        return fake_csv
+
+    monkeypatch.setattr(lmsys_arena, "_http_get_json", fake_get_json)
+    monkeypatch.setattr(lmsys_arena, "_http_get_text", fake_get_text)
+
+    records = lmsys_arena._fetch_via_mtbench_csv(client=None)
+
+    assert len(records) == 2
+    by_model = {r["model_raw_name"]: r for r in records}
+    assert by_model["GPT-4o"]["benchmark"] == "mtbench"
+    assert by_model["GPT-4o"]["score"] == 9.32
+    assert by_model["Claude 3.5 Sonnet"]["score"] == 8.95
+
+
+def test_lmsys_mtbench_csv_returns_empty_when_no_mtbench_column(monkeypatch):
+    fake_tree = [{"type": "file", "path": "leaderboard_table_20250804.csv"}]
+    fake_csv = "key,Model,MMLU,Organization\ngpt-4o,GPT-4o,0.887,OpenAI\n"
+
+    monkeypatch.setattr(lmsys_arena, "_http_get_json", lambda c, u: fake_tree)
+    monkeypatch.setattr(lmsys_arena, "_http_get_text", lambda c, u: fake_csv)
+
+    assert lmsys_arena._fetch_via_mtbench_csv(client=None) == []

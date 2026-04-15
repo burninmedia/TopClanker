@@ -11,9 +11,11 @@ tables). Actual Arena Elo data is published in two places:
   2. `lmarena.ai` — the successor site. We probe for a JSON API and fall
      back to HTML scraping of the leaderboard page.
 
-Per user decision: if no Arena Elo source is reachable, this scraper
-reports 0 records rather than degrading to MT-bench. 0 records is the
-correct signal for the smoke test to flag an upstream break.
+If none of the Arena-Elo-bearing sources work, the scraper falls back to
+MT-bench scores from the dated `leaderboard_table_*.csv` files. MT-bench
+is LLM-judged, not human Arena Elo \u2014 it's emitted under a distinct
+benchmark key (`mtbench`, `benchmark_type: human_preference`) so
+master.json keeps the two signals separate.
 
 SECURITY NOTE: `pickle.load` executes arbitrary code from the opener. We
 only ever unpickle bytes fetched over HTTPS from `huggingface.co`,
@@ -40,10 +42,12 @@ from rich.console import Console
 
 SOURCE_NAME = "lmsys_arena"
 BENCHMARK_KEY = "lmsys_elo"
+MTBENCH_BENCHMARK_KEY = "mtbench"  # fallback benchmark when Arena Elo is unreachable
 OUTPUT_PATH = Path(__file__).resolve().parent.parent / "data" / "raw" / "lmsys_arena.json"
 
 SPACE_TREE_API = "https://huggingface.co/api/spaces/lmsys/chatbot-arena-leaderboard/tree/main"
 SPACE_FILE_BASE = "https://huggingface.co/spaces/lmsys/chatbot-arena-leaderboard/resolve/main"
+CSV_FILENAME_RE = re.compile(r"^leaderboard_table_\d{8}\.csv$")
 
 LMARENA_API_CANDIDATES = (
     "https://lmarena.ai/api/leaderboard",
@@ -416,6 +420,76 @@ def _fetch_via_lmarena_html(client: httpx.Client) -> list[dict[str, Any]]:
     return []
 
 
+# ---------- source 4: MT-bench CSV fallback (not Arena Elo, but a usable
+# human-preference signal when every Elo source is unreachable). ----------
+
+
+MTBENCH_COLUMN_CANDIDATES = (
+    "MT-bench (score)",
+    "MT-Bench (score)",
+    "MT-bench score",
+    "mt_bench_score",
+    "mt-bench",
+    "mtbench",
+)
+
+
+def _fetch_via_mtbench_csv(client: httpx.Client) -> list[dict[str, Any]]:
+    """Last-resort fallback: read MT-bench scores from whichever dated CSV
+    lives in the Space. Emits records with `benchmark='mtbench'` so master.json
+    stays apples-to-apples (MT-bench is judged preference, NOT Arena Elo, and
+    benchmarks.json reflects that separation)."""
+    import csv
+
+    tree = _http_get_json(client, SPACE_TREE_API)
+    if not isinstance(tree, list):
+        return []
+    csv_files = sorted(
+        (
+            entry["path"]
+            for entry in tree
+            if isinstance(entry, dict)
+            and isinstance(entry.get("path"), str)
+            and CSV_FILENAME_RE.match(entry["path"])
+        ),
+        reverse=True,
+    )
+    for name in csv_files:
+        url = f"{SPACE_FILE_BASE}/{name}"
+        console.log(f"[lmsys_arena] fetching MT-bench CSV: {url}")
+        text = _http_get_text(client, url)
+        if not text:
+            continue
+        reader = csv.reader(io.StringIO(text))
+        rows = list(reader)
+        if len(rows) < 2:
+            continue
+        header = rows[0]
+        model_idx = _pick_column(header, list(MODEL_COLS) + ["Model"])
+        mtbench_idx = _pick_column(header, list(MTBENCH_COLUMN_CANDIDATES))
+        if model_idx is None or mtbench_idx is None:
+            continue
+
+        records: list[dict[str, Any]] = []
+        for row in rows[1:]:
+            if len(row) <= max(model_idx, mtbench_idx):
+                continue
+            model = row[model_idx].strip()
+            score = _coerce_float(row[mtbench_idx])
+            if not model or score is None:
+                continue
+            records.append(
+                {
+                    "model_raw_name": model,
+                    "benchmark": MTBENCH_BENCHMARK_KEY,
+                    "score": round(score, 2),
+                }
+            )
+        if records:
+            return records
+    return []
+
+
 # ---------- orchestration ----------
 
 
@@ -432,6 +506,7 @@ def run_scraper() -> bool:
                 ("elo_pickle", _fetch_via_elo_pickle),
                 ("lmarena_api", _fetch_via_lmarena_api),
                 ("lmarena_html", _fetch_via_lmarena_html),
+                ("mtbench_csv", _fetch_via_mtbench_csv),  # fallback, benchmark=mtbench
             ):
                 try:
                     got = fetch_fn(client)

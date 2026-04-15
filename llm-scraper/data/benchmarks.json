@@ -54,5 +54,13 @@
     "authoritative_source": "lmsys_arena",
     "benchmark_type": "human_preference",
     "description": "LMSYS Chatbot Arena Elo score derived from blind human pairwise preference votes."
+  },
+  "mtbench": {
+    "display_name": "MT-bench",
+    "scale": "0-10",
+    "higher_is_better": true,
+    "authoritative_source": "lmsys_arena",
+    "benchmark_type": "human_preference",
+    "description": "Multi-turn bench \u2014 LLM-judged preference scores on multi-turn conversations. LMSYS's non-Elo signal; emitted by the scraper only as a fallback when live Arena Elo is unreachable."
   }
 }
