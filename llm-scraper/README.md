@@ -29,17 +29,18 @@ Exit codes:
 ## Benchmark types (apples-to-apples)
 
 Every benchmark in `data/benchmarks.json` carries a `benchmark_type` field so
-the site can group scores by capability category:
+the site can group scores by capability category. HF Open LLM Leaderboard v1
+was retired upstream; the pipeline now targets v2:
 
-| Benchmark    | benchmark_type      |
-|--------------|---------------------|
-| `mmlu`       | `knowledge`         |
-| `arc`        | `reasoning`         |
-| `hellaswag`  | `commonsense`       |
-| `winogrande` | `commonsense`       |
-| `gsm8k`      | `math`              |
-| `truthfulqa` | `safety`            |
-| `lmsys_elo`  | `human_preference`  |
+| Benchmark    | benchmark_type          |
+|--------------|-------------------------|
+| `ifeval`     | `instruction_following` |
+| `bbh`        | `reasoning`             |
+| `math_lvl5`  | `math`                  |
+| `gpqa`       | `knowledge`             |
+| `musr`       | `reasoning`             |
+| `mmlu_pro`   | `knowledge`             |
+| `lmsys_elo`  | `human_preference`      |
 
 `normalize.py` copies this `benchmark_type` onto every score entry in
 `data/master.json`, and `diff.py` includes it on every per-benchmark change in
@@ -50,8 +51,8 @@ the site can group scores by capability category:
 Example score entry in `master.json`:
 
 ```json
-"mmlu": {
-  "score": 88.7,
+"mmlu_pro": {
+  "score": 66.3,
   "source": "hf_leaderboard",
   "benchmark_type": "knowledge",
   "recorded_at": "2025-01-12T00:00:00Z"
