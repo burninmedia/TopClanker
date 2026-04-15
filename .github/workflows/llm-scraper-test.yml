@@ -1,0 +1,84 @@
+name: LLM Scraper Tests
+
+on:
+  pull_request:
+    paths:
+      - "llm-scraper/**"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      pull-requests: write
+
+    defaults:
+      run:
+        working-directory: llm-scraper
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt -r requirements-dev.txt
+
+      # ── Hard gate: unit tests must pass ──
+      - name: Run unit tests
+        run: python -m pytest tests/ -v
+
+      # ── Advisory: hit the real APIs and show what comes back ──
+      - name: Create runtime directories
+        run: mkdir -p data/raw data/archive
+
+      - name: Run live scraper smoke test
+        id: smoke
+        continue-on-error: true
+        run: python tests/smoke_scrapers.py
+
+      - name: Post scraper results to job summary
+        if: always()
+        run: |
+          if [ -f scraper_smoke_results.md ]; then
+            cat scraper_smoke_results.md >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "Smoke test did not produce a report." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      # Post the same markdown as a sticky PR comment so the results are
+      # readable directly from the PR page (and from the GitHub MCP tools).
+      # The marker makes repeat CI runs edit the same comment in place instead
+      # of stacking a new one per commit.
+      - name: Post/update sticky PR comment with smoke results
+        if: github.event_name == 'pull_request' && always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          [ -f scraper_smoke_results.md ] || { echo "no report file, skipping comment"; exit 0; }
+          MARKER='<!-- llm-scraper-smoke -->'
+          BODY_FILE=$(mktemp)
+          { printf '%s\n' "$MARKER"; cat scraper_smoke_results.md; } > "$BODY_FILE"
+          EXISTING_ID=$(gh api "repos/${REPO}/issues/${PR_NUMBER}/comments" --paginate \
+            --jq '.[] | select(.body | startswith("'"$MARKER"'")) | .id' | head -n1 || true)
+          if [ -n "$EXISTING_ID" ]; then
+            gh api --method PATCH "repos/${REPO}/issues/comments/${EXISTING_ID}" \
+              -F body=@"$BODY_FILE" > /dev/null
+            echo "Updated sticky comment ${EXISTING_ID}"
+          else
+            gh pr comment "$PR_NUMBER" --body-file "$BODY_FILE"
+            echo "Created new sticky comment on PR #${PR_NUMBER}"
+          fi
+
+      - name: Clean up runtime artifacts
+        if: always()
+        run: rm -rf data/raw data/archive scraper_smoke_results.md

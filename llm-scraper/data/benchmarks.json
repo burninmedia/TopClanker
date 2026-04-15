@@ -1,0 +1,66 @@
+{
+  "ifeval": {
+    "display_name": "IFEval",
+    "scale": "0-100",
+    "higher_is_better": true,
+    "authoritative_source": "hf_leaderboard",
+    "benchmark_type": "instruction_following",
+    "description": "Instruction-following evaluation \u2014 measures whether a model obeys explicit formatting and content instructions in prompts."
+  },
+  "bbh": {
+    "display_name": "BBH",
+    "scale": "0-100",
+    "higher_is_better": true,
+    "authoritative_source": "hf_leaderboard",
+    "benchmark_type": "reasoning",
+    "description": "Big Bench Hard \u2014 a suite of 23 challenging reasoning tasks where prior models had been below human baseline."
+  },
+  "math_lvl5": {
+    "display_name": "MATH Lvl 5",
+    "scale": "0-100",
+    "higher_is_better": true,
+    "authoritative_source": "hf_leaderboard",
+    "benchmark_type": "math",
+    "description": "Hardest subset (level 5) of the MATH competition problem set \u2014 multi-step mathematical reasoning."
+  },
+  "gpqa": {
+    "display_name": "GPQA",
+    "scale": "0-100",
+    "higher_is_better": true,
+    "authoritative_source": "hf_leaderboard",
+    "benchmark_type": "knowledge",
+    "description": "Graduate-level Google-proof Q&A in physics, chemistry, and biology \u2014 tests deep domain knowledge."
+  },
+  "musr": {
+    "display_name": "MuSR",
+    "scale": "0-100",
+    "higher_is_better": true,
+    "authoritative_source": "hf_leaderboard",
+    "benchmark_type": "reasoning",
+    "description": "Multistep soft reasoning \u2014 narrative reasoning tasks requiring long-context inference."
+  },
+  "mmlu_pro": {
+    "display_name": "MMLU-PRO",
+    "scale": "0-100",
+    "higher_is_better": true,
+    "authoritative_source": "hf_leaderboard",
+    "benchmark_type": "knowledge",
+    "description": "Harder, more discriminative version of MMLU with 10 answer choices and less noise."
+  },
+  "lmsys_elo": {
+    "display_name": "Arena Elo",
+    "scale": "600-1400",
+    "higher_is_better": true,
+    "authoritative_source": "lmsys_arena",
+    "benchmark_type": "human_preference",
+    "description": "LMSYS Chatbot Arena Elo score derived from blind human pairwise preference votes."
+  },
+  "mtbench": {
+    "display_name": "MT-bench",
+    "scale": "0-10",
+    "higher_is_better": true,
+    "authoritative_source": "lmsys_arena",
+    "benchmark_type": "human_preference",
+    "description": "Multi-turn bench \u2014 LLM-judged preference scores on multi-turn conversations. LMSYS's non-Elo signal; emitted by the scraper only as a fallback when live Arena Elo is unreachable."
+  }
+}

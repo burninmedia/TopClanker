@@ -1,0 +1,11 @@
+data/raw/
+data/archive/
+.pipeline_exit_code
+.pipeline_summary
+.needs_review_new
+.pr_body.txt
+__pycache__/
+*.pyc
+.env
+.pytest_cache/
+scraper_smoke_results.md
