@@ -30,7 +30,7 @@ def test_clean_run_returns_exit_code_zero(scenario, monkeypatch):
     _patch_scrapers(
         monkeypatch,
         scenario,
-        hf_records=[{"model_raw_name": "openai/gpt-4o", "benchmark": "mmlu", "score": 88.7}],
+        hf_records=[{"model_raw_name": "openai/gpt-4o", "benchmark": "mmlu_pro", "score": 88.7}],
         lmsys_records=[],
     )
     rc = run.main()
@@ -43,8 +43,8 @@ def test_unknown_model_returns_exit_code_two(scenario, monkeypatch):
         monkeypatch,
         scenario,
         hf_records=[
-            {"model_raw_name": "openai/gpt-4o", "benchmark": "mmlu", "score": 88.7},
-            {"model_raw_name": "Surprise/Unknown-99B", "benchmark": "mmlu", "score": 50.0},
+            {"model_raw_name": "openai/gpt-4o", "benchmark": "mmlu_pro", "score": 88.7},
+            {"model_raw_name": "Surprise/Unknown-99B", "benchmark": "mmlu_pro", "score": 50.0},
         ],
         lmsys_records=[],
     )
@@ -59,7 +59,7 @@ def test_archive_skipped_on_empty_stub_first_run(scenario, monkeypatch):
     _patch_scrapers(
         monkeypatch,
         scenario,
-        hf_records=[{"model_raw_name": "openai/gpt-4o", "benchmark": "mmlu", "score": 88.7}],
+        hf_records=[{"model_raw_name": "openai/gpt-4o", "benchmark": "mmlu_pro", "score": 88.7}],
         lmsys_records=[],
     )
     run.main()
@@ -70,7 +70,7 @@ def test_archive_created_on_second_run_after_master_populated(scenario, monkeypa
     _patch_scrapers(
         monkeypatch,
         scenario,
-        hf_records=[{"model_raw_name": "openai/gpt-4o", "benchmark": "mmlu", "score": 88.0}],
+        hf_records=[{"model_raw_name": "openai/gpt-4o", "benchmark": "mmlu_pro", "score": 88.0}],
         lmsys_records=[],
     )
     run.main()
@@ -79,7 +79,7 @@ def test_archive_created_on_second_run_after_master_populated(scenario, monkeypa
     _patch_scrapers(
         monkeypatch,
         scenario,
-        hf_records=[{"model_raw_name": "openai/gpt-4o", "benchmark": "mmlu", "score": 89.0}],
+        hf_records=[{"model_raw_name": "openai/gpt-4o", "benchmark": "mmlu_pro", "score": 89.0}],
         lmsys_records=[],
     )
     run.main()
@@ -102,8 +102,8 @@ def test_archive_idempotent_when_run_twice_in_one_day(scenario, monkeypatch):
                     "first_seen": "2025-01-12T00:00:00Z",
                     "last_updated": "2025-01-12T00:00:00Z",
                     "scores": {
-                        "mmlu": {
-                            "score": 80.0,
+                        "mmlu_pro": {
+                            "score": 60.0,
                             "source": "hf_leaderboard",
                             "benchmark_type": "knowledge",
                             "recorded_at": "2025-01-12T00:00:00Z",
@@ -117,7 +117,7 @@ def test_archive_idempotent_when_run_twice_in_one_day(scenario, monkeypatch):
     _patch_scrapers(
         monkeypatch,
         scenario,
-        hf_records=[{"model_raw_name": "openai/gpt-4o", "benchmark": "mmlu", "score": 89.0}],
+        hf_records=[{"model_raw_name": "openai/gpt-4o", "benchmark": "mmlu_pro", "score": 89.0}],
         lmsys_records=[],
     )
     run.main()
@@ -132,7 +132,7 @@ def test_archive_idempotent_when_run_twice_in_one_day(scenario, monkeypatch):
     _patch_scrapers(
         monkeypatch,
         scenario,
-        hf_records=[{"model_raw_name": "openai/gpt-4o", "benchmark": "mmlu", "score": 95.0}],
+        hf_records=[{"model_raw_name": "openai/gpt-4o", "benchmark": "mmlu_pro", "score": 95.0}],
         lmsys_records=[],
     )
     run.main()
@@ -146,8 +146,8 @@ def test_summary_file_format_is_plain_text(scenario, monkeypatch):
         monkeypatch,
         scenario,
         hf_records=[
-            {"model_raw_name": "openai/gpt-4o", "benchmark": "mmlu", "score": 88.7},
-            {"model_raw_name": "openai/gpt-4o", "benchmark": "gsm8k", "score": 92.0},
+            {"model_raw_name": "openai/gpt-4o", "benchmark": "mmlu_pro", "score": 88.7},
+            {"model_raw_name": "openai/gpt-4o", "benchmark": "math_lvl5", "score": 38.2},
         ],
         lmsys_records=[
             {"model_raw_name": "openai/gpt-4o", "benchmark": "lmsys_elo", "score": 1287}
@@ -172,7 +172,7 @@ def test_no_new_review_writes_None_to_needs_review_new(scenario, monkeypatch):
     _patch_scrapers(
         monkeypatch,
         scenario,
-        hf_records=[{"model_raw_name": "openai/gpt-4o", "benchmark": "mmlu", "score": 88.7}],
+        hf_records=[{"model_raw_name": "openai/gpt-4o", "benchmark": "mmlu_pro", "score": 88.7}],
         lmsys_records=[],
     )
     run.main()
@@ -204,8 +204,8 @@ def test_pre_existing_needs_review_entries_are_not_listed_as_new(scenario, monke
         monkeypatch,
         scenario,
         hf_records=[
-            {"model_raw_name": "openai/gpt-4o", "benchmark": "mmlu", "score": 88.7},
-            {"model_raw_name": "OldVendor/Old-Model", "benchmark": "mmlu", "score": 50.0},
+            {"model_raw_name": "openai/gpt-4o", "benchmark": "mmlu_pro", "score": 88.7},
+            {"model_raw_name": "OldVendor/Old-Model", "benchmark": "mmlu_pro", "score": 50.0},
         ],
         lmsys_records=[],
     )

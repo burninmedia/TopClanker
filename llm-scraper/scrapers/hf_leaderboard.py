@@ -1,14 +1,24 @@
 """
-Scraper for the Hugging Face Open LLM Leaderboard.
+Scraper for the Hugging Face Open LLM Leaderboard v2.
 
-Primary path: fetch rows via the HF datasets-server API.
-Fallback:     scrape the HTML table from the public Space page.
+v1 (MMLU / ARC / HellaSwag / TruthfulQA / Winogrande / GSM8K) has been
+retired upstream; its Space HTML is gated (401) and the `results` dataset
+404s. v2 publishes its data through the `open-llm-leaderboard/contents`
+dataset, which we read in priority order:
 
-Output file: data/raw/hf_leaderboard.json
+  1. HF datasets-server JSON rows endpoint (no auth, paginated).
+  2. The parquet files advertised by the HF hub dataset tree API, fetched
+     as bytes and read with pyarrow. Tried in order from smallest file
+     upward to keep CI fast.
+  3. Old HTML fallback on the public Space URL (likely still 401, kept
+     only as a last-resort safety net).
+
+Output: data/raw/hf_leaderboard.json
 """
 
 from __future__ import annotations
 
+import io
 import json
 import time
 from datetime import datetime, timezone
@@ -22,30 +32,54 @@ from rich.console import Console
 SOURCE_NAME = "hf_leaderboard"
 OUTPUT_PATH = Path(__file__).resolve().parent.parent / "data" / "raw" / "hf_leaderboard.json"
 
+# v2 canonical dataset. Public, no auth required for reads.
+DATASET_ID = "open-llm-leaderboard/contents"
+
 DATASETS_SERVER_URL = (
     "https://datasets-server.huggingface.co/rows"
-    "?dataset=open-llm-leaderboard%2Fresults"
+    f"?dataset={DATASET_ID.replace('/', '%2F')}"
     "&config=default"
     "&split=train"
 )
+DATASET_TREE_API = f"https://huggingface.co/api/datasets/{DATASET_ID}/tree/main"
+DATASET_FILE_BASE = f"https://huggingface.co/datasets/{DATASET_ID}/resolve/main"
 SPACE_HTML_URL = "https://huggingface.co/spaces/open-llm-leaderboard/open-llm-leaderboard"
 
-# Canonical benchmark keys we emit. Column names from the HF dataset are matched
-# fuzzily against these keys (case-insensitive substring match).
-BENCHMARK_COLUMN_MAP = {
-    "mmlu": "mmlu",
-    "arc": "arc",
-    "hellaswag": "hellaswag",
-    "truthfulqa": "truthfulqa",
-    "winogrande": "winogrande",
-    "gsm8k": "gsm8k",
+# v2 benchmark set. Keys must match `data/benchmarks.json`.
+#
+# Upstream column headers vary (`IFEval`, `leaderboard_ifeval`,
+# `IFEval (0-shot)`, etc.). We match by normalised substring token.
+BENCHMARK_COLUMN_TOKENS: dict[str, tuple[str, ...]] = {
+    "ifeval":    ("ifeval", "instructionfollowing"),
+    "bbh":       ("bbh", "bigbenchhard"),
+    "math_lvl5": ("mathlvl5", "mathlevel5", "math5shot", "mathhard"),
+    "gpqa":      ("gpqa",),
+    "musr":      ("musr",),
+    "mmlu_pro":  ("mmlupro",),
 }
+
+# Common column names that hold the model identifier in the v2 dataset.
+MODEL_NAME_KEYS = (
+    "fullname",
+    "eval_name",
+    "full_name",
+    "model",
+    "model_name",
+    "Model",
+    "model_id",
+)
 
 REQUEST_TIMEOUT = 30.0
 MAX_RETRIES = 3
 USER_AGENT = "TopClanker-LLMScraper/1.0 (+https://github.com/burninmedia/topclanker)"
+PAGE_SIZE = 100
+# Parquet files over this many bytes get skipped to keep CI bounded.
+PARQUET_MAX_BYTES = 25 * 1024 * 1024
 
 console = Console()
+
+
+# ---------- small HTTP / parsing helpers ----------
 
 
 def _now_iso() -> str:
@@ -53,58 +87,86 @@ def _now_iso() -> str:
 
 
 def _sleep_backoff(attempt: int) -> None:
-    """Exponential backoff with simple jitter-free doubling: 2s, 4s, 8s."""
     delay = 2 ** (attempt + 1)
-    console.log(f"[hf_leaderboard] rate-limited / failed, sleeping {delay}s before retry")
+    console.log(f"[hf_leaderboard] retrying in {delay}s")
     time.sleep(delay)
 
 
-def _http_get_json(client: httpx.Client, url: str) -> dict[str, Any] | None:
-    """GET a URL expecting JSON, with exponential backoff on 429/5xx."""
+def _retryable_get(client: httpx.Client, url: str) -> httpx.Response | None:
+    """GET `url`, retrying with exponential backoff on 429/5xx. Returns the
+    final response (even if non-200), or None if transport-level failures
+    exhausted retries."""
     for attempt in range(MAX_RETRIES):
         try:
             resp = client.get(url)
-            if resp.status_code == 200:
-                return resp.json()
             if resp.status_code in (429, 500, 502, 503, 504):
                 _sleep_backoff(attempt)
                 continue
-            console.log(f"[hf_leaderboard] unexpected status {resp.status_code} from {url}")
-            return None
+            return resp
         except (httpx.TimeoutException, httpx.TransportError) as exc:
             console.log(f"[hf_leaderboard] transport error: {exc!r}")
             _sleep_backoff(attempt)
     return None
+
+
+def _http_get_json(client: httpx.Client, url: str) -> Any | None:
+    resp = _retryable_get(client, url)
+    if resp is None or resp.status_code != 200:
+        if resp is not None:
+            console.log(f"[hf_leaderboard] status {resp.status_code} from {url}")
+        return None
+    try:
+        return resp.json()
+    except ValueError:
+        return None
 
 
 def _http_get_text(client: httpx.Client, url: str) -> str | None:
-    for attempt in range(MAX_RETRIES):
-        try:
-            resp = client.get(url)
-            if resp.status_code == 200:
-                return resp.text
-            if resp.status_code in (429, 500, 502, 503, 504):
-                _sleep_backoff(attempt)
-                continue
-            console.log(f"[hf_leaderboard] unexpected status {resp.status_code} from {url}")
-            return None
-        except (httpx.TimeoutException, httpx.TransportError) as exc:
-            console.log(f"[hf_leaderboard] transport error: {exc!r}")
-            _sleep_backoff(attempt)
-    return None
+    resp = _retryable_get(client, url)
+    if resp is None or resp.status_code != 200:
+        if resp is not None:
+            console.log(f"[hf_leaderboard] status {resp.status_code} from {url}")
+        return None
+    return resp.text
+
+
+def _http_get_bytes(client: httpx.Client, url: str) -> bytes | None:
+    resp = _retryable_get(client, url)
+    if resp is None or resp.status_code != 200:
+        if resp is not None:
+            console.log(f"[hf_leaderboard] status {resp.status_code} from {url}")
+        return None
+    return resp.content
+
+
+def _normalise_col(name: str) -> str:
+    return (
+        name.lower()
+        .replace("-", "")
+        .replace("_", "")
+        .replace(" ", "")
+        .replace("(", "")
+        .replace(")", "")
+    )
 
 
 def _map_column_to_benchmark(column_name: str) -> str | None:
-    """Resolve a dataset column header to one of our canonical benchmark keys."""
-    lowered = column_name.lower().replace("-", "").replace("_", "").replace(" ", "")
-    for canonical, token in BENCHMARK_COLUMN_MAP.items():
-        if token in lowered:
-            return canonical
+    """Resolve a dataset column header to one of our canonical benchmark keys
+    via normalised-substring match. Case- and separator-insensitive."""
+    if not isinstance(column_name, str):
+        return None
+    normalised = _normalise_col(column_name)
+    if not normalised:
+        return None
+    for canonical, tokens in BENCHMARK_COLUMN_TOKENS.items():
+        for token in tokens:
+            if token in normalised:
+                return canonical
     return None
 
 
 def _extract_model_name(row: dict[str, Any]) -> str | None:
-    for key in ("model", "Model", "model_name", "fullname", "full_name", "model_id"):
+    for key in MODEL_NAME_KEYS:
         val = row.get(key)
         if isinstance(val, str) and val.strip():
             return val.strip()
@@ -118,111 +180,179 @@ def _coerce_score(value: Any) -> float | None:
         score = float(value)
     except (TypeError, ValueError):
         return None
-    # HF leaderboard sometimes reports accuracies in 0–1 range, sometimes 0–100.
+    # v2 reports accuracies both as 0-1 ratios and 0-100 percents.
     if 0.0 <= score <= 1.0:
         score *= 100.0
     return round(score, 2)
 
 
-def _fetch_via_datasets_api(client: httpx.Client) -> list[dict[str, Any]]:
-    """
-    Page through the HF datasets-server API. Returns a list of normalized records.
-    Each record: {model_raw_name, benchmark, score}.
-    """
+def _rows_to_records(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     records: list[dict[str, Any]] = []
-    offset = 0
-    page_size = 100
-
-    while True:
-        url = f"{DATASETS_SERVER_URL}&offset={offset}&length={page_size}"
-        payload = _http_get_json(client, url)
-        if not payload:
-            break
-
-        rows = payload.get("rows", [])
-        if not rows:
-            break
-
-        for wrapper in rows:
-            row = wrapper.get("row", {}) if isinstance(wrapper, dict) else {}
-            model = _extract_model_name(row)
-            if not model:
+    for row in rows:
+        if not isinstance(row, dict):
+            continue
+        model = _extract_model_name(row)
+        if not model:
+            continue
+        for column, value in row.items():
+            benchmark = _map_column_to_benchmark(column)
+            if benchmark is None:
                 continue
-            for column, value in row.items():
-                benchmark = _map_column_to_benchmark(column)
-                if benchmark is None:
-                    continue
-                score = _coerce_score(value)
-                if score is None:
-                    continue
-                records.append(
-                    {
-                        "model_raw_name": model,
-                        "benchmark": benchmark,
-                        "score": score,
-                    }
-                )
-
-        if len(rows) < page_size:
-            break
-        offset += page_size
-        # Politeness pause between pages.
-        time.sleep(0.5)
-
+            score = _coerce_score(value)
+            if score is None:
+                continue
+            records.append(
+                {"model_raw_name": model, "benchmark": benchmark, "score": score}
+            )
     return records
 
 
+# ---------- source 1: datasets-server JSON rows ----------
+
+
+def _fetch_via_datasets_server(client: httpx.Client) -> list[dict[str, Any]]:
+    records: list[dict[str, Any]] = []
+    offset = 0
+    while True:
+        url = f"{DATASETS_SERVER_URL}&offset={offset}&length={PAGE_SIZE}"
+        payload = _http_get_json(client, url)
+        if not payload:
+            break
+        rows = payload.get("rows", []) if isinstance(payload, dict) else []
+        if not rows:
+            break
+        inner = []
+        for wrapper in rows:
+            if isinstance(wrapper, dict) and isinstance(wrapper.get("row"), dict):
+                inner.append(wrapper["row"])
+        records.extend(_rows_to_records(inner))
+        if len(rows) < PAGE_SIZE:
+            break
+        offset += PAGE_SIZE
+        time.sleep(0.3)
+    return records
+
+
+# ---------- source 2: parquet via HF hub file API ----------
+
+
+def _list_parquet_files(client: httpx.Client) -> list[dict[str, Any]]:
+    """Walk the dataset tree and return parquet file entries with size info."""
+    tree = _http_get_json(client, DATASET_TREE_API)
+    if not isinstance(tree, list):
+        return []
+    parquet: list[dict[str, Any]] = []
+    for entry in tree:
+        if not isinstance(entry, dict):
+            continue
+        path = entry.get("path")
+        if isinstance(path, str) and path.endswith(".parquet"):
+            parquet.append(
+                {
+                    "path": path,
+                    "size": entry.get("size") or 0,
+                }
+            )
+        # The contents dataset sometimes nests parquet under data/; follow one level.
+        if (
+            isinstance(path, str)
+            and entry.get("type") == "directory"
+            and path in ("data", "train")
+        ):
+            sub = _http_get_json(client, f"{DATASET_TREE_API}/{path}")
+            if isinstance(sub, list):
+                for child in sub:
+                    if (
+                        isinstance(child, dict)
+                        and isinstance(child.get("path"), str)
+                        and child["path"].endswith(".parquet")
+                    ):
+                        parquet.append({"path": child["path"], "size": child.get("size") or 0})
+    # Prefer the smallest file — faster in CI, and the leaderboard table is
+    # a single shard in practice.
+    parquet.sort(key=lambda e: e["size"] if e["size"] else 1 << 60)
+    return parquet
+
+
+def _fetch_via_parquet(client: httpx.Client) -> list[dict[str, Any]]:
+    try:
+        import pyarrow.parquet as pq  # type: ignore
+    except ImportError:
+        console.log("[hf_leaderboard] pyarrow not installed; skipping parquet path")
+        return []
+
+    files = _list_parquet_files(client)
+    if not files:
+        return []
+
+    for entry in files:
+        if entry["size"] and entry["size"] > PARQUET_MAX_BYTES:
+            console.log(
+                f"[hf_leaderboard] skipping oversized parquet {entry['path']} "
+                f"({entry['size']} bytes > {PARQUET_MAX_BYTES})"
+            )
+            continue
+        url = f"{DATASET_FILE_BASE}/{entry['path']}"
+        console.log(f"[hf_leaderboard] fetching parquet {url}")
+        blob = _http_get_bytes(client, url)
+        if not blob:
+            continue
+        try:
+            table = pq.read_table(io.BytesIO(blob))
+        except Exception as exc:  # noqa: BLE001
+            console.log(f"[hf_leaderboard] parquet parse error on {entry['path']}: {exc!r}")
+            continue
+        rows = table.to_pylist()
+        records = _rows_to_records(rows)
+        if records:
+            return records
+    return []
+
+
+# ---------- source 3: HTML fallback (likely still gated) ----------
+
+
 def _fetch_via_html(client: httpx.Client) -> list[dict[str, Any]]:
-    """Fallback: parse the Space HTML. Best-effort; may yield nothing if the table is JS-rendered."""
     html = _http_get_text(client, SPACE_HTML_URL)
     if not html:
         return []
-
     soup = BeautifulSoup(html, "html.parser")
     records: list[dict[str, Any]] = []
-
     for table in soup.find_all("table"):
-        header_cells = [th.get_text(strip=True) for th in table.find_all("th")]
-        if not header_cells:
+        headers = [th.get_text(strip=True) for th in table.find_all("th")]
+        if not headers:
             continue
-        # Map each header column index to a canonical benchmark key (or None for model name).
-        column_to_benchmark: dict[int, str | None] = {}
-        model_col_idx: int | None = None
-        for idx, header in enumerate(header_cells):
-            if header.lower() in ("model", "name"):
-                model_col_idx = idx
-                column_to_benchmark[idx] = None
+        col_to_bench: dict[int, str | None] = {}
+        model_idx: int | None = None
+        for idx, header in enumerate(headers):
+            if header.lower() in ("model", "name", "eval name"):
+                model_idx = idx
+                col_to_bench[idx] = None
             else:
-                column_to_benchmark[idx] = _map_column_to_benchmark(header)
-
-        if model_col_idx is None or not any(column_to_benchmark.values()):
+                col_to_bench[idx] = _map_column_to_benchmark(header)
+        if model_idx is None or not any(col_to_bench.values()):
             continue
-
-        for row in table.find_all("tr"):
-            cells = row.find_all(["td"])
-            if not cells:
+        for tr in table.find_all("tr"):
+            cells = tr.find_all("td")
+            if len(cells) <= model_idx:
                 continue
-            if model_col_idx >= len(cells):
-                continue
-            model = cells[model_col_idx].get_text(strip=True)
+            model = cells[model_idx].get_text(strip=True)
             if not model:
                 continue
             for idx, cell in enumerate(cells):
-                benchmark = column_to_benchmark.get(idx)
-                if not benchmark:
+                bench = col_to_bench.get(idx)
+                if not bench:
                     continue
                 score = _coerce_score(cell.get_text(strip=True))
                 if score is None:
                     continue
                 records.append(
-                    {
-                        "model_raw_name": model,
-                        "benchmark": benchmark,
-                        "score": score,
-                    }
+                    {"model_raw_name": model, "benchmark": bench, "score": score}
                 )
-
     return records
+
+
+# ---------- orchestration ----------
 
 
 def run_scraper() -> bool:
@@ -233,13 +363,24 @@ def run_scraper() -> bool:
 
         headers = {"User-Agent": USER_AGENT, "Accept": "application/json"}
         with httpx.Client(timeout=REQUEST_TIMEOUT, headers=headers, follow_redirects=True) as client:
-            records = _fetch_via_datasets_api(client)
-            if records:
-                console.log(f"[hf_leaderboard] datasets API returned {len(records)} records")
+            for label, fetch_fn in (
+                ("datasets-server", _fetch_via_datasets_server),
+                ("parquet", _fetch_via_parquet),
+                ("html", _fetch_via_html),
+            ):
+                try:
+                    records = fetch_fn(client)
+                except Exception as exc:  # noqa: BLE001
+                    console.log(f"[hf_leaderboard] {label} raised {exc!r}")
+                    records = []
+                if records:
+                    console.log(
+                        f"[hf_leaderboard] {label} returned {len(records)} records"
+                    )
+                    break
+                console.log(f"[hf_leaderboard] {label} returned 0 records")
             else:
-                console.log("[hf_leaderboard] datasets API empty, trying HTML fallback")
-                records = _fetch_via_html(client)
-                console.log(f"[hf_leaderboard] HTML fallback returned {len(records)} records")
+                records = []
 
         payload = {
             "source": SOURCE_NAME,
@@ -250,9 +391,8 @@ def run_scraper() -> bool:
         console.log(f"[hf_leaderboard] wrote {len(records)} records -> {OUTPUT_PATH}")
         return True
 
-    except Exception as exc:  # noqa: BLE001 — orchestrator contract: never raise
+    except Exception as exc:  # noqa: BLE001 — orchestrator contract
         console.log(f"[hf_leaderboard] FAILED with {exc!r}")
-        # Still write an empty stub so downstream stages see a consistent file.
         try:
             OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
             OUTPUT_PATH.write_text(

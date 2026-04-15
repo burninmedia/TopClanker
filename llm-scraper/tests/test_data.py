@@ -17,6 +17,7 @@ ALLOWED_BENCHMARK_TYPES = {
     "math",
     "safety",
     "human_preference",
+    "instruction_following",
 }
 
 

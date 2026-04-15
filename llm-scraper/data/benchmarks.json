@@ -1,51 +1,51 @@
 {
-  "mmlu": {
-    "display_name": "MMLU",
+  "ifeval": {
+    "display_name": "IFEval",
     "scale": "0-100",
     "higher_is_better": true,
     "authoritative_source": "hf_leaderboard",
-    "benchmark_type": "knowledge",
-    "description": "Massive Multitask Language Understanding — broad academic knowledge across 57 subjects."
+    "benchmark_type": "instruction_following",
+    "description": "Instruction-following evaluation \u2014 measures whether a model obeys explicit formatting and content instructions in prompts."
   },
-  "arc": {
-    "display_name": "ARC",
+  "bbh": {
+    "display_name": "BBH",
     "scale": "0-100",
     "higher_is_better": true,
     "authoritative_source": "hf_leaderboard",
     "benchmark_type": "reasoning",
-    "description": "AI2 Reasoning Challenge — grade-school science questions requiring reasoning."
+    "description": "Big Bench Hard \u2014 a suite of 23 challenging reasoning tasks where prior models had been below human baseline."
   },
-  "hellaswag": {
-    "display_name": "HellaSwag",
-    "scale": "0-100",
-    "higher_is_better": true,
-    "authoritative_source": "hf_leaderboard",
-    "benchmark_type": "commonsense",
-    "description": "Sentence completion task testing commonsense inference."
-  },
-  "truthfulqa": {
-    "display_name": "TruthfulQA",
-    "scale": "0-100",
-    "higher_is_better": true,
-    "authoritative_source": "hf_leaderboard",
-    "benchmark_type": "safety",
-    "description": "Measures whether a model produces truthful answers under adversarial prompts."
-  },
-  "winogrande": {
-    "display_name": "Winogrande",
-    "scale": "0-100",
-    "higher_is_better": true,
-    "authoritative_source": "hf_leaderboard",
-    "benchmark_type": "commonsense",
-    "description": "Pronoun resolution task testing commonsense reasoning."
-  },
-  "gsm8k": {
-    "display_name": "GSM8K",
+  "math_lvl5": {
+    "display_name": "MATH Lvl 5",
     "scale": "0-100",
     "higher_is_better": true,
     "authoritative_source": "hf_leaderboard",
     "benchmark_type": "math",
-    "description": "Grade-school math word problems requiring multi-step reasoning."
+    "description": "Hardest subset (level 5) of the MATH competition problem set \u2014 multi-step mathematical reasoning."
+  },
+  "gpqa": {
+    "display_name": "GPQA",
+    "scale": "0-100",
+    "higher_is_better": true,
+    "authoritative_source": "hf_leaderboard",
+    "benchmark_type": "knowledge",
+    "description": "Graduate-level Google-proof Q&A in physics, chemistry, and biology \u2014 tests deep domain knowledge."
+  },
+  "musr": {
+    "display_name": "MuSR",
+    "scale": "0-100",
+    "higher_is_better": true,
+    "authoritative_source": "hf_leaderboard",
+    "benchmark_type": "reasoning",
+    "description": "Multistep soft reasoning \u2014 narrative reasoning tasks requiring long-context inference."
+  },
+  "mmlu_pro": {
+    "display_name": "MMLU-PRO",
+    "scale": "0-100",
+    "higher_is_better": true,
+    "authoritative_source": "hf_leaderboard",
+    "benchmark_type": "knowledge",
+    "description": "Harder, more discriminative version of MMLU with 10 answer choices and less noise."
   },
   "lmsys_elo": {
     "display_name": "Arena Elo",
