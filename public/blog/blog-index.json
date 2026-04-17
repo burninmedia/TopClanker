@@ -1,177 +1,197 @@
 [
   {
-    "file": "2026-03-01-ai-agents-executive-assistants.html",
-    "title": "AI Agents Are No Longer Chatbots: The $840 Billion Wake-Up Call - TopClanker",
-    "date": "2026-03-01"
+    "file": "2026-04-17-gpt-6-open-source-roundup/index.html",
+    "title": "GPT-6 vs The Open Source Giants: The April 2026 Model Roundup",
+    "date": "2026-04-17"
   },
   {
-    "file": "2026-03-02-anthropic-claude-cowork-enterprise.html",
-    "title": "Anthropic's Claude Cowork Goes Enterprise: The Agent Revolution Is Here - TopClanker",
-    "date": "2026-03-02"
+    "file": "2026-04-10-swe-bench-verified-leaderboard/index.html",
+    "title": "The SWE-bench Verified Leaderboard Has a New King — And Nobody Can Run It Locally",
+    "date": "2026-04-10"
   },
   {
-    "file": "2026-03-02-anthropic-distillationgate.html",
-    "title": "Anthropic Accuses DeepSeek of Stealing Claude: The Irony Is Delicious - TopClanker",
-    "date": "2026-03-02"
+    "file": "2026-04-09-glm-5-1-benchmarks-open-source/index.html",
+    "title": "GLM-5.1 Just Beat GPT-5.4 and Claude Opus 4.6 on SWE-bench Pro — And It&#39;s Open Source",
+    "date": "2026-04-09"
   },
   {
-    "file": "2026-03-07-samsung-smart-glasses.html",
+    "file": "2026-04-08-agent-audit-trail-founding/index.html",
+    "title": "We Built an Agent. It Made a $47,000 Decision. We Couldn&#39;t Explain It.",
+    "date": "2026-04-08"
+  },
+  {
+    "file": "2026-04-08-cognitive-surrender/index.html",
+    "title": "Cognitive Surrender: The Scary Research Showing AI Users Are Dumping Their Logic",
+    "date": "2026-04-08"
+  },
+  {
+    "file": "2026-04-07-ycbench-glm5/index.html",
+    "title": "YC-Bench: GLM-5 Nearly Matches Claude Opus 4.6 at 1/11th the Cost",
+    "date": "2026-04-07"
+  },
+  {
+    "file": "2026-04-02-ai-agents-memory-persistence/index.html",
+    "title": "AI Agents That Remember Win: The 2.3x Karma Advantage Nobody&#39;s Talking About",
+    "date": "2026-04-02"
+  },
+  {
+    "file": "2026-04-01-local-llm-production-threshold/index.html",
+    "title": "Local LLMs Just Crossed the Production Threshold — Here&#39;s the Data",
+    "date": "2026-04-01"
+  },
+  {
+    "file": "2026-03-31-ai-benchmarks-still-signal-2026/index.html",
+    "title": "The AI Benchmarks That Still Have Signal in 2026 (And the Dead Ones Nobody Tells You About)",
+    "date": "2026-03-31"
+  },
+  {
+    "file": "2026-03-31-qwen3-coder/index.html",
+    "title": "Qwen3-Coder: Can Alibaba&#39;s Open Code Model Actually Beat Claude Sonnet?",
+    "date": "2026-03-31"
+  },
+  {
+    "file": "2026-03-30-llm-tuning-guide/index.html",
+    "title": "The Settings That Actually Matter: A Local LLM Tuning Guide",
+    "date": "2026-03-30"
+  },
+  {
+    "file": "2026-03-26-openai-deep-research-apple-m5/index.html",
+    "title": "OpenAI Retires Legacy Deep Research Today — And Apple Just Made Local AI Obscenely Fast",
+    "date": "2026-03-26"
+  },
+  {
+    "file": "2026-03-25-open-source-llm-benchmarks-2026/index.html",
+    "title": "The Open-Source AI Gap Is Closing: Benchmark Data That Should Worry Closed AI Companies",
+    "date": "2026-03-25"
+  },
+  {
+    "file": "2026-03-25-gigachat-31-ultra-mit-license/index.html",
+    "title": "GigaChat 3.1 Ultra Drops MIT License, Beats DeepSeek on Arena Hard",
+    "date": "2026-03-25"
+  },
+  {
+    "file": "2026-03-24-open-source-ai-gap-closing/index.html",
+    "title": "The Open-Source AI Gap Is Closing — And It&#39;s Not Close",
+    "date": "2026-03-24"
+  },
+  {
+    "file": "2026-03-23-meta-ai-agent-rogue-sev1-incident/index.html",
+    "title": "Meta&#39;s AI Agent Went Rogue and Triggered a SEV1 — What Builders Need to Understand",
+    "date": "2026-03-23"
+  },
+  {
+    "file": "2026-03-20-nvidia-nemoclaw-openclaw/index.html",
+    "title": "NVIDIA Just Integrated With OpenClaw. Here&#39;s Why That Matters.",
+    "date": "2026-03-20"
+  },
+  {
+    "file": "2026-03-20-minimax-m27-self-evolving/index.html",
+    "title": "MiniMax M2.7 Is the First Self-Evolving Model You Need to Take Seriously",
+    "date": "2026-03-20"
+  },
+  {
+    "file": "2026-03-20-meta-rogue-ai-agent/index.html",
+    "title": "Meta&#39;s Rogue AI Agent Exposes the Agent Security Problem",
+    "date": "2026-03-20"
+  },
+  {
+    "file": "2026-03-19-llm-tuning-guide/index.html",
+    "title": "The Settings That Actually Matter: A Local LLM Tuning Guide",
+    "date": "2026-03-19"
+  },
+  {
+    "file": "2026-03-18-manifest-smart-llm-routing/index.html",
+    "title": "Manifest: The Smart LLM Routing Plugin That Cuts Your OpenClaw Costs Up to 70%",
+    "date": "2026-03-18"
+  },
+  {
+    "file": "2026-03-17-ollama-vs-lm-studio-2026/index.html",
+    "title": "Ollama vs LM Studio 2026 — Which One Should You Use?",
+    "date": "2026-03-17"
+  },
+  {
+    "file": "2026-03-17-nemoclaw-nvidia-enterprise-security/index.html",
+    "title": "NVIDIA&#39;s NemoClaw: The Security Layer Enterprise AI Agents Have Been Waiting For",
+    "date": "2026-03-17"
+  },
+  {
+    "file": "2026-03-15-microsoft-bitnet-100b-cpu-debunk/index.html",
+    "title": "Microsoft&#39;s BitNet: What Works, What Doesn&#39;t, and What&#39;s Actually Coming",
+    "date": "2026-03-15"
+  },
+  {
+    "file": "2026-03-14-china-five-year-plan-ai-dominance/index.html",
+    "title": "China&#39;s 15th Five-Year Plan: The $200B Race to AI Dominance",
+    "date": "2026-03-14"
+  },
+  {
+    "file": "2026-03-11-deepseek-v4-multimodal/index.html",
+    "title": "DeepSeek V4 Is Coming — And It&#39;s Going Multimodal",
+    "date": "2026-03-11"
+  },
+  {
+    "file": "2026-03-10-gpt-5-4-computer-use/index.html",
+    "title": "GPT-5.4 Just Dropped — And It&#39;s the First AI That Beats Humans at Using Computers",
+    "date": "2026-03-10"
+  },
+  {
+    "file": "2026-03-09-glm-5-zhipu-open-source-model/index.html",
+    "title": "GLM-5: The Open-Source Model That Changes Everything",
+    "date": "2026-03-09"
+  },
+  {
+    "file": "2026-03-08-local-llm-revolution/index.html",
+    "title": "The Local LLM Revolution — Why Thousands Are Dumping Cloud AI Subscriptions",
+    "date": "2026-03-08"
+  },
+  {
+    "file": "2026-03-07-samsung-smart-glasses/index.html",
     "title": "Samsung's AI Smart Glasses Are Coming — And They're Going After Meta - TopClanker",
     "date": "2026-03-07"
   },
   {
-    "file": "2026-03-08-local-llm-revolution.html",
-    "title": "The Local LLM Revolution — Why Thousands Are Dumping Cloud AI - TopClanker",
-    "date": "2026-03-08"
+    "file": "2026-03-04-anti-ai-protest-london/index.html",
+    "title": "I Went to London&#39;s Biggest Anti-AI Protest — Here&#39;s What I Learned",
+    "date": "2026-03-04"
   },
   {
-    "file": "2026-03-09-glm-5-zhipu-open-source-model.html",
-    "title": "GLM-5: The Open-Source Model That Changes Everything - TopClanker",
-    "date": "2026-03-09"
+    "file": "2026-03-03-anthropic-dumped-openai-wins/index.html",
+    "title": "The US Government Just Dumped Anthropic for OpenAI — Here&#39;s What Happened",
+    "date": "2026-03-03"
   },
   {
-    "file": "2026-03-11-gpt-5-4-finance.html",
-    "title": "OpenAI's GPT-5.4 Takes Finance by Storm - TopClanker",
-    "date": "2026-03-11"
-  },
-  {
-    "file": "ai-accelerator-chips-vs-gpu-2026.html",
-    "title": "AI Accelerator Chips: Speed Demons vs. GPU Flexibility - TopClanker",
-    "date": "2026-03-11"
-  },
-  {
-    "file": "ai-benchmarks-explained-2026.html",
-    "title": "AI Benchmarks Explained: What Actually Matters in 2026 - TopClanker Blog",
-    "date": "2026-03-11"
-  },
-  {
-    "file": "ai-investment-vs-doomsday-2026.html",
-    "title": "AI's Biggest Week: $110B Funding Meets the Doomsday Narrative - TopClanker",
-    "date": "2026-03-11"
-  },
-  {
-    "file": "ai-model-pricing-2026-analysis.html",
-    "title": "AI Model Pricing 2026: Cost Per Million Tokens Analysis - TopClanker",
-    "date": "2026-03-11"
-  },
-  {
-    "file": "ai-model-war-february-2026.html",
-    "title": "The February 2026 AI Model War: GPT-5, Claude, and DeepSeek Collide - TopClanker",
-    "date": "2026-03-11"
-  },
-  {
-    "file": "anthropic-claude-cowork-enterprise-2026.html",
+    "file": "2026-03-02-anthropic-claude-cowork-enterprise/index.html",
     "title": "Anthropic's Claude Cowork Goes Enterprise: The Agent Revolution Is Here - TopClanker",
-    "date": "2026-03-11"
+    "date": "2026-03-02"
   },
   {
-    "file": "anthropic-pentagon-ai-safety-2026.html",
-    "title": "Anthropic vs. Pentagon: The Standoff Over AI Safety - TopClanker",
-    "date": "2026-03-11"
+    "file": "2026-03-02-anthropic-distillationgate/index.html",
+    "title": "Anthropic Accuses DeepSeek of Stealing Claude: The Irony Is Delicious - TopClanker",
+    "date": "2026-03-02"
   },
   {
-    "file": "apple-m5-llm-inference-2026.html",
-    "title": "Apple M5 Chip: 4x Faster LLM Inference - What It Means for Local AI - TopClanker",
-    "date": "2026-03-11"
-  },
-  {
-    "file": "chatgpt-pentagon-boycott-2026.html",
-    "title": "1.5 Million Users Ditch ChatGPT in 48 Hours — Here's Why - TopClanker",
-    "date": "2026-03-11"
-  },
-  {
-    "file": "deepseek-blackwell-2026.html",
-    "title": "DeepSeek's Next Move: Trained on Forbidden Nvidia Chips, Coming March 2026 - TopClanker",
-    "date": "2026-03-11"
-  },
-  {
-    "file": "deepseek-r1-vs-v3-local-guide.html",
-    "title": "DeepSeek R1 vs V3: The Complete Local Running Guide (2026)",
+    "file": "2026-03-01-trending-ai-tools-march-2026/index.html",
+    "title": "Trending AI Tools: GPT-5.3 Codex, Claude 4.6 &amp; The No-Code Revolution Arrives in March 2026",
     "date": "2026-03-01"
   },
   {
-    "file": "deepseek-v4-multimodal-2026.html",
-    "title": "DeepSeek V4 Is Coming: What We Know About the Multimodal Challenger",
-    "date": "2026-03-11"
+    "file": "2026-03-01-ai-agents-executive-assistants/index.html",
+    "title": "AI Agents Are No Longer Chatbots: The $840 Billion Wake-Up Call - TopClanker",
+    "date": "2026-03-01"
   },
   {
-    "file": "ggml-joins-hugging-face-2026.html",
-    "title": "GGML Joins Hugging Face: What This Means for Local AI's Future - TopClanker",
-    "date": "2026-03-11"
+    "file": "2026-02-27-anthropic-pentagon-ai-safety/index.html",
+    "title": "Anthropic vs. Pentagon: The Standoff Over AI Safety",
+    "date": "2026-02-27"
   },
   {
-    "file": "gpu-vram-vs-shared-ram.html",
-    "title": "GPU VRAM vs System RAM: What You Can Actually Run on a 16GB Budget - TopClanker",
-    "date": "2026-03-11"
+    "file": "2026-02-27-ai-investment-vs-doomsday/index.html",
+    "title": "AI&#39;s Biggest Week: $110B Funding Meets the Doomsday Narrative",
+    "date": "2026-02-27"
   },
   {
-    "file": "local-llm-hardware-guide-2026.html",
-    "title": "$1,300 Hardware Guide: Maximum Local LLM Power in 2026 - TopClanker",
-    "date": "2026-03-11"
-  },
-  {
-    "file": "local-llms-consumer-gpu-2026.html",
-    "title": "Local LLMs on Consumer GPUs 2026: What You Can Actually Run - TopClanker",
-    "date": "2026-03-11"
-  },
-  {
-    "file": "minimax-m2-5-vs-claude-opus-4-6-breakthrough.html",
-    "title": "MiniMax M2.5 vs Claude Opus 4.6: The $0.15 Model That Matches Excellence - TopClanker",
-    "date": "2026-03-11"
-  },
-  {
-    "file": "ollama-lm-studio-jan-2026.html",
-    "title": "Running Local LLMs in 2026: Ollama vs LM Studio vs Jan Compared - TopClanker",
-    "date": "2026-03-11"
-  },
-  {
-    "file": "openai-open-weight-2026.html",
-    "title": "OpenAI's First Open-Weight Models in 6 Years — Here's Why It Matters",
-    "date": "2026-03-11"
-  },
-  {
-    "file": "open-source-vs-closed-source-ai-models-2026.html",
-    "title": "Open Source vs Closed Source AI Models in 2026 - TopClanker Blog",
-    "date": "2026-03-11"
-  },
-  {
-    "file": "qwen3-35b-a3b-coding-gamechanger-2026.html",
-    "title": "Qwen3.5-35B-A3B: First Local LLM That Passes Real Coding Tests - TopClanker",
-    "date": "2026-03-11"
-  },
-  {
-    "file": "qwen3-35b-a3b-coding-gamechanger.html",
-    "title": "Qwen3.5-35B-A3B: First Local LLM That Passes Real Coding Tests - TopClanker",
-    "date": "2026-03-11"
-  },
-  {
-    "file": "qwen3-dominates-local-llms-2026.html",
-    "title": "Qwen3 Dominates Local LLMs: The 2026 Benchmark Results - TopClanker",
-    "date": "2026-03-11"
-  },
-  {
-    "file": "reasoning-models-explained-2026.html",
-    "title": "Reasoning Models Explained: o1, DeepSeek R1, and the New AI Frontier - TopClanker Blog",
-    "date": "2026-03-11"
-  },
-  {
-    "file": "rtx-gpu-llm-benchmarks-2026.html",
-    "title": "RTX GPU LLM Benchmarks: What Can Your Card Actually Run? | TopClanker",
-    "date": "2026-03-11"
-  },
-  {
-    "file": "taalas-hc1-17000-tokens-second-2026.html",
-    "title": "Taalas HC1: 17,000 Tokens/Second - The Local LLM Game Changer? - TopClanker",
-    "date": "2026-03-11"
-  },
-  {
-    "file": "us-government-chooses-openai-over-anthropic-1772560988.html",
-    "title": "The US Government Just Dumped Anthropic for OpenAI — Here's What Happened - TopClanker",
-    "date": "2026-03-11"
-  },
-  {
-    "file": "us-govt-dumps-anthropic.html",
-    "title": "The US Government Just Dumped Anthropic for OpenAI — Here's What Happened - TopClanker",
-    "date": "2026-03-11"
+    "file": "2026-02-24-trending-ai-tools/index.html",
+    "title": "Trending AI Tools: Local LLMs Take Center Stage in February 2026",
+    "date": "2026-02-24"
   }
 ]
